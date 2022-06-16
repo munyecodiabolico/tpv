@@ -695,5 +695,18 @@
     // foreach($authors as $author) {
     //     echo "El elemento es: ".$author->nodeValue."<br>";
     // }
- 
-?>
+
+    $tickets = ['2205290001', '2205290002', '2206150003', '2206150004'];
+    function revisar_tickets($tickets) {
+        $last_ticket =  end($tickets);
+        $today = date("ymd");
+        if (strpos($last_ticket, $today) == true ) {
+            $ticket_number = intval(substr($last_ticket,-4)) + 1;
+            $new_ticket = $today.str_pad($ticket_number, 4, '0', STR_PAD_LEFT);
+        } else {
+            $new_ticket = $today."0001";
+        }   
+        return $new_ticket;
+    }  
+    revisar_tickets($tickets);
+?> 
