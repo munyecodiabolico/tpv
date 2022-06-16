@@ -4,6 +4,14 @@ namespace app\Controllers;
 
 class TableController {
 
+    protected $saludo;
+
+	public function __construct(){  
+
+		$this->saludo = "hola";
+
+	}
+
 	public function index(){
 
         $mesas = [
