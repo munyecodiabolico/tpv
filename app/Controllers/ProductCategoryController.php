@@ -2,23 +2,21 @@
 
 namespace app\Controllers;
 
+require_once 'app/Models/ProductCategory.php';
+
+use app\Models\ProductCategory;
+
 class ProductCategoryController {
 
+	protected $categoria;
+
+	public function __construct(){  
+
+		$this->categoria = new ProductCategory();
+	}
+
 	public function index(){
-
-        $categorias = [
-            "1" => [
-                "nombre" => "Tapas",
-            ],
-            "2" => [
-                "nombre" => "Refrescos",
-            ],
-            "3" => [
-                "nombre" => "Bebidas calientes",
-            ]
-        ];
-
-        return $categorias;
+		return $this->categoria->index();
 	}
 }
 

@@ -1,3 +1,13 @@
+<?php
+
+	require_once 'app/Controllers/ProductController.php';
+
+	use app\Controllers\ProductController;
+
+	$producto = new ProductController();
+	$productos = $producto->index();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,40 +30,23 @@
             </div>
             <div class="col-12 col-lg-7 col-xl-8 order-lg-1 mt-5">
                 <section>
-                    <h2 class="text-center">CATEGORÍAS</h2>
+                    <h2 class="text-center">TAPAS</h2>
                     <div class="row">
                         <div class="col">
                             <ol class="breadcrumb mb-0 mt-3">
                                 <li class="breadcrumb-item"><a href="index.html"><span><i class="icon ion-android-home me-2"></i>INICIO</span></a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><span><i class="icon ion-social-buffer-outline me-2"></i>Categorías</span></li>
+                                <li class="breadcrumb-item"><a href="categorias.html"><span><i class="icon ion-social-buffer-outline me-2"></i>Categoría</span></a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><span><i class="icon ion-android-apps me-2"></i>Tapas</span></li>
                             </ol>
                         </div>
                     </div>
                     <div class="row mb-5">
-                        <div class="col-6 col-md-4 gy-4"><a class="btn g-4 w-100 shadow cat-prod rounded-0 p-0" role="button" href="productos.html"><img src="assets/img/refrescos.jpeg"></a>
-                            <h5 class="text-center mb-0">Refrescos</h5>
-                        </div>
-                        <div class="col-6 col-md-4 gy-4"><a class="btn g-4 w-100 shadow cat-prod rounded-0 p-0" role="button" href="productos.html"><img src="assets/img/alcohol.jpeg"></a>
-                            <h5 class="text-center mb-0">Bebidas alcohólicas</h5>
-                        </div>
-                        <div class="col-6 col-md-4 gy-4"><a class="btn g-4 w-100 shadow cat-prod rounded-0 p-0" role="button" href="productos.html"><img src="assets/img/caliente.jpeg"></a>
-                            <h5 class="text-center mb-0">Bebidas calientes</h5>
-                        </div>
-                        <div class="col-6 col-md-4 gy-4"><a class="btn g-4 w-100 shadow cat-prod rounded-0 p-0" role="button" href="productos.html"><img src="assets/img/aperitivos.jpeg"></a>
-                            <h5 class="text-center mb-0">Aperitivos</h5>
-                        </div>
-                        <div class="col-6 col-md-4 gy-4"><a class="btn g-4 w-100 shadow cat-prod rounded-0 p-0" role="button" href="productos.html"><img src="assets/img/tapas.jpeg"></a>
-                            <h5 class="text-center mb-0">Tapas</h5>
-                        </div>
-                        <div class="col-6 col-md-4 gy-4"><a class="btn g-4 w-100 shadow cat-prod rounded-0 p-0" role="button" href="productos.html"><img src="assets/img/carnes.jpeg"></a>
-                            <h5 class="text-center mb-0">Carnes</h5>
-                        </div>
-                        <div class="col-6 col-md-4 gy-4"><a class="btn g-4 w-100 shadow cat-prod rounded-0 p-0" role="button" href="productos.html"><img src="assets/img/pescado.jpeg"></a>
-                            <h5 class="text-center mb-0">Pescados</h5>
-                        </div>
-                        <div class="col-6 col-md-4 gy-4"><a class="btn g-4 w-100 shadow cat-prod rounded-0 p-0" role="button" href="productos.html"><img src="assets/img/postres.png"></a>
-                            <h5 class="text-center mb-0">Postres</h5>
-                        </div>
+                        <?php foreach($productos as $producto): ?>
+                            <div class="col-6 col-md-4 gy-4"><a class="btn g-4 w-100 shadow cat-prod rounded-0 p-0" role="button" href="#medidas" data-bs-toggle="modal"><img src="<?= $producto['imagen_url'] ?>"></a>
+                                <h5 class="text-center mb-0"><?= $producto['nombre'] ?></h5>
+                            </div>
+                        <?php endforeach; ?>
+                        
                     </div>
                 </section>
             </div>
@@ -173,6 +166,23 @@
                         </div>
                     </div>
                 </aside>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="medidas">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Tamaño Nombre del producto</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row align-items-center flex-column">
+                        <div class="col-6 d-lg-flex m-2"><button class="btn btn-primary w-100" type="button">PEQUEÑO</button></div>
+                        <div class="col-6 d-lg-flex m-2"><button class="btn btn-success w-100" type="button">MEDIANO</button></div>
+                        <div class="col-6 d-lg-flex m-2"><button class="btn btn-danger w-100" type="button">GRANDE</button></div>
+                    </div>
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button></div>
             </div>
         </div>
     </div>
