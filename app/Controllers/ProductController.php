@@ -14,9 +14,11 @@ class ProductController {
 
 		$this->producto = new Product();
 	}
+	
 
-	public function index(){
-		return $this->producto->index();
+	public function index($category){
+
+		return $this->producto->index($category);
 	}
 }
 

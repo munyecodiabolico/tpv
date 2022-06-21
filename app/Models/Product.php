@@ -8,14 +8,14 @@ use core\Connection;
 
 class Product extends Connection{
 
-	public function index(){
+	public function index($category){
 
-        $query =  "SELECT * FROM productos WHERE activo = 1";
-                
-        $stmt = $this->pdo->prepare($query);
-        $result = $stmt->execute();
+		$query =  "SELECT * FROM productos WHERE activo = 1 AND categoria_id = $category";
+				
+		$stmt = $this->pdo->prepare($query);
+		$result = $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 }
 
