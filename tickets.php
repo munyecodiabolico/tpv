@@ -3,11 +3,7 @@
 	require_once 'app/Controllers/TicketController.php';
 
 	use app\Controllers\TicketController;
-    if(isset($mesa)) {
-        $mesa = $_GET['mesa'];
-    } else {
-        $mesa=0;
-    };
+
     $mesa = $_GET['mesa'];
 	$ticket = new TicketController();
 	$tickets = $ticket->index($mesa);
@@ -17,6 +13,9 @@
     <aside>
         <h2 class="text-center">TICKET MESA 1</h2>
         <ul class="list-group shadow mt-4">
+            <?php $total_imponible = 0; ?>
+            <?php $total_iva = 0; ?>
+            <?php $total_final = 0; ?>             
             <?php foreach($tickets as $ticket): ?>
                 <li class="list-group-item d-flex align-items-center">
                     <button class="btn btn-light btn-sm me-2" type="button">
@@ -27,7 +26,15 @@
                     </div>
                     <p class="precio-prod"><?= $ticket['BASE_IMPONIBLE'] ?></p>
                 </li>
+                <?php $total_imponible += round($ticket['BASE_IMPONIBLE'],2); ?>
+                <?php $total_iva = round($ticket['BASE_IMPONIBLE'] * $ticket['IVA']/100,2); ?>
+                <?php $total_final += round(($total_imponible + $total_iva),2); ?>
+                <?php $porcentaje_iva = $ticket['IVA']; ?>
+                <?php var_dump($total_imponible); var_dump($total_iva); var_dump($total_final); var_dump($porcentaje_iva); ?>
+
             <?php endforeach; ?>
+            <?php var_dump($total_imponible); var_dump($total_iva); var_dump($total_final); var_dump($porcentaje_iva); ?>
+
         </ul>
         <div class="row mt-3">
             <div class="col">
@@ -37,7 +44,7 @@
                             <h5 class="text-center text-white mb-0 pt-1">B. Imponible</h5>
                         </div>
                         <div class="col">
-                            <h5 class="text-center text-white mb-0 border-start pt-1">IVA</h5>
+                            <h5 class="text-center text-white mb-0 border-start pt-1">IVA <?php echo $porcentaje_iva ?>%</h5>
                         </div>
                         <div class="col">
                             <h5 class="text-center text-white mb-0 bg-dark pt-1">TOTAL</h5>
@@ -45,13 +52,13 @@
                     </div>
                     <div class="row justify-content-between g-0">
                         <div class="col">
-                            <h5 class="text-center text-white mb-0 pb-1">74.30 €</h5>
+                            <h5 class="text-center text-white mb-0 pb-1"><?php echo $total_imponible ?> €</h5>
                         </div>
                         <div class="col">
-                            <h5 class="text-center text-white mb-0 border-start pb-1">21%</h5>
+                            <h5 class="text-center text-white mb-0 border-start pb-1"><?php echo $total_iva ?></h5>
                         </div>
                         <div class="col">
-                            <h5 class="text-center text-white mb-0 bg-dark pb-1">102.45 €</h5>
+                            <h5 class="text-center text-white mb-0 bg-dark pb-1"><?php echo $total_final ?> €</h5>
                         </div>
                     </div>
                 </div>
