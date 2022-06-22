@@ -27,7 +27,7 @@
                     <p class="precio-prod"><?= $ticket['BASE_IMPONIBLE'] ?></p>
                 </li>
                 <?php $total_imponible += round($ticket['BASE_IMPONIBLE'],2); ?>
-                <?php $total_iva = round($ticket['BASE_IMPONIBLE'] * $ticket['IVA']/100,2); ?>
+                <?php $total_iva += round($ticket['BASE_IMPONIBLE'] * $ticket['IVA']/100,2); ?>
                 <?php $total_final += round(($total_imponible + $total_iva),2); ?>
                 <?php $porcentaje_iva = $ticket['IVA']; ?>
                 <?php var_dump($total_imponible); var_dump($total_iva); var_dump($total_final); var_dump($porcentaje_iva); ?>
