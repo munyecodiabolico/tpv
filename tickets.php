@@ -57,13 +57,20 @@
                             <?php else: ?>
                                 <h5 class="text-center text-white mb-0 border-start pt-1">0</h5>
                             <?php endif; ?>
-
                         </div>
                         <div class="col">
-                            <h5 class="text-center text-white mb-0 border-start pb-1"><?php isset($total['total']) ? ($total['total'] - $total['total_base']) : 0 ?> €</h5>
+                            <?php if (isset($total['total'])): ?>
+                                <h5 class="text-center text-white mb-0 border-start pt-1"><?php echo ($total['total'] - $total['total_base']) ?> €</h5>
+                            <?php else: ?>
+                                <h5 class="text-center text-white mb-0 border-start pt-1">0</h5>
+                            <?php endif; ?>
                         </div>
                         <div class="col">
-                            <h5 class="text-center text-white mb-0 bg-dark pb-1"><?php isset($total['total']) ? $total['total'] : 0 ?> €</h5>
+                            <?php if (isset($total['total'])): ?>
+                                <h5 class="text-center text-white mb-0 bg-dark pt-1"><?php echo ($total['total'])?> €</h5>
+                            <?php else: ?>
+                                <h5 class="text-center text-white mb-0 bg-dark pt-1">0</h5>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
