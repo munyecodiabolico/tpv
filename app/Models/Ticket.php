@@ -25,6 +25,23 @@ class Ticket extends Connection{
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
+
+	public function total($mesa){
+
+			$query =
+				"SELECT	tickets.mesa_id AS mesa, SUM(precio_base) AS total_base,
+					ROUND(SUM(precio_base*multiplicador),2) AS total, iva.tipo_iva AS valor_iva
+					FROM tickets
+					INNER JOIN precios ON precios.id = tickets.precio_id
+					INNER JOIN iva ON iva.id = precios.iva_id
+					WHERE tickets.mesa_id = $mesa AND tickets.venta_id IS NULL AND tickets.activo = 1
+					GROUP BY iva.tipo_iva";
+					
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
+	
+			return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
 }
 
 ?>
