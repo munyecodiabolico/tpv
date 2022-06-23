@@ -18,6 +18,11 @@ class TableController {
 	public function index(){
 		return $this->table->index();
 	}
+
+	public function nro_mesa($mesa){
+		return $this->table->nro_mesa($mesa);
+	}
+
 }
 
 ?>

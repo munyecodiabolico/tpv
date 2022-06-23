@@ -1,38 +1,46 @@
 <?php
 
 	require_once 'app/Controllers/TicketController.php';
+    require_once 'app/Controllers/TableController.php';
 
 	use app\Controllers\TicketController;
+    use app\Controllers\TableController;
 
 	$ticket = new TicketController();
+    $mesa = new TableController();
 
     if(isset( $_GET['mesa'])){
         $tickets = $ticket->index($_GET['mesa']);
         $total = $ticket->total($_GET['mesa']);
+        $nro_mesa = $mesa->nro_mesa($_GET['mesa']);
     } 
 ?>
 
 <div class="col-12 col-lg-5 col-xl-4 mt-5">
     <aside>
-        <h2 class="text-center">TICKET MESA 1</h2>
-        <?php IF (isset($_GET['mesa'])): ?>    
+        <?php if (isset($_GET['mesa'])): ?>
+            <h2 class="text-center">TICKET MESA <?php echo $nro_mesa['numero'] ?></h2>
+
             <ul class="list-group shadow mt-4">
-                <?php foreach($tickets as $ticket): ?>
-                    <li class="list-group-item d-flex align-items-center">
-                        <button class="btn btn-light btn-sm me-2" type="button">
-                        <i class="la la-close"></i></button><img class="img-ticket" src="<?= $ticket['IMAGEN'] ?>">
-                        <div class="flex-grow-1">
-                            <span class="categoria-prod"><?= $ticket['CATEGORIA'] ?></span>
-                            <h4 class="nombre-prod mb-0"><?= $ticket['PRODUCTO'] ?>
-                        </div>
-                        <p class="precio-prod"><?= $ticket['BASE_IMPONIBLE'] ?></p>
+                <?php if (empty($tickets)): ?>
+                    <li>
+                        <h4 class="m-4">NO HAY ARTICULOS SELECCIONADOS EN ESTA MESA</h4>
                     </li>
-
-                <?php endforeach; ?>
-
+                <?php else: ?>
+                    <?php foreach($tickets as $ticket): ?>
+                        <li class="list-group-item d-flex align-items-center">
+                            <button class="btn btn-light btn-sm me-2" type="button">
+                            <i class="la la-close"></i></button><img class="img-ticket" src="<?= $ticket['IMAGEN'] ?>">
+                            <div class="flex-grow-1">
+                                <span class="categoria-prod"><?= $ticket['CATEGORIA'] ?></span>
+                                <h4 class="nombre-prod mb-0"><?= $ticket['PRODUCTO'] ?>
+                            </div>
+                            <p class="precio-prod"><?= $ticket['BASE_IMPONIBLE'] ?></p>
+                        </li>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </ul>
-        <?php endif; ?>
-        <div class="row mt-3">
+            <div class="row mt-3">
             <div class="col">
                 <div class="bg-secondary">
                     <div class="row justify-content-between g-0">
@@ -57,19 +65,23 @@
                             <?php else: ?>
                                 <h5 class="text-center text-white mb-0 border-start pt-1">0</h5>
                             <?php endif; ?>
+
                         </div>
                         <div class="col">
                             <?php if (isset($total['total'])): ?>
-                                <h5 class="text-center text-white mb-0 border-start pt-1"><?php echo ($total['total'] - $total['total_base']) ?> €</h5>
-                            <?php else: ?>
-                                <h5 class="text-center text-white mb-0 border-start pt-1">0</h5>
+                                    <h5 class="text-center text-white mb-0 border-start pt-1">
+                                        <?php echo ($total['total'] - $total['total_base']) ?> €</h5>
+                                <?php else: ?>
+                                    <h5 class="text-center text-white mb-0 border-start pt-1">0</h5>
                             <?php endif; ?>
                         </div>
                         <div class="col">
-                            <?php if (isset($total['total'])): ?>
-                                <h5 class="text-center text-white mb-0 bg-dark pt-1"><?php echo ($total['total'])?> €</h5>
-                            <?php else: ?>
-                                <h5 class="text-center text-white mb-0 bg-dark pt-1">0</h5>
+
+                        <?php if (isset($total['total'])): ?>
+                                    <h5 class="text-center text-white mb-0 bg-dark pt-1">
+                                        <?php echo ($total['total']) ?> €</h5>
+                                <?php else: ?>
+                                    <h5 class="text-center text-white mb-0 bg-dark pt-1">0</h5>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -116,5 +128,11 @@
                 </div>
             </div>
         </div>
+        <?php else: ?>
+            <div class="p-4 bg-light">
+                <h2 class="p-4 bg-secondary text-white text-center">NO HAY NINGUNA MESA SELECCIONADA</h2>
+            </div>
+        <?php endif; ?>
+
     </aside>
 </div>

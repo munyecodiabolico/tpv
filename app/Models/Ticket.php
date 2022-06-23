@@ -42,6 +42,7 @@ class Ticket extends Connection{
 	
 			return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
+
 }
 
 ?>

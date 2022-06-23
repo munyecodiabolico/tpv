@@ -18,9 +18,11 @@ class TicketController {
 	public function index($mesa){
 		return $this->ticket->index($mesa);
 	}
+
 	public function total($mesa){
 		return $this->ticket->total($mesa);
 	}
+
 }
 
 ?>

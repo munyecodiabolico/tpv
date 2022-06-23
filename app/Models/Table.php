@@ -10,12 +10,23 @@ class Table extends Connection{
 
 	public function index(){
 
-        $query =  "SELECT * FROM mesas WHERE activo = 1";
-                
-        $stmt = $this->pdo->prepare($query);
-        $result = $stmt->execute();
+		$query = "SELECT * FROM mesas WHERE activo = 1";
+				
+		$stmt = $this->pdo->prepare($query);
+		$result = $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+    public function nro_mesa($mesa)
+	{
+
+		$query = "SELECT numero FROM mesas WHERE id = $mesa";
+				
+		$stmt = $this->pdo->prepare($query);
+		$result = $stmt->execute();
+
+		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 }
 
