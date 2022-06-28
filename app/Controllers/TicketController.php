@@ -1,28 +1,25 @@
 <?php
 
-namespace app\Controllers;
+	namespace app\Controllers;
 
-require_once 'app/Models/Ticket.php';
+	require_once 'app/Models/Ticket.php';
 
-use app\Models\Ticket;
+	use app\Models\Ticket;
 
-class TicketController {
+	class TicketController {
 
-	protected $ticket;
+		protected $ticket;
 
-	public function __construct(){  
+		public function __construct(){  
+			$this->ticket = new Ticket();
+		}
 
-		$this->ticket = new Ticket();
+		public function index($mesa){
+			return $this->ticket->index($mesa);
+		}
+
+		public function total($mesa){
+			return $this->ticket->total($mesa);
+		}
+
 	}
-
-	public function index($mesa){
-		return $this->ticket->index($mesa);
-	}
-
-	public function total($mesa){
-		return $this->ticket->total($mesa);
-	}
-
-}
-
-?>

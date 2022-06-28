@@ -1,25 +1,22 @@
 <?php
 
-namespace app\Controllers;
+	namespace app\Controllers;
 
-require_once 'app/Models/Product.php';
+	require_once 'app/Models/Product.php';
 
-use app\Models\Product;
+	use app\Models\Product;
 
-class ProductController {
+	class ProductController {
 
-	protected $producto;
+		protected $producto;
 
-	public function __construct(){  
+		public function __construct(){  
+			$this->producto = new Product();
+		}
+		
 
-		$this->producto = new Product();
+		public function index($category){
+			return $this->producto->index($category);
+		}
+		
 	}
-	
-
-	public function index($category){
-
-		return $this->producto->index($category);
-	}
-}
-
-?>

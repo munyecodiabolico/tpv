@@ -1,22 +1,24 @@
 <?php
 
-namespace app\Models;
-require_once 'core/Connection.php';
+	namespace app\Models;
+	
+	require_once 'core/Connection.php';
 
-use PDO;
-use core\Connection;
+	use PDO;
+	
+	use core\Connection;
 
-class Product extends Connection{
+	class Product extends Connection{
 
-	public function index($category){
+		public function index($category){
 
-		$query =  "SELECT * FROM productos WHERE activo = 1 AND categoria_id = $category";
-				
-		$stmt = $this->pdo->prepare($query);
-		$result = $stmt->execute();
+			$query =  "SELECT * FROM productos WHERE activo = 1 AND categoria_id = $category";
+					
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
 
-		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		}
+		
 	}
-}
-
-?>

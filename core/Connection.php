@@ -1,49 +1,47 @@
 <?php
 
-namespace core;
+    namespace core;
 
-use PDO;
+    use PDO;
 
-class Connection{ 
+    class Connection{ 
 
-    protected $pdo;
-    protected $driver;
-    protected $host;
-    protected $database;
-    protected $user;
-    protected $password;
-    
-    public function __construct(){
-
-        $configuration = require 'config/database.php';
+        protected $pdo;
+        protected $driver;
+        protected $host;
+        protected $database;
+        protected $user;
+        protected $password;
         
-        $this->driver = $configuration['driver'];
-        $this->host = $configuration['host'];
-        $this->database = $configuration['database'];
-        $this->user = $configuration['user'];
-        $this->password = $configuration['password'];
-        
-        try {
+        public function __construct(){
 
-            $this->pdo = new PDO($this->driver .':host='.$this->host.';dbname='.$this->database, $this->user, $this->password, 
-                array(
-                    PDO::MYSQL_ATTR_LOCAL_INFILE => TRUE
-                )
-            );
+            $configuration = require 'config/database.php';
+            
+            $this->driver = $configuration['driver'];
+            $this->host = $configuration['host'];
+            $this->database = $configuration['database'];
+            $this->user = $configuration['user'];
+            $this->password = $configuration['password'];
+            
+            try {
 
-            $this->pdo->exec("SET CHARACTER SET utf8");
+                $this->pdo = new PDO($this->driver .':host='.$this->host.';dbname='.$this->database, $this->user, $this->password, 
+                    array(
+                        PDO::MYSQL_ATTR_LOCAL_INFILE => TRUE
+                    )
+                );
 
-        } catch (PDOException $e) {
+                $this->pdo->exec("SET CHARACTER SET utf8");
 
-            echo "Error al conectar a la base de datos!: " . $e->getMessage() . "<br/>";
-            die();
+            } catch (PDOException $e) {
+
+                echo "Error al conectar a la base de datos!: " . $e->getMessage() . "<br/>";
+                die();
+            }
+        }
+
+        public function  __destruct() {
+            
+            $this->pdo = NULL;
         }
     }
-
-    public function  __destruct() {
-        
-        $this->pdo = NULL;
-    }
-} 
-
-?> 

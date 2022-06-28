@@ -1,33 +1,35 @@
 <?php
 
-namespace app\Models;
-require_once 'core/Connection.php';
+	namespace app\Models;
+	
+	require_once 'core/Connection.php';
 
-use PDO;
-use core\Connection;
+	use PDO;
+	
+	use core\Connection;
 
-class Table extends Connection{
+	class Table extends Connection{
 
-	public function index(){
+		public function index(){
 
-		$query = "SELECT * FROM mesas WHERE activo = 1";
-				
-		$stmt = $this->pdo->prepare($query);
-		$result = $stmt->execute();
+			$query = "SELECT * FROM mesas WHERE activo = 1";
+					
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
 
-		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+		}
+
+		public function nro_mesa($mesa){
+
+			$query = "SELECT numero FROM mesas WHERE id = $mesa";
+					
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
+
+			return $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		}
+	
 	}
-
-    public function nro_mesa($mesa)
-	{
-
-		$query = "SELECT numero FROM mesas WHERE id = $mesa";
-				
-		$stmt = $this->pdo->prepare($query);
-		$result = $stmt->execute();
-
-		return $stmt->fetch(PDO::FETCH_ASSOC);
-	}
-}
-
-?>

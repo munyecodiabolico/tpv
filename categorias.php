@@ -1,11 +1,11 @@
 <?php
 
-	require_once 'app/Controllers/ProductCategoryController.php';
+require_once 'app/Controllers/ProductCategoryController.php';
 
-	use app\Controllers\ProductCategoryController;
+use app\Controllers\ProductCategoryController;
 
-	$categoria = new ProductCategoryController();
-	$categorias = $categoria->index();
+$categoria = new ProductCategoryController();
+$categorias = $categoria->index();
 
 ?>
 <!DOCTYPE html>
@@ -49,11 +49,11 @@
                         </div>
                     </div>
                     <div class="row mb-5">
-                        <?php foreach($categorias as $categoria): ?>
+                        <?php foreach ($categorias as $categoria) : ?>
                             <div class="col-6 col-md-4 gy-4">
                                 <a class="btn g-4 w-100 shadow cat-prod rounded-0 p-0" role="button" href="productos.php?categoria=<?php echo $categoria['id'] ?>&mesa=<?php echo $_GET['mesa'] ?>">
                                     <img src=<?= $categoria['imagen_url'] ?>>
-                            </a>
+                                </a>
                                 <h5 class="text-center mb-0"><?= $categoria['nombre'] ?></h5>
                             </div>
                         <?php endforeach; ?>

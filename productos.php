@@ -1,12 +1,12 @@
 <?php
 
-	require_once 'app/Controllers/ProductController.php';
+require_once 'app/Controllers/ProductController.php';
 
-	use app\Controllers\ProductController;
+use app\Controllers\ProductController;
 
-    $category = $_GET['categoria'];
-	$producto = new ProductController();
-	$productos = $producto->index($category);
+$category = $_GET['categoria'];
+$producto = new ProductController();
+$productos = $producto->index($category);
 
 ?>
 <!DOCTYPE html>
@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="assets/css/Abel.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/fonts/line-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 
 </head>
@@ -37,23 +38,36 @@
                     <div class="row">
                         <div class="col">
                             <ol class="breadcrumb mb-0 mt-3">
-                                <li class="breadcrumb-item"><a href="mesas.php?mesa=<?php echo $_GET['mesa'] ?>"><span><i class="icon ion-android-home me-2"></i>INICIO</span></a></li>
-                                <li class="breadcrumb-item"><a href="categorias.php?mesa=<?php echo $_GET['mesa'] ?>&categoria=<?php echo $_GET['categoria'] ?>"><span><i class="icon ion-social-buffer-outline me-2"></i>Categoría</span></a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><span><i class="icon ion-android-apps me-2"></i>Tapas</span></li>
+                                <li class="breadcrumb-item">
+                                    <a href="mesas.php?mesa=<?php echo $_GET['mesa'] ?>">
+                                        <span><i class="icon ion-android-home me-2"></i>INICIO</span>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="categorias.php?mesa=<?php echo $_GET['mesa'] ?>&categoria=<?php echo $_GET['categoria'] ?>">
+                                        <span><i class="icon ion-social-buffer-outline me-2"></i>Categoría</span>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    <span><i class="icon ion-android-apps me-2"></i>Tapas</span>
+                                </li>
                             </ol>
                         </div>
                     </div>
                     <div class="row mb-5">
-                        <?php foreach($productos as $producto): ?>
-                            <div class="col-6 col-md-4 gy-4"><a class="btn g-4 w-100 shadow cat-prod rounded-0 p-0" role="button" href="#medidas" data-bs-toggle="modal"><img src="<?= $producto['imagen_url'] ?>"></a>
+                        <?php foreach ($productos as $producto) : ?>
+                            <div class="col-6 col-md-4 gy-4">
+                                <a class="btn g-4 w-100 shadow cat-prod rounded-0 p-0" role="button" href="#medidas" data-bs-toggle="modal">
+                                    <img src=<?= $producto['imagen_url'] ?>>
+                                </a>
                                 <h5 class="text-center mb-0"><?= $producto['nombre'] ?></h5>
                             </div>
                         <?php endforeach; ?>
-                        
+
                     </div>
                 </section>
             </div>
-            
+
             <?php include('tickets.php') ?>
         </div>
     </div>
