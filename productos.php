@@ -20,8 +20,8 @@ $productos = $producto->index($category);
     <link rel="stylesheet" href="assets/css/Abel.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/fonts/line-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 
 </head>
 

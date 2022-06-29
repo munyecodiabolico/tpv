@@ -8,9 +8,10 @@
 	
 	use core\Connection;
 
-	class ProductCategory extends Connection{
 
-		public function index(){
+	class ProductCategory extends Connection {
+
+		public function index() {
 
 			$query =  "SELECT productos_categorias.nombre, productos_categorias.id,productos_categorias.imagen_url
 						FROM productos_categorias
@@ -26,3 +27,5 @@
 		}
 	
 	}
+
+?>

@@ -23,8 +23,8 @@
       </a>
     </div>
     <div class="col-12 gy-4">
-      <a class="btn btn-success g-4 w-100 py-1 px-2 shadow-sm option-system option-system-menu rounded-0" role="button" href="">
-        <h2 class="mb-0"><i class="fa fa-file-text-o" aria-hidden="true"></i> Facturación</h2>
+      <a class="btn btn-success g-4 w-100 py-1 px-2 shadow-sm option-system option-system-menu rounded-0" role="button" href="ventas.php">
+        <h2 class="mb-0"><i class="fa fa-file-text-o" aria-hidden="true"></i> Ventas</h2>
       </a>
     </div>
     <div class="col-12 gy-4">

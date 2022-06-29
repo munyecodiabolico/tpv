@@ -6,17 +6,19 @@
 
 	use app\Models\Product;
 
-	class ProductController {
+
+	class ProductController	{
 
 		protected $producto;
 
-		public function __construct(){  
+		public function __construct() {
 			$this->producto = new Product();
 		}
-		
 
-		public function index($category){
+		public function index($category) {
 			return $this->producto->index($category);
 		}
-		
+
 	}
+
+?>

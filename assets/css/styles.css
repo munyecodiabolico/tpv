@@ -8,6 +8,7 @@ body {
   height: 60px;
   margin-right: 1rem;
   border: 1px solid #eee;
+  object-fit: cover;
 }
 
 .precio-prod {
@@ -39,46 +40,52 @@ body {
   border: 1px solid #eee;
 }
 
-.mesas, .option-system {
+.mesas,
+.option-system {
   font-size: 3rem;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255, 255, 255, 0.5);
   font-weight: bold;
-  box-shadow: inset 0 0 60px rgba(50,50,50,0.6) !important;
+  box-shadow: inset 0 0 60px rgba(50, 50, 50, 0.6) !important;
 }
+
 .option-system {
   padding-top: 2rem !important;
   padding-bottom: 2rem !important;
 }
+
 @media (min-width:576px) {
   .option-system {
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
   }
 }
+
 @media (min-width:992px) {
   .option-system {
     padding-top: 4rem !important;
     padding-bottom: 4rem !important;
   }
 }
+
 @media (min-width:1200px) {
   .option-system {
     padding-top: 5rem !important;
     padding-bottom: 5rem !important;
   }
 }
+
 .option-system h2 {
   font-size: 1.5rem;
 }
 
-.option-system-menu{
-  padding-top:1rem !important;
+.option-system-menu {
+  padding-top: 1rem !important;
   padding-bottom: 1rem !important;
-  padding-left:1rem !important;
+  padding-left: 1rem !important;
 }
 
 .titular {
-  background-color: rgb(218,222,224);
+  background-color: rgb(218, 222, 224);
 }
 
 .cat-prod {
@@ -93,7 +100,8 @@ body {
   transition: all .3s ease-in-out;
 }
 
-.mesas, .cat-prod {
+.mesas,
+.cat-prod {
   border: 0px solid transparent;
   overflow: hidden;
 }
@@ -119,7 +127,7 @@ body {
   text-decoration: none;
 }
 
-.breadcrumb-item + .breadcrumb-item::before {
+.breadcrumb-item+.breadcrumb-item::before {
   float: none;
   content: '';
 }
@@ -135,4 +143,3 @@ body {
 .breadcrumb-item.active:hover {
   background-color: #999;
 }
-

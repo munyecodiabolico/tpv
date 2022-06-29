@@ -8,9 +8,10 @@
 	
 	use core\Connection;
 
-	class Product extends Connection{
 
-		public function index($category){
+	class Product extends Connection {
+
+		public function index($category) {
 
 			$query =  "SELECT * FROM productos WHERE activo = 1 AND categoria_id = $category";
 					
@@ -22,3 +23,5 @@
 		}
 		
 	}
+
+?>

@@ -6,20 +6,23 @@
 
 	use app\Models\Table;
 
+
 	class TableController {
 
 		protected $table;
 
-		public function __construct(){  
+		public function __construct() {  
 			$this->table = new Table();
 		}
 
-		public function index(){
+		public function index() {
 			return $this->table->index();
 		}
 
-		public function nro_mesa($mesa){
+		public function nro_mesa($mesa) {
 			return $this->table->nro_mesa($mesa);
 		}
 
 	}
+
+?>

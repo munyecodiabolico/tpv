@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="assets/css/Abel.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/fonts/line-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body>
@@ -37,9 +37,9 @@
                         </a>
                     </div>
                     <div class="col-6 col-md-4 gy-4">
-                        <a class="btn btn-success g-4 w-100 py-4 py-sm-5 px-2 shadow-sm option-system option-system-menu rounded-0" role="button" href="">
+                        <a class="btn btn-success g-4 w-100 py-4 py-sm-5 px-2 shadow-sm option-system option-system-menu rounded-0" role="button" href="ventas.php">
                             <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                            <h2>Facturación</h2>
+                            <h2>Ventas</h2>
                         </a>
                     </div>
                     <div class="col-6 col-md-4 gy-4">

@@ -6,20 +6,23 @@
 
 	use app\Models\Ticket;
 
+
 	class TicketController {
 
 		protected $ticket;
 
-		public function __construct(){  
+		public function __construct() {  
 			$this->ticket = new Ticket();
 		}
 
-		public function index($mesa){
+		public function index($mesa) {
 			return $this->ticket->index($mesa);
 		}
 
-		public function total($mesa){
+		public function total($mesa) {
 			return $this->ticket->total($mesa);
 		}
 
 	}
+
+?>

@@ -8,9 +8,10 @@
 	
 	use core\Connection;
 
-	class Table extends Connection{
+	
+	class Table extends Connection {
 
-		public function index(){
+		public function index() {
 
 			$query = "SELECT * FROM mesas WHERE activo = 1";
 					
@@ -21,7 +22,7 @@
 		
 		}
 
-		public function nro_mesa($mesa){
+		public function nro_mesa($mesa) {
 
 			$query = "SELECT numero FROM mesas WHERE id = $mesa";
 					
@@ -33,3 +34,5 @@
 		}
 	
 	}
+
+?>

@@ -6,15 +6,16 @@
 
 	use app\Models\ProductCategory;
 
+
 	class ProductCategoryController {
 
 		protected $categoria;
 
-		public function __construct(){  
+		public function __construct() {  
 			$this->categoria = new ProductCategory();
 		}
 
-		public function index(){
+		public function index() {
 			return $this->categoria->index();
 		}
 		
