@@ -50,27 +50,55 @@
 
 		public function articulos_venta($ticket) {
 
-			$query =  "SELECT 	mesas.id AS MESA,
-								productos_categorias.nombre AS CATEGORIA,
+			$query =  "SELECT 	productos_categorias.nombre AS CATEGORIA,
 								productos.nombre AS PRODUCTO, productos.id,
-								precios.precio_base AS BASE_IMPONIBLE,
-								iva.tipo_iva AS IVA,
+								COUNT(tickets.precio_id) AS numero_productos,
+								SUM(precios.precio_base) AS BASE_IMPONIBLE,
 								productos.imagen_url AS IMAGEN
 								FROM ventas
 								INNER JOIN tickets ON tickets.venta_id = ventas.id
 								INNER JOIN precios ON precios.id = tickets.precio_id
-								INNER JOIN mesas ON mesas.id = tickets.mesa_id
 								INNER JOIN productos ON productos.id = precios.producto_id
-								INNER JOIN iva ON iva.id = precios.iva_id
 								INNER JOIN productos_categorias ON productos_categorias.id = productos.categoria_id
 								WHERE ventas.numero_ticket = $ticket AND tickets.activo = 1
-								ORDER BY tickets.id";
+								GROUP BY tickets.precio_id";
 
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+		}
+
+
+		public function filtrar($fecha, $mesa) {
+
+			if($mesa == null) {
+				
+				$query =  "SELECT 	numero_ticket AS ticket,
+				precio_total AS total,
+				SUBSTRING(hora_emision,1,5) AS hora,
+				mesas.numero AS numero_mesa
+				FROM `ventas` 
+				INNER JOIN mesas ON mesas.id = ventas.mesa_id
+				WHERE fecha_emision = '$fecha' AND ventas.activo = 1;";
+
+			}  else {
+				$query =  "SELECT 	numero_ticket AS ticket,
+				precio_total AS total,
+				SUBSTRING(hora_emision,1,5) AS hora,
+				mesas.numero AS numero_mesa
+				FROM `ventas` 
+				INNER JOIN mesas ON mesas.id = ventas.mesa_id
+				WHERE mesas.numero = $mesa AND fecha_emision = '$fecha' AND ventas.activo = 1;";
+
+			}
+
+
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
+
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}
 
 	}

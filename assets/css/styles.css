@@ -36,7 +36,6 @@ body {
 
 .list-group {
   max-height: 520px;
-  overflow-y: scroll;
   border: 1px solid #eee;
 }
 

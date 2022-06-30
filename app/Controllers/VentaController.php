@@ -23,6 +23,10 @@
 			return $this->venta->venta_activa($ticket);
 		}
 
+		public function filtrar($fecha, $mesa) {
+			return $this->venta->filtrar($fecha, $mesa);
+		}
+
 		public function articulos_venta($ticket) {
 			return $this->venta->articulos_venta($ticket);
 		}

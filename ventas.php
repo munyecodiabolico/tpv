@@ -1,16 +1,28 @@
 <?php
 
-require_once 'app/Controllers/VentaController.php';
+	require_once 'app/Controllers/VentaController.php';
+	require_once 'app/Controllers/TableController.php';
 
-use app\Controllers\VentaController;
+	use app\Controllers\VentaController;
+	use app\Controllers\TableController;
 
-$venta = new VentaController();
-$ventas = $venta->index();
-if (isset($_GET['ticket'])) {
-	$ventas_activas = $venta->venta_activa($_GET['ticket']);
-	$articulos_venta = $venta->articulos_venta($_GET['ticket']);
-}
+	$venta = new VentaController();
+	$mesas = new TableController();
+	
+	$fecha = !empty($_GET['fecha']) ? $_GET['fecha'] : date('Y-m-d');
+	$mesa = !empty($_GET['mesa']) ? $_GET['mesa'] : null;
 
+	$numeros_mesas = $mesas->index();
+	$ventas = $venta->filtrar($fecha, $mesa);
+
+
+
+	$total_mediaS = $venta->total_media($fecha, $mesa);
+
+	if (isset($_GET['ticket'])) {
+		$ventas_activas = $venta->venta_activa($_GET['ticket']);
+		$articulos_venta = $venta->articulos_venta($_GET['ticket']);
+	}
 ?>
 
 <!DOCTYPE html>
@@ -53,11 +65,17 @@ if (isset($_GET['ticket'])) {
 												<strong>Mesa:</strong> <?= $ventas_activas['numero_mesa'] ?><br>
 												<strong>Método de pago:</strong> <?= $ventas_activas['metodo_pago'] ?><br>
 											</p>
-											<p class="card-text">
-												<strong>Total base:</strong> <?= $ventas_activas['total_base'] ?><br>
-												<strong>Total IVA:</strong> <?= $ventas_activas['iva'] ?><br>
-												<strong>Total:</strong> <?= $ventas_activas['total'] ?>
-											</p>
+											<div>
+												<p class="card-text d-flex justify-content-between mb-0 fs-5">
+													<span>Total base:</span><span class="ms-3"><?= $ventas_activas['total_base'] ?></span>
+												</p>
+												<p class="card-text d-flex justify-content-between mb-0 fs-5">
+													<span>Total IVA:</span><span class="ms-3"><?= $ventas_activas['iva'] ?></span>
+												</p>
+												<p class="card-text d-flex justify-content-between mb-0 fs-5 border-top">
+													<strong>Total:</strong><span class="ms-3"><?= $ventas_activas['total'] ?></span>
+												</p>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -67,7 +85,10 @@ if (isset($_GET['ticket'])) {
 							<div class="col mt-5">
 								<div class="d-flex justify-content-between bg-secondary text-white mb-2">
 									<h5 class="px-4 mb-0">Artículo</h5>
-									<h5 class="text-end px-3 mb-0">Precio</h5>
+									<div class="d-flex">
+										<h5 class="text-center px-3 mb-0">Cantidad</h5>
+										<h5 class="text-end px-3 mb-0">Precio</h5>
+									</div>
 								</div>
 							</div>
 
@@ -82,6 +103,9 @@ if (isset($_GET['ticket'])) {
 												<span class="categoria-prod"><?= $articulo['CATEGORIA'] ?></span>
 												<h4 class="nombre-prod mb-0"><?= $articulo['PRODUCTO'] ?>
 											</div>
+											<div>
+												<p class="precio-prod text-center"><?= $articulo['numero_productos'] ?></p>
+											</div>
 											<p class="precio-prod"><?= $articulo['BASE_IMPONIBLE'] ?></p>
 										</li>
 									<?php endforeach; ?>
@@ -95,26 +119,102 @@ if (isset($_GET['ticket'])) {
 			<div class="col-12 col-lg-5 col-xl-4 mt-5">
 				<aside>
 					<h2 class="text-center">VENTAS</h2>
+					<form action="ventas.php" method="GET">
+						<div class="row mt-3 mb-3">
+							<div class="col-6">
+								<p>Filtrar por fecha:</p>
+							</div>
 
+							<div class="col-6">
+								<div class="form-group">
+									<input type="date" name="fecha" value="<?= htmlspecialchars($fecha); ?>" class="form-control">
+								</div>
+							</div>
+						</div>
+
+						<div class="row mt-3 mb-3">
+							<div class="col-6">
+								<p>Filtrar por mesa:</p>
+							</div>
+							<div class="col-6">
+								<div class="form-group">
+									<select name="mesa" class="form-control">
+										<option value="">Todas</option>
+										<?php foreach ($numeros_mesas as $numero_mesa) : ?>
+											<option value="<?= $numero_mesa['numero'] ?>" <?=  $numero_mesa['numero'] == $mesa ? 'selected':'' ?>><?= $numero_mesa['numero'] ?></option>
+										<?php endforeach; ?>
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<div class="row mt-3 mb-3">
+							<div class="col-12">
+								<button type="submit" class="btn btn-primary w-100">Filtrar</button>
+							</div>
+						</div>
+
+					</form>
 					<div class="list-group">
 						<?php foreach ($ventas as $venta) : ?>
 							<?php if (isset($_GET['ticket']) && $venta["ticket"] == $_GET["ticket"]) : ?>
 								<a class="sale-item list-group-item list-group-item-action d-flex justify-content-between active" href="ventas.php?
-								ticket=<?php echo $venta['ticket'] ?>" aria-current="true">
-								<?php else : ?>
-									<a class="sale-item list-group-item list-group-item-action d-flex justify-content-between" href="ventas.php?
-								ticket=<?php echo $venta['ticket'] ?>" aria-current="true">
-									<?php endif; ?>
-										<div class="d-flex w-100 flex-column">
-											<h5 class="mb-1">Nº: <?= $venta['ticket'] ?></h5>
-											<p class="mb-0">Mesa: <?= $venta['numero_mesa'] ?> - <small>Hora: <?= $venta['hora'] ?></small></p>
-											
-										</div>
-										<p class="mb-1 d-flex align-items-center fs-4 fw-bold flex-shrink-0"><?= $venta['total'] ?> €</p>
-									</a>
-								<?php endforeach; ?>
+								ticket=<?php echo $venta['ticket'] ?>&fecha=<?= $fecha ?>&mesa=<?= $mesa ?>" aria-current="true">
+									<div class="d-flex w-100 flex-column">
+										<h5 class="mb-1">Nº: <?= $venta['ticket'] ?></h5>
+										<p class="mb-0">Mesa: <?= $venta['numero_mesa'] ?> - <small>Hora: <?= $venta['hora'] ?></small></p>
+										
+									</div>
+									<p class="mb-1 d-flex align-items-center fs-4 fw-bold flex-shrink-0"><?= $venta['total'] ?> €</p>
+								</a>
+							<?php else : ?>
+								<a class="sale-item list-group-item list-group-item-action d-flex justify-content-between" href="ventas.php?
+								ticket=<?php echo $venta['ticket'] ?>&fecha=<?= $fecha ?>&mesa=<?= $mesa ?>" aria-current="true">
+									<div class="d-flex w-100 flex-column">
+										<h5 class="mb-1">Nº: <?= $venta['ticket'] ?></h5>
+										<p class="mb-0">Mesa: <?= $venta['numero_mesa'] ?> - <small>Hora: <?= $venta['hora'] ?></small></p>
+										
+									</div>
+									<p class="mb-1 d-flex align-items-center fs-4 fw-bold flex-shrink-0"><?= $venta['total'] ?> €</p>
+								</a>
+							<?php endif; ?>
+							
+						<?php endforeach; ?>
 					</div>
-
+					<div class="row mt-3">
+                        <div class="col">
+                            <div class="bg-secondary" id="refresh-price">
+                                <div class="row justify-content-between g-0">
+                                    <div class="col">
+                                        <h5 class="text-center text-white mb-0 pt-1">Total Ingresos</h5>
+                                    </div>
+                                    <div class="col">
+                                        <h5 class="text-center text-white mb-0 pt-1">Media del día</h5>
+                                    </div>
+                                    <div class="row justify-content-between g-0">
+                                        <div class="col">
+                                            <h5 class="text-center text-white mb-0 pb-1">
+                                                <?php if(isset($total_ticket['base_imponible']) && $total_ticket['base_imponible'] != null): ?>
+                                                    <?= $total_ticket['base_imponible']; ?> €
+                                                <?php else: ?>
+                                                    0 €
+                                                <?php endif; ?>
+                                            </h5>
+                                        </div>
+                                        <div class="col">
+                                            <h5 class="text-center text-white mb-0 border-start pb-1">
+                                                <?php if(isset($total_ticket['iva']) && $total_ticket['iva'] != null): ?>
+                                                    <?= $total_ticket['rest']; ?> €
+                                                <?php else: ?>
+                                                    0 €
+                                                <?php endif; ?>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 				</aside>
 			</div>
 
