@@ -17,7 +17,7 @@
 
 
 
-	$total_mediaS = $venta->total_media($fecha, $mesa);
+	$total_media = $venta->total_media($fecha, $mesa);
 
 	if (isset($_GET['ticket'])) {
 		$ventas_activas = $venta->venta_activa($_GET['ticket']);
@@ -194,17 +194,17 @@
                                     <div class="row justify-content-between g-0">
                                         <div class="col">
                                             <h5 class="text-center text-white mb-0 pb-1">
-                                                <?php if(isset($total_ticket['base_imponible']) && $total_ticket['base_imponible'] != null): ?>
-                                                    <?= $total_ticket['base_imponible']; ?> €
+                                                <?php if(isset($total_media['total']) && $total_media['total'] != null): ?>
+                                                    <?= $total_media['total']; ?> €
                                                 <?php else: ?>
-                                                    0 €
+                                                    120 €
                                                 <?php endif; ?>
                                             </h5>
                                         </div>
                                         <div class="col">
                                             <h5 class="text-center text-white mb-0 border-start pb-1">
-                                                <?php if(isset($total_ticket['iva']) && $total_ticket['iva'] != null): ?>
-                                                    <?= $total_ticket['rest']; ?> €
+                                                <?php if(isset($total_media['media']) && $total_media['media'] != null): ?>
+                                                    <?= $total_media['media']; ?> €
                                                 <?php else: ?>
                                                     0 €
                                                 <?php endif; ?>

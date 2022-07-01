@@ -101,6 +101,42 @@
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}
 
+		public function total_media($fecha, $mesa) {
+
+			$query =  "SELECT
+							ROUND( SUM( precio_total ), 2 ) AS total,
+							(
+							SELECT
+								ROUND( AVG( suma_total ), 2 ) AS promedio_dia 
+							FROM
+								(
+								SELECT
+									SUM( precio_total ) AS suma_total,
+									DAYNAME( fecha_emision ) AS fecha 
+								FROM
+									ventas 
+								WHERE
+									DAYNAME( fecha_emision ) = DAYNAME( '$fecha' ) 
+									AND activo = 1
+								GROUP BY
+									fecha_emision 
+								) media 
+							GROUP BY
+								fecha 
+							) AS media 
+						FROM
+							`ventas` 
+						WHERE
+							fecha_emision = '$fecha' 
+							AND ventas.activo = 1";
+
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
+
+			return $stmt->fetch(PDO::FETCH_ASSOC);
+
+		}
+
 	}
 
 ?>

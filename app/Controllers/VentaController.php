@@ -31,6 +31,9 @@
 			return $this->venta->articulos_venta($ticket);
 		}
 
+		public function total_media($fecha, $mesa) {
+			return $this->venta->total_media($fecha, $mesa);
+		}
 	}
 
 ?>
