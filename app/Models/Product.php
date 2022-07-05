@@ -13,7 +13,9 @@
 
 		public function index($category) {
 
-			$query =  "SELECT * FROM productos WHERE activo = 1 AND categoria_id = $category";
+			$query =  "SELECT productos.imagen_url, productos.nombre, precios.id AS precio_id FROM productos
+			INNER JOIN precios ON precios.producto_id = productos.id
+			WHERE categoria_id = $category and precios.vigente = 1";
 					
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();

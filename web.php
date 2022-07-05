@@ -20,9 +20,8 @@
     }
 
 
-    //  $jaso->route es como si escribiera " data["route"] = 'addProduct'" en el archivo products.js;
+    //  $json->route es como si escribiera " data["route"] = 'addProduct'" en el archivo products.js;
     if(isset($json->route)) {
-        file_put_contents("fichero.txt", $json->route);
 
         switch($json->route) {
 

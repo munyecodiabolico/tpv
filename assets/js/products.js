@@ -1,18 +1,26 @@
 export let renderProducts = () => {
 
-    let addProducts = document.querySelectorAll(".add-product");
 
+    /////////// Todo esto se repite siempre
+    let addProducts = document.querySelectorAll(".add-product");
+    
     addProducts.forEach(addProduct => {
 
         addProduct.addEventListener("click", (event) => {
             console.log(addProduct);
             // Una llamada async va siempre acompañada de un await
+
             let sendPostRequest = async () => {
-                
+    /////////// Todo esto se repite siempre
+
+
+
+
                 // Pasamos los datos en un json
                 let data = {};
                 // Metemos los datos del json
                 // clave - valor
+                // Estos datos los recogemos de los campos data del html
                 data["route"] = 'addProduct';
                 data["price_id"] = addProduct.dataset.price;
                 data["table_id"] = addProduct.dataset.table;

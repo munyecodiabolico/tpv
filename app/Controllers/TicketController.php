@@ -6,7 +6,6 @@
 
 	use app\Models\Ticket;
 
-
 	class TicketController {
 
 		protected $ticket;
@@ -21,6 +20,10 @@
 
 		public function total($mesa) {
 			return $this->ticket->total($mesa);
+		}
+
+		public function addProduct($price_id, $table_id){
+			return $this->ticket->addProduct($price_id, $table_id);
 		}
 
 	}

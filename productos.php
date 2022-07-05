@@ -56,10 +56,9 @@ $productos = $producto->index($category);
                     </div>
                     <div class="row mb-5">
                         <?php foreach ($productos as $producto) : ?>
-                            <div class="add-product col-6 col-md-4 gy-4">
+                            <div class="add-product col-6 col-md-4 gy-4"  data-table="<?php echo $_GET['mesa'] ?>"
+                                    data-price="<?= $producto['precio_id']; ?>">
                                 <a class="btn g-4 w-100 shadow cat-prod rounded-0 p-0"
-                                    data-table="<?php echo $_GET['mesa'] ?>"
-                                    data-price="<?= $producto['precio_id']; ?>"
                                     role="button">
                                     <img src=<?= $producto['imagen_url'] ?>>
                                 </a>
