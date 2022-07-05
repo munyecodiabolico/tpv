@@ -1,1 +1,1 @@
-1
+UPDATE mesas SET estado = 1 WHERE id = 8

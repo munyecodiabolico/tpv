@@ -6,8 +6,10 @@
 <?php
 
     require_once 'app/Controllers/TicketController.php';
+    require_once 'app/Controllers/TableController.php';
   
     use app\Controllers\TicketController;
+    use app\Controllers\TableController;
     
     // Le digo que voy a aceptar datos json y va juntamente con *******
     header("Content-Type: application/json");
@@ -28,8 +30,11 @@
             case 'addProduct':
 
                 $ticket = new TicketController();
+                $mesa = new TableController();
 
                 $newProduct = $ticket->addProduct($json->price_id, $json->table_id);
+                $mesa = $mesa->mesa_update($json->table_id, 1);
+                $total = $ticket->total($json->table_id);
 
                 $response = array(
                     'status' => 'ok',

@@ -23,6 +23,10 @@
 			return $this->table->nro_mesa($mesa);
 		}
 
+		public function mesa_update($mesa, $estado) {
+			return $this->table->mesa_update($mesa, $estado);
+		}
+
 	}
 
 ?>
