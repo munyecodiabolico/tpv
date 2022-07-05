@@ -39,6 +39,7 @@
                 $response = array(
                     'status' => 'ok',
                     'newProduct' => $newProduct,
+                    'total' => $total
                 );
 
                 echo json_encode($response);
