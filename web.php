@@ -33,8 +33,8 @@
                 $mesa = new TableController();
 
                 $newProduct = $ticket->addProduct($json->price_id, $json->table_id);
-                $mesa = $mesa->mesa_update($json->table_id, 1);
                 $total = $ticket->total($json->table_id);
+                $mesa->mesa_update($json->table_id, 1);
 
                 $response = array(
                     'status' => 'ok',

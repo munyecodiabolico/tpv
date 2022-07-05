@@ -36,13 +36,11 @@
 		public function mesa_update($mesa, $estado) {
 
 			$query = "UPDATE mesas SET estado = $estado WHERE id = $mesa";
-		
-			file_put_contents("fichero.txt", $query);	
-		
+				
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
 
-			return $stmt->fetch(PDO::FETCH_ASSOC);
+			return 'ok';
 		
 		}
 	
