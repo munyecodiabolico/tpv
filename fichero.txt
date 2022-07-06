@@ -1,1 +1,2 @@
-UPDATE mesas SET estado = 1 WHERE id = 8
+UPDATE tickets SET activo=0
+						WHERE id = 52

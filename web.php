@@ -45,7 +45,44 @@
                 echo json_encode($response);
 
                 break;
-        
+
+            case 'deleteProduct':
+
+                $ticket = new TicketController();
+                $mesa = new TableController();
+
+                $delete_product = $ticket->deleteProduct($json->ticket_id, $json->table_id);
+                $total = $ticket->total($json->table_id);
+                
+                if (empty($total['total_base'])) {
+                    $mesa->mesa_update($json->table_id, 0);
+                }
+                $response = array(
+                    'status' => 'ok',
+                    'total' => $total
+                );
+
+                echo json_encode($response);
+
+                break;
+
+            case 'deleteAllProducts':
+
+                $ticket = new TicketController();
+                $mesa = new TableController();
+
+                $delete_products = $ticket->deleteAllProducts($json->table_id);
+                $mesa->mesa_update($json->table_id, 0);
+                
+                $response = array(
+                    'status' => 'ok',
+                    'total' => $total
+                );
+
+                echo json_encode($response);
+
+                break;
+    
         }
 
 

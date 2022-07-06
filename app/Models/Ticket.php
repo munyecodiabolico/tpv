@@ -14,7 +14,7 @@
 
 		public function index($mesa) {
 
-			$query =	"SELECT mesas.id AS MESA, productos_categorias.nombre AS CATEGORIA, productos.nombre AS PRODUCTO, productos.id,
+			$query =	"SELECT tickets.id AS TICKET, mesas.id AS MESA, productos_categorias.nombre AS CATEGORIA, productos.nombre AS PRODUCTO, productos.id,
 							precios.precio_base AS BASE_IMPONIBLE, iva.tipo_iva AS IVA, productos.imagen_url AS IMAGEN FROM tickets
 							INNER JOIN precios ON precios.id = tickets.precio_id
 							INNER JOIN mesas ON mesas.id = tickets.mesa_id
@@ -54,6 +54,37 @@
 
 			return $stmt->fetch(PDO::FETCH_ASSOC);
 		}
+
+		public function deleteProduct($ticket_id, $table_id) 
+		{
+ 
+			$query =  "UPDATE tickets SET activo=0
+						WHERE id = $ticket_id";
+
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
+
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
+
+			return 'ok';
+		}
+
+		public function deleteAllProducts($table_id) 
+		{
+ 
+			$query =  "UPDATE tickets SET activo=0
+						WHERE mesa_id = $table_id";
+						
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
+
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
+
+			return 'ok';
+		}
+
 
 		public function total($mesa) {
 

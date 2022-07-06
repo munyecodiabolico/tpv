@@ -37,6 +37,7 @@ body {
 .list-group {
   max-height: 520px;
   border: 1px solid #eee;
+  overflow-y: auto;
 }
 
 .mesas,

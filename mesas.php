@@ -39,9 +39,9 @@
                             <?php if( isset($_GET['mesa']) && $mesa["id"] == $_GET["mesa"]): ?>
                                 <div class="col-4 gy-4"><a class="btn btn-primary g-4 w-100 p-4 p-sm-5 shadow-sm mesas rounded-0" role="button" href="categorias.php?mesa=<?php echo $mesa['id'] ?>"><?= $mesa['numero']; ?></a></div>
                             <?php elseif ($mesa["estado"] == 1): ?>
-                                <div class="col-4 gy-4"><a class="btn btn-success g-4 w-100 p-4 p-sm-5 shadow-sm mesas rounded-0" role="button" href="categorias.php?mesa=<?php echo $mesa['id'] ?>"><?= $mesa['numero']; ?></a></div>
-                            <?php else: ?>
                                 <div class="col-4 gy-4"><a class="btn btn-danger g-4 w-100 p-4 p-sm-5 shadow-sm mesas rounded-0" role="button" href="categorias.php?mesa=<?php echo $mesa['id'] ?>"><?= $mesa['numero']; ?></a></div>
+                            <?php else: ?>
+                                <div class="col-4 gy-4"><a class="btn btn-success g-4 w-100 p-4 p-sm-5 shadow-sm mesas rounded-0" role="button" href="categorias.php?mesa=<?php echo $mesa['id'] ?>"><?= $mesa['numero']; ?></a></div>
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </div>
