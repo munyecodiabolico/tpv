@@ -2,18 +2,22 @@
 
 	require_once 'app/Controllers/TicketController.php';
 	require_once 'app/Controllers/TableController.php';
+	require_once 'app/Controllers/MetodoPagoController.php';
 
 	use app\Controllers\TicketController;
 	use app\Controllers\TableController;
+	use app\Controllers\MetodoPagoController;
 
 	$ticket = new TicketController();
 	$mesa = new TableController();
+	$metodo = new MetodoPagoController();
 
 	if(isset( $_GET['mesa'])){
 		$tickets = $ticket->index($_GET['mesa']);
 		$total = $ticket->total($_GET['mesa']);
 		$nro_mesa = $mesa->nro_mesa($_GET['mesa']);
 	} 
+	$metodo_pago = $metodo->index();
 ?>
 
 <div class="col-12 col-lg-5 col-xl-4 mt-5">
@@ -125,9 +129,13 @@
 								</div>
 								<div class="modal-body">
 									<div class="row align-items-center flex-column">
-										<div class="col-6 d-lg-flex m-2"><button class="btn btn-primary w-100" type="button">EFECTIVO</button></div>
-										<div class="col-6 d-lg-flex m-2"><button class="btn btn-success w-100" type="button">TARJETA CRÉDITO</button></div>
-										<div class="col-6 d-lg-flex m-2"><button class="btn btn-danger w-100" type="button">BIZUM</button></div>
+										<?php foreach($metodo_pago as $metodo): ?>
+											<div class="col-6 d-lg-flex m-2 pago-venta" 
+												data-table="<?php echo $_GET['mesa'] ?>"
+												data-metodopago = "<?php echo ($metodo['ID']) ?>">
+												<button class="btn btn-primary w-100" type="button"><?php echo ($metodo['METODO']) ?></button>
+											</div>
+										<?php endforeach; ?>
 									</div>
 								</div>
 								<div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">CERRAR</button></div>

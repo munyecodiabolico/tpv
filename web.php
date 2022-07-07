@@ -7,9 +7,11 @@
 
     require_once 'app/Controllers/TicketController.php';
     require_once 'app/Controllers/TableController.php';
+    require_once 'app/Controllers/VentaController.php';
   
     use app\Controllers\TicketController;
     use app\Controllers\TableController;
+    use app\Controllers\VentaController;
     
     // Le digo que voy a aceptar datos json y va juntamente con *******
     header("Content-Type: application/json");
@@ -83,6 +85,23 @@
 
                 break;
     
+            case 'pagoVenta':
+
+                $ticket = new TicketController();
+                $mesa = new TableController();
+
+                $total = $ticket->total($json->table_id);
+                $mesa->mesa_update($json->table_id, 0);
+                $ventas = $venta->
+
+                $response = array(
+                    'status' => 'ok',
+                    'total' => $total
+                );
+
+                echo json_encode($response);
+
+                break;
         }
 
 

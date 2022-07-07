@@ -137,6 +137,32 @@
 
 		}
 
+
+		// Esta funcion nos da el ultimo numero de ticket generado para cada venta
+		public function last_ticket() {
+
+			$query =  "SELECT numero_ticket FROM ventas WHERE activo=1
+						ORDER BY id DESC LIMIT 1";
+
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
+
+			return $stmt->fetch(PDO::FETCH_ASSOC);
+
+		}
+
+		// Esta funcion graba la venta
+		public function safe_venta($numero_ticket, $mesa_id, $metodo_pago_id, $precio_total_base, $precio_total) {
+
+			$query =  "";
+
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
+
+			return $stmt->fetch(PDO::FETCH_ASSOC);
+
+		}
+
 	}
 
 ?>
