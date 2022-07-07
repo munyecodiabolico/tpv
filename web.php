@@ -89,10 +89,11 @@
 
                 $ticket = new TicketController();
                 $mesa = new TableController();
+                $venta = new VentaController();
 
                 $total = $ticket->total($json->table_id);
+                $last_ticket = $venta->last_ticket();
                 $mesa->mesa_update($json->table_id, 0);
-                $ventas = $venta->
 
                 $response = array(
                     'status' => 'ok',
