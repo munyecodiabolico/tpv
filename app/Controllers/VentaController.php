@@ -36,16 +36,23 @@
 		}
 
 		public function last_ticket() {
+			$date = date("ymd");
+			$last_ticket = end($tickets);
+			   	
+			if(strpos($last_ticket, $date) !== false){
+				$ticket = $last_ticket + 1;
+			} else {
+				$ticket = $date . "0001";
+			};
+		 
 			return $this->venta->last_ticket();
 		}
 		
-		function newSale($tickets) {
+		function safe_venta($tickets) {
        
 			$date = date("ymd");
 			$last_ticket = end($tickets);
-			   
-			// A partir de php 8.0 se puede usar la función str_contains() para no tener que hacer !== false
-	
+			   	
 			if(strpos($last_ticket, $date) !== false){
 				$ticket = $last_ticket + 1;
 			} else {

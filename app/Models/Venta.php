@@ -152,10 +152,10 @@
 		}
 
 		// Esta funcion graba la venta
-		public function safe_venta($numero_ticket, $mesa_id, $metodo_pago_id, $precio_total_base, $precio_total) {
+		public function safe_venta($mesa, $base, $iva, $total, $numero_ticket, $metodo_pago) {
 
-			$query =  "";
-
+			$query =  "INSERT INTO ventas
+						VALUES (NULL, $numero_ticket, $base, $iva, $total, $metodo_pago, $mesa, CURDATE(), DATE_FORMAT(NOW(), '%H:%i:%S'), 1, NOW(), NOW())";
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
 

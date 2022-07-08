@@ -14,7 +14,7 @@ export let renderVentas = () => {
             // Una llamada async va siempre acompañada de un await
 
             let sendPostRequest = async () => {
-            /////////// Todo esto se repite siempre
+                /////////// Todo esto se repite siempre
 
                 // Pasamos los datos en un json
                 let data = {};
@@ -24,7 +24,7 @@ export let renderVentas = () => {
                 data["route"] = 'pagoVenta';
                 data["metodo_pago"] = pagoVenta.dataset.metodopago;
                 data["table_id"] = pagoVenta.dataset.table;
-    
+
                 // Enviamos los datos
                 let response = await fetch('web.php', {
                     // Aceptamos que el servidor nos devuelva json
@@ -36,25 +36,25 @@ export let renderVentas = () => {
                     // Pasamos los datos en formato json
                     body: JSON.stringify(data)
                 })
-                // Convertimos la respuesta a json
-                .then(response => {
-                    // sI da error, mostramos el error en el CATCH
-                    if (!response.ok) throw response;
-                    // Si no da error, devolvemos la respuesta
-                    return response.json();
-                })
-                .then(json => {
-                    
-                })
-                // Si da error, mostramos el error en el CATCH
-                .catch ( error =>  {
-                    console.log(JSON.stringify(error));
-                });
+                    // Convertimos la respuesta a json
+                    .then(response => {
+                        // sI da error, mostramos el error en el CATCH
+                        if (!response.ok) throw response;
+                        // Si no da error, devolvemos la respuesta
+                        return response.json();
+                    })
+                    .then(json => {
+
+                    })
+                    // Si da error, mostramos el error en el CATCH
+                    .catch(error => {
+                        console.log(JSON.stringify(error));
+                    });
             };
             // Llamamos a la funcion
             sendPostRequest();
-        });  
+        });
     });
-        
+
 
 };

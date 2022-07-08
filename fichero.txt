@@ -1,2 +1,0 @@
-UPDATE tickets SET activo=0
-						WHERE id = 52

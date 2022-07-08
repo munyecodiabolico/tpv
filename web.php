@@ -93,8 +93,14 @@
 
                 $total = $ticket->total($json->table_id);
                 $last_ticket = $venta->last_ticket();
+                $venta = $venta->safe_venta($json->table_id,
+                                            $total['total_base'],
+                                            $total['valor_iva'],
+                                            $total['total'],
+                                            $last_ticket['last_ticket'],
+                                            $json->metodo_pago,
+                                            );
                 $mesa->mesa_update($json->table_id, 0);
-
                 $response = array(
                     'status' => 'ok',
                     'total' => $total
