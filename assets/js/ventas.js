@@ -2,12 +2,12 @@ export let renderVentas = () => {
 
 
     /////////// Todo esto se repite siempre
-    let pagoVenta = document.querySelectorAll(".pago-venta");
+    let pagoVentas = document.querySelectorAll(".pago-venta");
 
 
     ////// Borrar un producto del ticket
 
-    pagoVenta.forEach(pagoVenta => {
+    pagoVentas.forEach(pagoVenta => {
 
         pagoVenta.addEventListener("click", (event) => {
             console.log(pagoVenta);

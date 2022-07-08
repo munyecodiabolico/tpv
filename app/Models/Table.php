@@ -35,12 +35,22 @@
 
 		public function mesa_update($mesa, $estado) {
 
-			$query = "UPDATE mesas SET estado = $estado WHERE id = $mesa";
+			$query = "UPDATE mesas SET estado = $estado, actualizado = NOW() WHERE id = $mesa";
 				
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
 
 			return 'ok';
+		
+		}
+		public function mesa_ocupada ($mesa) {
+
+			$query = "SELECT actualizado FROM mesas WHERE id = $mesa AND estado = 1";
+					
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
+
+			return $stmt->fetch(PDO::FETCH_ASSOC);
 		
 		}
 	

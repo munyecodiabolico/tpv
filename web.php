@@ -92,15 +92,20 @@
                 $venta = new VentaController();
 
                 $total = $ticket->total($json->table_id);
+                file_put_contents("fichero.txt", $total);
                 $last_ticket = $venta->last_ticket();
-                $venta = $venta->safe_venta($json->table_id,
+                $mesa_ocupada = $mesa->mesa_ocupada($json->table_id);
+                $venta_id = $venta->safe_venta($json->table_id,
                                             $total['total_base'],
                                             $total['valor_iva'],
                                             $total['total'],
-                                            $last_ticket['last_ticket'],
+                                            $last_ticket,
                                             $json->metodo_pago,
-                                            );
+                                            $mesa_ocupada
+                                        );
+                $closeTicketVenta = $ticket->closeTicketVenta($json->table_id, $venta_id);
                 $mesa->mesa_update($json->table_id, 0);
+                
                 $response = array(
                     'status' => 'ok',
                     'total' => $total

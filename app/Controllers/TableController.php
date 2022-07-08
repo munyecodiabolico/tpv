@@ -27,6 +27,10 @@
 			return $this->table->mesa_update($mesa, $estado);
 		}
 
+		public function mesa_ocupada($mesa) {
+			return $this->table->mesa_ocupada($mesa);
+		}
+
 	}
 
 ?>

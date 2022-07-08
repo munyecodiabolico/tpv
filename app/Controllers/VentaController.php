@@ -36,30 +36,21 @@
 		}
 
 		public function last_ticket() {
+
+			$last_ticket_number = $this->venta->last_ticket();
 			$date = date("ymd");
-			$last_ticket = end($tickets);
 			   	
-			if(strpos($last_ticket, $date) !== false){
-				$ticket = $last_ticket + 1;
-			} else {
-				$ticket = $date . "0001";
-			};
-		 
-			return $this->venta->last_ticket();
-		}
-		
-		function safe_venta($tickets) {
-       
-			$date = date("ymd");
-			$last_ticket = end($tickets);
-			   	
-			if(strpos($last_ticket, $date) !== false){
-				$ticket = $last_ticket + 1;
+			if(strpos($last_ticket_number['numero_ticket'], $date) !== false){
+				$ticket = $last_ticket_number['numero_ticket'] + 1;
 			} else {
 				$ticket = $date . "0001";
 			};
 		 
 			return $ticket;
+		}
+		
+		public function safe_venta($mesa, $base, $iva, $total, $numero_ticket, $metodo_pago, $mesa_ocupada) {
+			return $this->venta->safe_venta($mesa, $base, $iva, $total, $numero_ticket, $metodo_pago, $mesa_ocupada);
 		}
 	}
 

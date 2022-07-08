@@ -37,6 +37,10 @@
 		public function metodoPago(){
 			return $this->ticket->metodoPago();
 		}
+
+		public function closeTicketVenta($table_id, $venta_id){
+			return $this->ticket->closeTicketVenta($table_id, $venta_id);
+		}
 	}
 
 ?>
