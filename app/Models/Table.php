@@ -43,16 +43,7 @@
 			return 'ok';
 		
 		}
-		public function mesa_ocupada ($mesa) {
 
-			$query = "SELECT actualizado AS fecha_entrada FROM mesas WHERE id = $mesa AND estado = 1";
-			file_put_contents("fichero.txt", $query);
-			$stmt = $this->pdo->prepare($query);
-			$result = $stmt->execute();
-
-			return $stmt->fetch(PDO::FETCH_ASSOC);
-		
-		}
 	
 	}
 

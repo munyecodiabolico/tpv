@@ -25,7 +25,7 @@
             <section>
                <div class="row mb-5 justify-content-center">
                     <div class="col-6 col-md-4 gy-4">
-                        <a class="btn btn-primary g-4 w-100 py-4 py-sm-5 px-2 shadow-sm option-system option-system-menu rounded-0" role="button" href="mesas.php">
+                    <a class="btn btn-primary g-4 w-100 py-4 py-sm-5 px-2 shadow-sm option-system option-system-menu rounded-0" role="button" href="mesas.php?panel=1">
                             <i class="fa fa-th" aria-hidden="true"></i>
                             <h2>Mesas</h2>
                         </a>
@@ -37,7 +37,7 @@
                         </a>
                     </div>
                     <div class="col-6 col-md-4 gy-4">
-                        <a class="btn btn-success g-4 w-100 py-4 py-sm-5 px-2 shadow-sm option-system option-system-menu rounded-0" role="button" href="ventas.php">
+                        <a class="btn btn-success g-4 w-100 py-4 py-sm-5 px-2 shadow-sm option-system option-system-menu rounded-0" role="button" href="ventas.php?panel=1">
                             <i class="fa fa-file-text-o" aria-hidden="true"></i>
                             <h2>Ventas</h2>
                         </a>
@@ -58,6 +58,12 @@
                         <a class="btn btn-dark g-4 w-100 py-4 py-sm-5 px-2 shadow-sm option-system option-system-menu rounded-0" role="button" href="">
                             <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
                             <h2>Stock</h2>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 gy-4">
+                        <a class="btn btn-light g-4 w-100 py-4 py-sm-5 px-2 shadow-sm option-system option-system-menu rounded-0 color-gray" role="button" href="panel-administrador.php?panel=2">
+                            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                            <h2>Administración</h2>
                         </a>
                     </div>
                     

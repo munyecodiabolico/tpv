@@ -156,10 +156,10 @@
 			
 			$query =  "INSERT INTO ventas
 						VALUES (NULL, $numero_ticket, $base,
-								$iva, $total, $metodo_pago,
+								$total - $base, $total, $metodo_pago,
 								$mesa, CURDATE(), DATE_FORMAT(NOW(), '%H:%i:%S'),
-								1, NOW(), NOW(), (TIMESTAMPDIFF(MINUTE,NOW(),$mesa_ocupada)))";
-			
+								1, NOW(), NOW(), (TIMESTAMPDIFF(MINUTE,'$mesa_ocupada',NOW())))";
+						
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
 			$venta_id = $this->pdo->lastInsertId();

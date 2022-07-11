@@ -41,6 +41,10 @@
 		public function closeTicketVenta($table_id, $venta_id){
 			return $this->ticket->closeTicketVenta($table_id, $venta_id);
 		}
+
+		public function mesa_ocupada($mesa) {
+			return $this->ticket->mesa_ocupada($mesa);
+		}
 	}
 
 ?>

@@ -93,14 +93,14 @@
 
                 $total = $ticket->total($json->table_id);
                 $last_ticket = $venta->last_ticket();
-                $mesa_ocupada = $mesa->mesa_ocupada($json->table_id);
+                $mesa_ocupada = $ticket->mesa_ocupada($json->table_id);
                 $venta_id = $venta->safe_venta($json->table_id,
                                             $total['total_base'],
                                             $total['valor_iva'],
                                             $total['total'],
                                             $last_ticket,
                                             $json->metodo_pago,
-                                            $mesa_ocupada['fecha_entrada']
+                                            $mesa_ocupada['creado']
                                         );
                 $closeTicketVenta = $ticket->closeTicketVenta($json->table_id, $venta_id);
                 $mesa->mesa_update($json->table_id, 0);

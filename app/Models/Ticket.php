@@ -79,12 +79,12 @@
 			return 'ok';
 		}
 
-		public function closeTicketVenta($table_id, $venta_id) 
+		public function deleteAllProducts($table_id) 
 		{
- 
-			$query =  "UPDATE tickets SET activo=0, venta_id=$venta_id, actualizado = NOW()
+
+			$query =  "UPDATE tickets SET activo=0
 						WHERE mesa_id = $table_id";
-						
+
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
 
@@ -94,8 +94,20 @@
 			return 'ok';
 		}
 
+		public function closeTicketVenta($table_id, $venta_id) 
+		{
+ 
+			$query =  "UPDATE tickets SET venta_id=$venta_id, actualizado = NOW()
+						WHERE mesa_id = $table_id AND activo = 1";
+						
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
 
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
 
+			return 'ok';
+		}
 
 		public function total($mesa) {
 
@@ -113,8 +125,17 @@
 			return $stmt->fetch(PDO::FETCH_ASSOC);
 
 		}
-
 		
+		// Obtencion de la duracion de servicio de una mesa en minutos
+		public function mesa_ocupada ($mesa) {
+
+			$query = "SELECT creado FROM tickets where mesa_id=$mesa AND venta_id IS NULL ORDER BY id ASC LIMIT 1";
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
+
+			return $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		}
 		
 	}
 
