@@ -153,12 +153,15 @@
 
 		// Esta funcion graba la venta
 		public function safe_venta($mesa, $base, $iva, $total, $numero_ticket, $metodo_pago, $mesa_ocupada) {
-
+			
 			$query =  "INSERT INTO ventas
-						VALUES (NULL, $numero_ticket, $base, $iva, $total, $metodo_pago, $mesa, CURDATE(), DATE_FORMAT(NOW(), '%H:%i:%S'), 1, NOW(), NOW()), TIMEDIFF(NOW(), $mesa_ocupada)";
+						VALUES (NULL, $numero_ticket, $base,
+								$iva, $total, $metodo_pago,
+								$mesa, CURDATE(), DATE_FORMAT(NOW(), '%H:%i:%S'),
+								1, NOW(), NOW(), (TIMESTAMPDIFF(MINUTE,NOW(),$mesa_ocupada)))";
+			
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
-
 			$venta_id = $this->pdo->lastInsertId();
 
 			return $venta_id;
