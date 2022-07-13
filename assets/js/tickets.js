@@ -12,7 +12,6 @@ export let renderTickets = () => {
     deleteProducts.forEach(deleteProduct => {
 
         deleteProduct.addEventListener("click", (event) => {
-            console.log(deleteProduct);
             // Una llamada async va siempre acompañada de un await
 
             let sendPostRequest = async () => {
@@ -63,49 +62,50 @@ export let renderTickets = () => {
 
     ////// Borrar todos los productos que hay en un ticket
 
-    deleteAllProducts.addEventListener("click", (event) => {
-        // Una llamada async va siempre acompañada de un await
+    if(deleteAllProducts){
 
-        let sendPostRequest = async () => {
-        /////////// Todo esto se repite siempre
+        deleteAllProducts.addEventListener("click", (event) => {
+            // Una llamada async va siempre acompañada de un await
 
-            // Pasamos los datos en un json
-            let data = {};
-            // Metemos los datos del json
-            // clave - valor
-            // Estos datos los recogemos de los campos data del html
-            data["route"] = 'deleteAllProducts';
-            data["table_id"] = deleteAllProducts.dataset.table;
+            let sendPostRequest = async () => {
+            /////////// Todo esto se repite siempre
 
-            // Enviamos los datos
-            let response = await fetch('web.php', {
-                // Aceptamos que el servidor nos devuelva json
-                headers: {
-                    'Accept': 'application/json',
-                },
-                // El metodo de envio es POST
-                method: 'DELETE',
-                // Pasamos los datos en formato json
-                body: JSON.stringify(data)
-            })
-            // Convertimos la respuesta a json
-            .then(response => {
-                // sI da error, mostramos el error en el CATCH
-                if (!response.ok) throw response;
-                // Si no da error, devolvemos la respuesta
-                return response.json();
-            })
-            .then(json => {
-                
-            })
-            // Si da error, mostramos el error en el CATCH
-            .catch ( error =>  {
-                console.log(JSON.stringify(error));
-            });
-        };
-        // Llamamos a la funcion
-        sendPostRequest();
-    });  
-        
+                // Pasamos los datos en un json
+                let data = {};
+                // Metemos los datos del json
+                // clave - valor
+                // Estos datos los recogemos de los campos data del html
+                data["route"] = 'deleteAllProducts';
+                data["table_id"] = deleteAllProducts.dataset.table;
 
+                // Enviamos los datos
+                let response = await fetch('web.php', {
+                    // Aceptamos que el servidor nos devuelva json
+                    headers: {
+                        'Accept': 'application/json',
+                    },
+                    // El metodo de envio es POST
+                    method: 'DELETE',
+                    // Pasamos los datos en formato json
+                    body: JSON.stringify(data)
+                })
+                // Convertimos la respuesta a json
+                .then(response => {
+                    // sI da error, mostramos el error en el CATCH
+                    if (!response.ok) throw response;
+                    // Si no da error, devolvemos la respuesta
+                    return response.json();
+                })
+                .then(json => {
+                    
+                })
+                // Si da error, mostramos el error en el CATCH
+                .catch ( error =>  {
+                    console.log(JSON.stringify(error));
+                });
+            };
+            // Llamamos a la funcion
+            sendPostRequest();
+        });     
+    }
 };

@@ -7,13 +7,10 @@ export let renderProducts = () => {
     addProducts.forEach(addProduct => {
 
         addProduct.addEventListener("click", (event) => {
-            console.log(addProduct);
             // Una llamada async va siempre acompañada de un await
 
             let sendPostRequest = async () => {
     /////////// Todo esto se repite siempre
-
-
 
 
                 // Pasamos los datos en un json

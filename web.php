@@ -113,6 +113,22 @@
                 echo json_encode($response);
 
                 break;
+
+            // Añadir mesa nueva
+            case 'mesaNueva':
+
+                $mesa = new TableController();
+                
+                $mesa_nueva = $mesa->mesa_nueva($json->mesa_nueva);
+                
+                $response = array(
+                    'status' => 'ok',
+                    'total' => $total
+                );
+
+                echo json_encode($response);
+
+                break;
         }
 
 

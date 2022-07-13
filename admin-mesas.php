@@ -145,22 +145,22 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form class="admin-form">
                         <div class="mb-3">
-                            <label for="numeroMesa" class="form-label">Correo electrónico</label>
-                            <input type="number" class="form-control" id="numeroMesa" placeholder="4" disabled>
+                            <label for="numeroMesa" class="form-label">Número de mesa</label>
+                            <input type="number" class="form-control" id="numeroMesa" name="numero" >
                         </div>
                         <div class="mb-3">
                             <label for="ubicacion" class="form-label">Ubicación</label>
-                            <select class="form-select" aria-label="Default select example" id="ubicacion">
+                            <select class="form-select" aria-label="Default select example" id="ubicacion" name="ubicacion">
                                 <option selected>Selecciona ubicación</option>
                                 <option value="1">Local</option>
                                 <option value="2">Terraza</option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="ubicacion" class="form-label">Número de comensales</label>
-                            <select class="form-select" aria-label="Default select example" id="ubicacion">
+                            <label for="comensales" class="form-label">Número de comensales</label>
+                            <select class="form-select" aria-label="Default select example" id="comensales" name="pax">
                                 <option selected>Selecciona número de comensales</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -176,7 +176,7 @@
                         </div>
                         <div class="d-flex justify-content-end">
                             <button type="button" class="btn btn-secondary mt-3 me-2" data-bs-dismiss="modal">CERRAR</button>
-                            <button type="submit" class="btn btn-primary mt-3">CONFIRMAR</button>
+                            <button type="submit" class="send-button btn btn-primary mt-3">CONFIRMAR</button>
                         </div>
                     </form>
                 
@@ -196,18 +196,18 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form class="admin-form">
                         <div class="mb-3">
                             <label for="ubicacion" class="form-label">Ubicación</label>
-                            <select class="form-select" aria-label="Default select example" id="ubicacion">
+                            <select class="form-select" aria-label="Default select example" id="ubicacion" name="ubicacion">
                                 <option selected>Selecciona ubicación</option>
                                 <option value="1">Local</option>
                                 <option value="2">Terraza</option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="ubicacion" class="form-label">Número de comensales</label>
-                            <select class="form-select" aria-label="Default select example" id="ubicacion">
+                            <label for="comensales" class="form-label">Número de comensales</label>
+                            <select class="form-select" aria-label="Default select example" id="comensales" name="pax">
                                 <option selected>Selecciona número de comensales</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>

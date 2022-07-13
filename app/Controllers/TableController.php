@@ -27,7 +27,9 @@
 			return $this->table->mesa_update($mesa, $estado);
 		}
 
-
+		public function add_mesa($mesa, $ubicacion, $pax) {
+			return $this->table->add_mesa($mesa, $ubicacion, $pax);
+		}
 	}
 
 ?>

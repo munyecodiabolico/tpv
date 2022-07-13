@@ -15,8 +15,6 @@
 	$numeros_mesas = $mesas->index();
 	$ventas = $venta->filtrar($fecha, $mesa);
 
-
-
 	$total_media = $venta->total_media($fecha, $mesa);
 
 	if (isset($_GET['ticket'])) {
@@ -93,7 +91,7 @@
 							</div>
 
 						</div>
-						<div class="row">
+						<div class="row mb-5">
 							<div class="col">
 								<ul class="list-group shadow rounded-0">
 									<?php foreach ($articulos_venta as $articulo) : ?>
@@ -197,7 +195,7 @@
                                                 <?php if(isset($total_media['total']) && $total_media['total'] != null): ?>
                                                     <?= $total_media['total']; ?> €
                                                 <?php else: ?>
-                                                    120 €
+                                                    0 €
                                                 <?php endif; ?>
                                             </h5>
                                         </div>
