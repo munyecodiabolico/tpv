@@ -44,6 +44,19 @@
 		
 		}
 
+		public function add_mesa($mesa, $ubicacion, $pax) {
+
+			$query = "INSERT INTO mesas (id, numero, ubicacion, pax, estado, activo, creado, actualizado)
+						VALUES (". $price_id.", ".$table_id."1, 1, NOW(), NOW())
+			";
+				
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
+
+			return 'ok';
+		
+		}
+
 	
 	}
 
