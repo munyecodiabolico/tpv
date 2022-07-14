@@ -127,6 +127,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <!--El campo data-route="storeTable" es un caso de los que hay en web.php-->
                     <form class="admin-form" data-route="storeTable">
                         <input type="hidden" name="id" value="">
                         <div class="mb-3">
@@ -142,7 +143,7 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="ubicacion" class="form-label">Número de comensales</label>
+                            <label for="pax" class="form-label">Número de comensales</label>
                             <select class="form-select" aria-label="Default select example" name="pax">
                                 <option selected>Selecciona número de comensales</option>
                                 <option value="1">1</option>

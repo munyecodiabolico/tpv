@@ -17,12 +17,13 @@ export let renderAdminForm = () => {
     if(sendFormButton) {
 
         sendFormButton.addEventListener("click", (event) => {
-
+            // Evita el comportamiento default del botón que enviaria los datos via GET. Asi evitamos que se envien los datos por GET
             event.preventDefault();
                 
             let sendPostRequest = async () => {
                 
                 let data = {};
+                // formData es un objeto nativo de JS que nos permite obtener los datos del formulario
                 let formData = new FormData(adminForm);
                 formData.append("route", adminForm.dataset.route);
 
