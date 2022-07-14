@@ -1,5 +1,1 @@
-INSERT INTO ventas
-						VALUES (NULL, 2207110002, 17.75,
-								21, 21.48, 3,
-								1, CURDATE(), DATE_FORMAT(NOW(), '%H:%i:%S'),
-								1, NOW(), NOW(), (TIMESTAMPDIFF(MINUTE,NOW(), '2022-07-11 11:17:17')))
+{"status":"ok","total":{"mesa":"1","total_base":"8.50","total":"10.29","iva_total":"1.79","valor_iva":"21"}}

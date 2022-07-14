@@ -1,9 +1,9 @@
 export let renderVentas = () => {
 
-
     /////////// Todo esto se repite siempre
     let pagoVentas = document.querySelectorAll(".pago-venta");
-
+    let ticketContainer = document.querySelector(".list-group");
+    let totals = document.querySelector(".totals");
 
     ////// Borrar un producto del ticket
 
@@ -45,6 +45,18 @@ export let renderVentas = () => {
                     })
                     .then(json => {
 
+                        let products = ticketContainer.querySelectorAll('li:not(.add-product-layout)');
+
+                        ticketContainer.querySelector('.no-products').classList.remove('d-none');
+    
+                        totals.querySelector('.iva-percent').innerHTML = '';
+                        totals.querySelector('.base').innerHTML = 0;
+                        totals.querySelector('.iva').innerHTML = 0;
+                        totals.querySelector('.total').innerHTML = 0;
+    
+                        products.forEach(product => {
+                            product.remove();
+                        });
                     })
                     // Si da error, mostramos el error en el CATCH
                     .catch(error => {

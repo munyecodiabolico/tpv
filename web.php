@@ -59,6 +59,7 @@
                 if (empty($total['total_base'])) {
                     $mesa->mesa_update($json->table_id, 0);
                 }
+
                 $response = array(
                     'status' => 'ok',
                     'total' => $total
@@ -78,7 +79,6 @@
                 
                 $response = array(
                     'status' => 'ok',
-                    'total' => $total
                 );
 
                 echo json_encode($response);
@@ -113,22 +113,50 @@
                 echo json_encode($response);
 
                 break;
+            
+            case 'storeTable':
 
-            // Añadir mesa nueva
-            case 'mesaNueva':
+                $table = new TableController();
+                $new_table = $table->store($json->id, $json->numero, $json->ubicacion, $json->pax);
 
-                $mesa = new TableController();
-                
-                $mesa_nueva = $mesa->mesa_nueva($json->mesa_nueva);
-                
                 $response = array(
                     'status' => 'ok',
-                    'total' => $total
+                    'id' => $json->id,
+                    'newElement' => $new_table
                 );
 
                 echo json_encode($response);
 
                 break;
+            
+            case 'showTable':
+
+                $table = new TableController();
+                $table = $table->show($json->id);
+
+                $response = array(
+                    'status' => 'ok',
+                    'element' => $table,
+                );
+
+                echo json_encode($response);
+
+                break;
+            
+            case 'deleteTable':
+
+                $table = new TableController();
+                $table->delete($json->id);
+
+                $response = array(
+                    'status' => 'ok',
+                    'id' => $json->id
+                );
+
+                echo json_encode($response);
+
+                break;
+
         }
 
 

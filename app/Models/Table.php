@@ -44,16 +44,28 @@
 		
 		}
 
-		public function add_mesa($mesa, $ubicacion, $pax) {
+		public function store($id, $numero, $ubicacion, $pax) {
 
-			$query = "INSERT INTO mesas (id, numero, ubicacion, pax, estado, activo, creado, actualizado)
-						VALUES (". $price_id.", ".$table_id."1, 1, NOW(), NOW())
-			";
+			if (empty($id)) {
+				$query = "INSERT INTO mesas (numero, ubicacion, pax, estado, activo, creado, actualizado)
+						VALUES ($numero,'$ubicacion', $pax, 1, 1, NOW(), NOW())";
+
+				$stmt = $this->pdo->prepare($query);
+				$result = $stmt->execute();
+
+
+			
+			} else {
+				$query = "UPDATE mesas SET numero = $numero, ubicacion = '$ubicacion', pax = $pax, creado = NOW() actualizado = NOW() WHERE id = $id";
+				
+				$stmt = $this->pdo->prepare($query);
+				$result = $stmt->execute();
+			};
 				
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
 
-			return 'ok';
+			return $stmt->fetch(PDO::FETCH_ASSOC);
 		
 		}
 

@@ -8,7 +8,6 @@
 	</div>
 	<div class="offcanvas-body">
 		
-		<?php if (($_GET['panel']) == "1"): ?>
 			<div class="col-12 gy-4">
 				<a class="btn btn-info w-100 py-1 px-2 shadow-sm option-system option-system-menu rounded-0" role="button" href="index.php?panel=1">
 					<h2 class="mb-0"><i class="fa fa-home" aria-hidden="true"></i> Inicio</h2>
@@ -50,7 +49,6 @@
 				</a>
 			</div>
 		
-		<?php else : ?>
 		
 			<nav class="navbar flex-column navbar-light bg-light align-items-stretch p-2">
 				<div class="collapse navbar-collapse show" id="navbarSupportedContent">
@@ -92,7 +90,6 @@
 				</div>
 			</nav>
 
-		<?php endif; ?>
 
 	</div>
 </div>

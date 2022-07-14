@@ -27,9 +27,22 @@
 			return $this->table->mesa_update($mesa, $estado);
 		}
 
-		public function add_mesa($mesa, $ubicacion, $pax) {
-			return $this->table->add_mesa($mesa, $ubicacion, $pax);
+		public function show($id) {
+			return $this->table->show($id);
 		}
+
+		public function show($id) {
+			return $this->table->show($id);
+		}
+
+		public function store($id,$numero, $ubicacion, $pax) {
+			return $this->table->store($id);
+		}
+
+		public function delete($id) {
+			return $this->table->delete($id);
+		}
+
 	}
 
 ?>

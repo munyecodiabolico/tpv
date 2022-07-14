@@ -112,7 +112,9 @@
 		public function total($mesa) {
 
 			$query =	"SELECT	tickets.mesa_id AS mesa, SUM(precio_base) AS total_base,
-							ROUND(SUM(precio_base*multiplicador),2) AS total, iva.tipo_iva AS valor_iva 
+							ROUND(SUM(precio_base*multiplicador),2) AS total, 
+							ROUND(SUM(precio_base*multiplicador) - SUM(precio_base), 2) AS iva_total,
+							iva.tipo_iva AS valor_iva 
 							FROM tickets
 							INNER JOIN precios ON precios.id = tickets.precio_id
 							INNER JOIN iva ON iva.id = precios.iva_id

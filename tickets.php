@@ -28,7 +28,7 @@
 			<ul class="list-group shadow mt-4">
 				<?php if (empty($tickets)): ?>
 					<li>
-						<h4 class="m-4">NO HAY ARTICULOS SELECCIONADOS EN ESTA MESA</h4>
+						<h4 class="no-products m-4">NO HAY ARTICULOS SELECCIONADOS EN ESTA MESA</h4>
 					</li>
 				<?php else: ?>
 					<?php foreach($tickets as $ticket): ?>
@@ -45,20 +45,34 @@
 							<p class="precio-prod"><?= $ticket['BASE_IMPONIBLE'] ?></p>
 						</li>
 					<?php endforeach; ?>
+
+					<li>
+						<h4 class="no-products m-4 d-none">NO HAY ARTICULOS SELECCIONADOS EN ESTA MESA</h4>
+					</li>
+				<?php endif; ?>
+
+				<?php if($nro_mesa): ?>
+					<li class="add-product-layout list-group-item d-flex align-items-center d-none"><button class="delete-product btn btn-light btn-sm me-2" type="button" data-ticketid="" data-table="<?php echo $_GET['mesa'] ?>"><i class="la la-close"></i></button><img class="img-ticket" src="">
+						<div class="flex-grow-1"><span class="categoria-prod"></span>
+							<h4 class="nombre-prod mb-0">
+						</div>
+						<p class="precio-prod"></p>
+					</li>
 				<?php endif; ?>
 			</ul>
+
 			<div class="row mt-3">
 			<div class="col">
-				<div class="bg-secondary">
+				<div class="totals bg-secondary">
 					<div class="row justify-content-between g-0">
 						<div class="col">
 							<h5 class="text-center text-white mb-0 pt-1">B. Imponible</h5>
 						</div>
 						<div class="col">
 							<?php if (isset($total['valor_iva'])): ?>
-								<h5 class="text-center text-white mb-0 border-start pt-1">IVA <?php echo $total['valor_iva'] ?> %</h5>
+								<h5 class="text-center text-white mb-0 border-start pt-1">IVA <span class="iva-percent"><?php echo $total['valor_iva'] ?></span> %</h5>
 							<?php else: ?>
-								<h5 class="text-center text-white mb-0 border-start pt-1">IVA 0 %</h5>
+								<h5 class="text-center text-white mb-0 border-start pt-1">IVA <span class="iva-percent">0</span> %</h5>
 							<?php endif; ?>
 						</div>
 						<div class="col">
@@ -68,27 +82,32 @@
 					<div class="row justify-content-between g-0">
 						<div class="col">
 							<?php if (isset($total['total_base'])): ?>
-								<h5 class="text-center text-white mb-0 border-start pt-1"><?php echo $total['total_base'] ?> €</h5>
+								<h5 class="text-center text-white mb-0 border-start pt-1"><span class="base"><?php echo $total['total_base'] ?></span> €</h5>
 							<?php else: ?>
-								<h5 class="text-center text-white mb-0 border-start pt-1">0</h5>
+								<h5 class="text-center text-white mb-0 border-start pt-1"><span class="base">0</span>€</h5>
 							<?php endif; ?>
 
+						</div>
+						<div class="col">
+							<?php if (isset($total['iva_total'])): ?>
+								<h5 class="text-center text-white mb-0 border-start pt-1">
+									<span class="iva"><?php echo $total['iva_total'] ?></span> €
+								</h5>
+							<?php else: ?>
+								<h5 class="text-center text-white mb-0 border-start pt-1">
+									<span class="iva">0</span>€
+								</h5>
+							<?php endif; ?>
 						</div>
 						<div class="col">
 							<?php if (isset($total['total'])): ?>
-									<h5 class="text-center text-white mb-0 border-start pt-1">
-										<?php echo ($total['total'] - $total['total_base']) ?> €</h5>
-								<?php else: ?>
-									<h5 class="text-center text-white mb-0 border-start pt-1">0</h5>
-							<?php endif; ?>
-						</div>
-						<div class="col">
-
-						<?php if (isset($total['total'])): ?>
-									<h5 class="text-center text-white mb-0 bg-dark pt-1">
-										<?php echo ($total['total']) ?> €</h5>
-								<?php else: ?>
-									<h5 class="text-center text-white mb-0 bg-dark pt-1">0</h5>
+								<h5 class="text-center text-white mb-0 bg-dark pt-1">
+									<span class="total"><?php echo ($total['total']) ?></span> €
+								</h5>
+							<?php else: ?>
+								<h5 class="text-center text-white mb-0 bg-dark pt-1">
+									<span class="total">0</span> €
+								</h5>
 							<?php endif; ?>
 						</div>
 					</div>

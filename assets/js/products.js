@@ -1,8 +1,10 @@
 export let renderProducts = () => {
 
-
     /////////// Todo esto se repite siempre
     let addProducts = document.querySelectorAll(".add-product");
+    let addProductLayout = document.querySelector(".add-product-layout");
+    let ticketContainer = document.querySelector(".list-group");
+    let totals = document.querySelector(".totals");
     
     addProducts.forEach(addProduct => {
 
@@ -38,14 +40,39 @@ export let renderProducts = () => {
                     // sI da error, mostramos el error en el CATCH
                     if (!response.ok) throw response;
                     // Si no da error, devolvemos la respuesta
+
+                    console.log(response.json());
+
                     return response.json();
                 })
                 .then(json => {
-                    
+
+                    let product = addProductLayout.cloneNode(true);
+    
+                    product.querySelector('.delete-product').dataset.ticketid = json.newProduct.id;
+                    product.querySelector('.img-ticket').src =  json.newProduct.imagen_url;
+                    product.querySelector('.categoria-prod').innerHTML =  json.newProduct.categoria;
+                    product.querySelector('.nombre-prod').innerHTML =  json.newProduct.nombre;
+                    product.querySelector('.precio-prod').innerHTML =  json.newProduct.precio_base;
+                    product.classList.remove('d-none', 'add-product-layout');
+    
+                    totals.querySelector('.iva-percent').innerHTML = json.total.valor_iva;
+                    totals.querySelector('.base').innerHTML = json.total.total_base;
+                    totals.querySelector('.iva').innerHTML = json.total.iva_total;
+                    totals.querySelector('.total').innerHTML = json.total.total;
+    
+                    if(ticketContainer.querySelector('.no-products')){
+                        ticketContainer.querySelector('.no-products').classList.add('d-none');
+                        ticketContainer.appendChild(product);
+                    }else{
+                        ticketContainer.appendChild(product);
+                    }
+    
+                    document.dispatchEvent(new CustomEvent('renderTicket'));
                 })
                 // Si da error, mostramos el error en el CATCH
                 .catch ( error =>  {
-                    console.log(JSON.stringify(error));
+                    console.log(error);
                 });
             };
             // Llamamos a la funcion
