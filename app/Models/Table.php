@@ -44,31 +44,47 @@
 		
 		}
 
-		public function store($id, $numero, $ubicacion, $pax) {
+		// public function store($id, $numero, $ubicacion, $pax) {
 
-			if (empty($id)) {
-				$query = "INSERT INTO mesas (numero, ubicacion, pax, estado, activo, creado, actualizado)
-						VALUES ($numero,'$ubicacion', $pax, 1, 1, NOW(), NOW())";
+		// 	if (empty($id)) {
+		// 		$query = "INSERT INTO mesas (numero, ubicacion, pax, estado, activo, creado, actualizado)
+		// 				VALUES ($numero,'$ubicacion', $pax, 1, 1, NOW(), NOW())";
 
-				$stmt = $this->pdo->prepare($query);
-				$result = $stmt->execute();
-
-
+		// 		$stmt = $this->pdo->prepare($query);
+		// 		$result = $stmt->execute();
+		// 		$id = $this->pdo->lastInsertId();
 			
-			} else {
-				$query = "UPDATE mesas SET numero = $numero, ubicacion = '$ubicacion', pax = $pax, creado = NOW() actualizado = NOW() WHERE id = $id";
+		// 	} else {
+
+		// 		$query = "UPDATE mesas SET numero = $numero, ubicacion = '$ubicacion', pax = $pax, creado = NOW() actualizado = NOW() WHERE id = $id";
 				
-				$stmt = $this->pdo->prepare($query);
-				$result = $stmt->execute();
-			};
+		// 		$stmt = $this->pdo->prepare($query);
+		// 		$result = $stmt->execute();
+
+		// 	};
+			
+		// 	$query = "SELECT * FROM mesas WHERE id = $id";
+
+		// 	$stmt = $this->pdo->prepare($query);
+		// 	$result = $stmt->execute();
+
+		// 	return $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		// }
+
+
+		public function show($id) {
+			
+			$query = "SELECT * FROM mesas WHERE id = $id";
 				
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
 
+			file_put_contents("fichero.txt", $query);
+
 			return $stmt->fetch(PDO::FETCH_ASSOC);
 		
 		}
-
 	
 	}
 

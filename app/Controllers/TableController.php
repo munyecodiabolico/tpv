@@ -31,17 +31,13 @@
 			return $this->table->show($id);
 		}
 
-		public function show($id) {
-			return $this->table->show($id);
-		}
-
-		public function store($id,$numero, $ubicacion, $pax) {
-			return $this->table->store($id);
-		}
-
 		public function delete($id) {
 			return $this->table->delete($id);
 		}
+		
+		// public function store($id, $numero, $ubicacion, $pax) {
+		// 	return $this->table->store($id);
+		// }
 
 	}
 

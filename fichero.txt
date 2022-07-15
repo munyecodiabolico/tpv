@@ -1,1 +1,0 @@
-{"status":"ok","total":{"mesa":"1","total_base":"8.50","total":"10.29","iva_total":"1.79","valor_iva":"21"}}

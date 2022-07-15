@@ -114,26 +114,26 @@
 
                 break;
             
-            case 'storeTable':
+            // case 'storeTable':
 
-                $table = new TableController();
-                $new_table = $table->store($json->id, $json->numero, $json->ubicacion, $json->pax);
+            //     $table = new TableController();
+            //     $new_table = $table->store($json->id, $json->numero, $json->ubicacion, $json->pax);
 
-                $response = array(
-                    'status' => 'ok',
-                    'id' => $json->id,
-                    'newElement' => $new_table
-                );
+            //     $response = array(
+            //         'status' => 'ok',
+            //         'id' => $json->id,
+            //         'newElement' => $new_table
+            //     );
 
-                echo json_encode($response);
+            //     echo json_encode($response);
 
-                break;
+            //     break;
             
             case 'showTable':
 
                 $table = new TableController();
                 $table = $table->show($json->id);
-
+                
                 $response = array(
                     'status' => 'ok',
                     'element' => $table,
