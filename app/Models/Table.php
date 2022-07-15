@@ -82,7 +82,7 @@
 
 			file_put_contents("fichero.txt", $query);
 
-			return $stmt->fetch(PDO::FETCH_ASSOC);
+			return $stmt->fetch(PDO::FETCH_ASSOC); 
 		
 		}
 	
