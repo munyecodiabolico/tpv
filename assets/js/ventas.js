@@ -10,7 +10,6 @@ export let renderVentas = () => {
     pagoVentas.forEach(pagoVenta => {
 
         pagoVenta.addEventListener("click", (event) => {
-            console.log(pagoVenta);
             // Una llamada async va siempre acompañada de un await
 
             let sendPostRequest = async () => {

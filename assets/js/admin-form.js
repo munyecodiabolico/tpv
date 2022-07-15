@@ -10,6 +10,7 @@ export let renderAdminForm = () => {
         
         createFormButton.addEventListener("click", (event) => {
             // Cuando hay un evento click en el botón de crear formulario lo primero que hace es resetear el formulario
+            document.getElementsByName('id')[0].value = "";
             adminForm.reset();
         });
     }
@@ -53,6 +54,7 @@ export let renderAdminForm = () => {
                         newElement.dataset.element = json.newElement.id;
 
                         newElement.querySelector('.delete-table-button').dataset.id = json.newElement.id;
+                        newElement.querySelector('.edit-table-button').dataset.id = json.newElement.id;
 
                         Object.entries(json.newElement).forEach(([key, value]) => {
                             if(newElement.querySelector("." + key)){

@@ -35,9 +35,9 @@
 			return $this->table->delete($id);
 		}
 		
-		// public function store($id, $numero, $ubicacion, $pax) {
-		// 	return $this->table->store($id);
-		// }
+		public function store($id, $numero, $ubicacion, $pax) {
+			return $this->table->store($id, $numero, $ubicacion, $pax);
+		}
 
 	}
 

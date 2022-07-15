@@ -40,9 +40,7 @@ export let renderProducts = () => {
                     // sI da error, mostramos el error en el CATCH
                     if (!response.ok) throw response;
                     // Si no da error, devolvemos la respuesta
-
-                    console.log(response.json());
-
+                    
                     return response.json();
                 })
                 .then(json => {

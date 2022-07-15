@@ -1,8 +1,3 @@
-<!--
-    Este archivo es lo mas cercano a un enrutador.
-    Todas las llamadas javascript iran en este archivo.
--->
-
 <?php
 
     require_once 'app/Controllers/TicketController.php';
@@ -22,7 +17,6 @@
         // ****** Capturamos todos los datos en la variable json que vienen via metodo POST a traves de la funcion FETCH de javascript
         $json = json_decode(file_get_contents('php://input'));
     }
-
 
     //  $json->route es como si escribiera " data["route"] = 'addProduct'" en el archivo products.js;
     if(isset($json->route)) {
@@ -114,20 +108,20 @@
 
                 break;
             
-            // case 'storeTable':
+            case 'storeTable':
 
-            //     $table = new TableController();
-            //     $new_table = $table->store($json->id, $json->numero, $json->ubicacion, $json->pax);
+                $table = new TableController();
+                $new_table = $table->store($json->id, $json->numero, $json->ubicacion, $json->pax);
 
-            //     $response = array(
-            //         'status' => 'ok',
-            //         'id' => $json->id,
-            //         'newElement' => $new_table
-            //     );
+                $response = array(
+                    'status' => 'ok',
+                    'id' => $json->id,
+                    'newElement' => $new_table
+                );
 
-            //     echo json_encode($response);
+                echo json_encode($response);
 
-            //     break;
+                break;
             
             case 'showTable':
 
@@ -158,7 +152,6 @@
                 break;
 
         }
-
 
     } else {
         echo json_encode(array('error' => 'No action'));

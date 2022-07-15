@@ -73,9 +73,6 @@
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
 
-			$stmt = $this->pdo->prepare($query);
-			$result = $stmt->execute();
-
 			return 'ok';
 		}
 
@@ -84,9 +81,6 @@
 
 			$query =  "UPDATE tickets SET activo=0
 						WHERE mesa_id = $table_id";
-
-			$stmt = $this->pdo->prepare($query);
-			$result = $stmt->execute();
 
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();

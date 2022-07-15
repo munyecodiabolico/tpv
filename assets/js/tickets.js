@@ -46,6 +46,8 @@ export let renderTickets = () => {
                     // sI da error, mostramos el error en el CATCH
                     if (!response.ok) throw response;
 
+                    console.log(response);
+
                     // Si no da error, devolvemos la respuesta
                     return response.json();
                 })

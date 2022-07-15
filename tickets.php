@@ -128,7 +128,7 @@
 								</div>
 								<div class="modal-footer">
 									<button class="btn btn-light" type="button" data-bs-dismiss="modal">CERRAR</button>
-									<button class="delete-all-products btn btn-success"
+									<button data-bs-dismiss="modal" class="delete-all-products btn btn-success"
 											data-table="<?php echo $_GET['mesa'] ?>"
 											type="button">ELIMINAR
 									</button>
@@ -150,6 +150,7 @@
 									<div class="row align-items-center flex-column">
 										<?php foreach($metodo_pago as $metodo): ?>
 											<div class="col-6 d-lg-flex m-2 pago-venta" 
+												data-bs-dismiss="modal"
 												data-table="<?php echo $_GET['mesa'] ?>"
 												data-metodopago = "<?php echo ($metodo['ID']) ?>">
 												<button class="btn btn-primary w-100" type="button"><?php echo ($metodo['METODO']) ?></button>

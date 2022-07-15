@@ -44,33 +44,34 @@
 		
 		}
 
-		// public function store($id, $numero, $ubicacion, $pax) {
+		public function store($id, $numero, $ubicacion, $pax) {
 
-		// 	if (empty($id)) {
-		// 		$query = "INSERT INTO mesas (numero, ubicacion, pax, estado, activo, creado, actualizado)
-		// 				VALUES ($numero,'$ubicacion', $pax, 1, 1, NOW(), NOW())";
-
-		// 		$stmt = $this->pdo->prepare($query);
-		// 		$result = $stmt->execute();
-		// 		$id = $this->pdo->lastInsertId();
-			
-		// 	} else {
-
-		// 		$query = "UPDATE mesas SET numero = $numero, ubicacion = '$ubicacion', pax = $pax, creado = NOW() actualizado = NOW() WHERE id = $id";
+			if (empty($id)) {
 				
-		// 		$stmt = $this->pdo->prepare($query);
-		// 		$result = $stmt->execute();
+				$query = "INSERT INTO mesas (numero, ubicacion, pax, estado, activo, creado, actualizado)
+						VALUES ($numero,'$ubicacion', $pax, 1, 1, NOW(), NOW())";
 
-		// 	};
+				$stmt = $this->pdo->prepare($query);
+				$result = $stmt->execute();
+				$id = $this->pdo->lastInsertId();
 			
-		// 	$query = "SELECT * FROM mesas WHERE id = $id";
+			} else {
 
-		// 	$stmt = $this->pdo->prepare($query);
-		// 	$result = $stmt->execute();
+				$query = "UPDATE mesas SET numero = $numero, ubicacion = '$ubicacion', pax = $pax, creado = NOW(), actualizado = NOW() WHERE id = $id";
+				
+				$stmt = $this->pdo->prepare($query);
+				$result = $stmt->execute();
 
-		// 	return $stmt->fetch(PDO::FETCH_ASSOC);
+			};
+			
+			$query = "SELECT * FROM mesas WHERE id = $id";
+
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
+
+			return $stmt->fetch(PDO::FETCH_ASSOC);
 		
-		// }
+		}
 
 
 		public function show($id) {
@@ -80,7 +81,17 @@
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
 
-			file_put_contents("fichero.txt", $query);
+			return $stmt->fetch(PDO::FETCH_ASSOC); 
+		
+		}
+
+		public function delete($id) {
+			
+			$query = "UPDATE mesas SET estado = 0, creado = NOW(), actualizado = NOW() WHERE id = $id";
+				
+				
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
 
 			return $stmt->fetch(PDO::FETCH_ASSOC); 
 		
