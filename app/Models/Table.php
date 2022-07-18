@@ -49,7 +49,7 @@
 			if (empty($id)) {
 				
 				$query = "INSERT INTO mesas (numero, ubicacion, pax, estado, activo, creado, actualizado)
-						VALUES ($numero,'$ubicacion', $pax, 1, 1, NOW(), NOW())";
+						VALUES ($numero,'$ubicacion', $pax, 0, 1, NOW(), NOW())";
 
 				$stmt = $this->pdo->prepare($query);
 				$result = $stmt->execute();
@@ -57,7 +57,7 @@
 			
 			} else {
 
-				$query = "UPDATE mesas SET numero = $numero, ubicacion = '$ubicacion', pax = $pax, creado = NOW(), actualizado = NOW() WHERE id = $id";
+				$query = "UPDATE mesas SET numero = $numero, ubicacion = '$ubicacion', pax = $pax, actualizado = NOW() WHERE id = $id";
 				
 				$stmt = $this->pdo->prepare($query);
 				$result = $stmt->execute();
