@@ -1,0 +1,1 @@
+SELECT * FROM productos_categorias WHERE id = 8

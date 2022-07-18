@@ -8,11 +8,12 @@
 	
 	use core\Connection;
 
-	class MetodoPago extends Connection {
 
-		public function index() {
+	class Iva extends Connection {
 
-			$query = "SELECT * FROM metodos_pagos WHERE activo = 1";
+        public function index() {
+
+			$query = "SELECT * FROM iva WHERE activo = 1";
 					
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
@@ -21,13 +22,12 @@
 		
 		}
 
-		public function store($id, $nombre) {
+        public function store($id, $tipo_iva, $vigente) {
 
 			if (empty($id)) {
 				
-				$query = "INSERT INTO metodos_pagos (nombre, activo, creado, actualizado)
-						VALUES ('$nombre', 1, NOW(), NOW())";
-						file_put_contents('ficherostore', $query);
+				$query = "INSERT INTO iva (tipo_iva, vigente, activo, creado, actualizado, multiplicador)
+						VALUES ($tipo_iva, $vigente, 1, NOW(), NOW(), 1+($tipo_iva/100))";
                        
 
 				$stmt = $this->pdo->prepare($query);
@@ -36,8 +36,8 @@
 			
 			} else {
 
-				$query = "UPDATE metodos_pagos SET nombre = '$nombre', actualizado = NOW() WHERE id = $id";
-				file_put_contents('ficheroupdate', $query);
+				$query = "UPDATE iva SET tipo_iva = $tipo_iva, vigente = $vigente, multiplicador = 1+(/100), actualizado = NOW() WHERE id = $id";
+				
 				$stmt = $this->pdo->prepare($query);
 				$result = $stmt->execute();
 				
@@ -45,7 +45,7 @@
 
 			};
 			
-			$query = "SELECT * FROM metodos_pagos WHERE id = $id";
+			$query = "SELECT * FROM iva WHERE id = $id";
 
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
@@ -54,10 +54,11 @@
 		
 		}
 
+
 		public function show($id) {
 			
-			$query = "SELECT * FROM metodos_pagos WHERE id = $id";
-			file_put_contents('ficherodelete', $query);
+			$query = "SELECT * FROM iva WHERE id = $id";
+				
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
 
@@ -67,7 +68,7 @@
 
 		public function delete($id) {
 			
-			$query = "UPDATE metodos_pagos SET activo = 0, actualizado = NOW() WHERE id = $id";
+			$query = "UPDATE iva SET vigente = 0, activo = 0, actualizado = NOW() WHERE id = $id";
 				
 				
 			$stmt = $this->pdo->prepare($query);
@@ -76,7 +77,7 @@
 			return $stmt->fetch(PDO::FETCH_ASSOC); 
 		
 		}
-	
+		
 	}
 
 ?>

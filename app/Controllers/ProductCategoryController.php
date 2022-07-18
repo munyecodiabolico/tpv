@@ -18,7 +18,23 @@
 		public function index() {
 			return $this->categoria->index();
 		}
+
+		public function filter() {
+			return $this->categoria->filter();
+		}
 		
+		public function show($id) {
+			return $this->categoria->show($id);
+		}
+
+		public function delete($id) {
+			return $this->categoria->delete($id);
+		}
+		
+		public function store($id, $nombre) {
+			return $this->categoria->store($id, $nombre);
+		}
+
 	}
 
 ?>

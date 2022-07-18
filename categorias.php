@@ -5,7 +5,7 @@ require_once 'app/Controllers/ProductCategoryController.php';
 use app\Controllers\ProductCategoryController;
 
 $categoria = new ProductCategoryController();
-$categorias = $categoria->index();
+$categorias = $categoria->filter();
 
 ?>
 <!DOCTYPE html>

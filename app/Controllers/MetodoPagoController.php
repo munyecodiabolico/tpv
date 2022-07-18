@@ -18,6 +18,18 @@
 			return $this->metodo_pago->index();
 		}
 
+		public function show($id) {
+			return $this->metodo_pago->show($id);
+		}
+
+		public function delete($id) {
+			return $this->metodo_pago->delete($id);
+		}
+		
+		public function store($id, $nombre) {
+			return $this->metodo_pago->store($id, $nombre);
+		}
+
 	}
 
 ?>
