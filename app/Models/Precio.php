@@ -8,26 +8,15 @@
 	
 	use core\Connection;
 
+	class Precio extends Connection {
 
-	class Iva extends Connection {
-
-        public function index() {
-
-			$query = "SELECT * FROM iva WHERE activo = 1";
-					
-			$stmt = $this->pdo->prepare($query);
-			$result = $stmt->execute();
-
-			return $stmt->fetchAll(PDO::FETCH_ASSOC);
-		
-		}
-
-        public function store($id, $tipo_iva, $vigente) {
+		public function store($id, $producto_id, $iva_id, $precio) {
 
 			if (empty($id)) {
 				
-				$query = "INSERT INTO iva (tipo_iva, vigente, activo, creado, actualizado, multiplicador)
-						VALUES ($tipo_iva, $vigente, 1, NOW(), NOW(), 1+($tipo_iva/100))";
+				$query = "INSERT INTO metodos_pagos (nombre, activo, creado, actualizado)
+						VALUES ('$nombre', 1, NOW(), NOW())";
+						file_put_contents('ficherostore', $query);
                        
 
 				$stmt = $this->pdo->prepare($query);
@@ -36,8 +25,8 @@
 			
 			} else {
 
-				$query = "UPDATE iva SET tipo_iva = $tipo_iva, vigente = $vigente, multiplicador = 1+($tipo_iva/100), actualizado = NOW() WHERE id = $id";
-				
+				$query = "UPDATE metodos_pagos SET nombre = '$nombre', actualizado = NOW() WHERE id = $id";
+				file_put_contents('ficheroupdate', $query);
 				$stmt = $this->pdo->prepare($query);
 				$result = $stmt->execute();
 				
@@ -45,7 +34,7 @@
 
 			};
 			
-			$query = "SELECT * FROM iva WHERE id = $id";
+			$query = "SELECT * FROM metodos_pagos WHERE id = $id";
 
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
@@ -54,11 +43,10 @@
 		
 		}
 
-
 		public function show($id) {
 			
-			$query = "SELECT * FROM iva WHERE id = $id";
-				
+			$query = "SELECT * FROM metodos_pagos WHERE id = $id";
+			file_put_contents('ficherodelete', $query);
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
 
@@ -68,7 +56,7 @@
 
 		public function delete($id) {
 			
-			$query = "UPDATE iva SET vigente = 0, activo = 0, actualizado = NOW() WHERE id = $id";
+			$query = "UPDATE metodos_pagos SET activo = 0, actualizado = NOW() WHERE id = $id";
 				
 				
 			$stmt = $this->pdo->prepare($query);
@@ -77,7 +65,7 @@
 			return $stmt->fetch(PDO::FETCH_ASSOC); 
 		
 		}
-		
+	
 	}
 
 ?>

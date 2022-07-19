@@ -1,1 +1,0 @@
-UPDATE productos_categorias SET nombre = 'Postre', actualizado = NOW() WHERE id = 8

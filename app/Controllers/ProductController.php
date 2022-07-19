@@ -15,8 +15,12 @@
 			$this->producto = new Product();
 		}
 
-		public function index($category) {
-			return $this->producto->index($category);
+		public function index() {
+			return $this->producto->index();
+		}	
+
+		public function filter($category) {
+			return $this->producto->filter($category);
 		}
 
 		public function show($id) {
@@ -27,8 +31,9 @@
 			return $this->producto->delete($id);
 		}
 		
-		public function store($id, $nombre) {
-			return $this->producto->store($id, $nombre);
+		public function store($id, $nombre, $categoria, $visible) {
+
+			return $this->producto->store($id, $nombre, $categoria, $visible);
 		}
 
 	}

@@ -55,14 +55,6 @@
 			return $stmt->fetch(PDO::FETCH_ASSOC);
 		}
 
-		public function metodoPago()
-		{
-			$query = "SELECT id AS ID, nombre AS METODO FROM metodos_pagos WHERE activo = 1";
-			
-			$stmt = $this->pdo->prepare($query);
-			$result = $stmt->execute();
-			return $result;
-		}
 
 		public function deleteProduct($ticket_id, $table_id) 
 		{
@@ -94,9 +86,6 @@
 			$query =  "UPDATE tickets SET venta_id=$venta_id, actualizado = NOW()
 						WHERE mesa_id = $table_id AND activo = 1";
 						
-			$stmt = $this->pdo->prepare($query);
-			$result = $stmt->execute();
-
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
 

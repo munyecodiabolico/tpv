@@ -1,2 +1,0 @@
-INSERT INTO productos_categorias (nombre, activo, creado, actualizado)
-						VALUES ('Nueva', 1, NOW(), NOW())

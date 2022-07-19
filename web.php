@@ -6,6 +6,7 @@
     require_once 'app/Controllers/IvaController.php';
     require_once 'app/Controllers/MetodoPagoController.php';
     require_once 'app/Controllers/ProductCategoryController.php';
+    require_once 'app/Controllers/ProductController.php';
 
     use app\Controllers\TicketController;
     use app\Controllers\TableController;
@@ -13,6 +14,7 @@
     use app\Controllers\IvaController;
     use app\Controllers\MetodoPagoController;
     use app\Controllers\ProductCategoryController;
+    use app\Controllers\ProductController;
     
     // Le digo que voy a aceptar datos json y va juntamente con *******
     header("Content-Type: application/json");
@@ -302,12 +304,14 @@
                 case 'storeProducto':
 
                     $producto = new ProductController();
-                    $new_producto = $producto->store($json->id, $json->nombre, $json->categoria, $json->visible);
-    
+                    $precio = new PrecioController();
+
+                    $new_producto_id = $producto->store($json->id, $json->nombre, $json->categoria, $json->visible);
+                 
                     $response = array(
                         'status' => 'ok',
                         'id' => $json->id,
-                        'newElement' => $new_categoria
+                        'newElement' => $new_producto
                     );
     
                     echo json_encode($response);

@@ -6,7 +6,7 @@ use app\Controllers\ProductController;
 
 $category = $_GET['categoria'];
 $producto = new ProductController();
-$productos = $producto->index($category);
+$productos = $producto->filter($category);
 
 ?>
 <!DOCTYPE html>
