@@ -10,8 +10,10 @@
 
 	$producto = new ProductController();
 	$productos = $producto->index();
+
     $categoria = new ProductCategoryController();
     $categorias = $categoria->index();
+    
     $iva = new IvaController();
     $ivas = $iva->index();
 
@@ -65,10 +67,9 @@
                                 <tbody>
                                     <?php foreach($productos as $producto): ?>
                                         <tr class="table-element" data-element="<?= $producto['id'] ?>">
-                                            <th scope="row" class="imagen_url">
-                                                <img style="width:5rem" src="<?= $producto['imagen_url'] ?>" alt="">
-                                                
-                                            </th>
+                                            <td>
+                                                <img class="imagen_url" src="<?= $producto['imagen_url'] ?>" alt="">
+                                            </td>
                                             <td class="nombre">
                                                 <?= $producto['nombre'] ?>
                                             </td>
@@ -96,7 +97,7 @@
                                     <?php endforeach; ?>
 
                                     <tr class="create-layout table-element d-none" data-element="">
-                                        <th scope="row" class="imagen_url"></th>
+                                        <td><img class="imagen_url" src=""></td>
                                         <td class="nombre"></td>
                                         <td class="categoria"></td>
                                         <td class="precio"></td>
@@ -154,17 +155,17 @@
                     <!--El campo data-route="storeProducto" es un caso de los que hay en web.php-->
                     <form class="admin-form" data-route="storeProducto">
                         <input type="hidden" name="id" value="">
-                        <!-- <div class="mb-3">
+                        <div class="mb-3">
                             <label for="imagen_url" class="form-label">Imagen producto</label>
                             <input type="file" class="form-control" name="imagen_url" value="">
-                        </div> -->
+                        </div>
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Producto</label>
                             <input type="text" class="form-control" name="nombre" value="">
                         </div>
                         <div class="mb-3">
                             <label for="categoria" class="form-label">Categoría</label>
-                            <select class="form-select" aria-label="Default select example" name="categoria">
+                            <select class="form-select" aria-label="Default select example" name="categoria_id">
                                 <option selected>Selecciona categoría</option>
                                 <?php foreach($categorias as $categoria): ?>
                                     <option value="<?= $categoria['id'] ?>"><?= $categoria['nombre'] ?></option>
@@ -177,7 +178,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="iva" class="form-label">IVA</label>
-                            <select class="form-select" aria-label="Default select example" name="iva">
+                            <select class="form-select" aria-label="Default select example" name="iva_id">
                                 <option selected>Selecciona Tipo de IVA</option>
                                 <?php foreach($ivas as $iva): ?>
                                     <option value="<?= $iva['id'] ?>"><?= $iva['tipo_iva'] ?></option>

@@ -7,7 +7,7 @@
     require_once 'app/Controllers/MetodoPagoController.php';
     require_once 'app/Controllers/ProductCategoryController.php';
     require_once 'app/Controllers/ProductController.php';
-
+    require_once 'app/Controllers/PrecioController.php';
     use app\Controllers\TicketController;
     use app\Controllers\TableController;
     use app\Controllers\VentaController;
@@ -15,6 +15,7 @@
     use app\Controllers\MetodoPagoController;
     use app\Controllers\ProductCategoryController;
     use app\Controllers\ProductController;
+    use app\Controllers\PrecioController;
     
     // Le digo que voy a aceptar datos json y va juntamente con *******
     header("Content-Type: application/json");
@@ -258,8 +259,15 @@
                 case 'storeProductCategory':
 
                     $categoria = new ProductCategoryController();
-                    $new_categoria = $categoria->store($json->id, $json->nombre);
+
+                    if(isset($json->imagen_url->name)){
+                        $imagen_url = "/upload/category/".$json->imagen_url->name;               
+                    }else{
+                        $imagen_url = null;
+                    }
     
+                    $new_categoria = $categoria->store($json->id, $json->nombre, $imagen_url);
+                   
                     $response = array(
                         'status' => 'ok',
                         'id' => $json->id,
@@ -304,9 +312,17 @@
                 case 'storeProducto':
 
                     $producto = new ProductController();
-                    //$precio = new PrecioController();
+                    $precio = new PrecioController();
+                    
+                    if(isset($json->imagen_url->name)){
+                        $imagen_url = "/upload/product/".$json->imagen_url->name;               
+                    }else{
+                        $imagen_url = null;
+                    }
 
-                    $new_producto_id = $producto->store($json->id, $json->nombre, $json->categoria, $json->visible);
+                    $new_producto_id = $producto->store($json->id, $json->nombre, $json->categoria_id, $json->visible, $imagen_url);
+                    $new_precio = $precio->store($new_producto_id, $json->iva_id, $json->precio);
+                    $new_producto = $producto->show($new_producto_id);
                  
                     $response = array(
                         'status' => 'ok',
@@ -320,7 +336,7 @@
                 
                 case 'showProducto':
     
-                    $producto = new ProductCategoryController();
+                    $producto = new ProductController();
                     $producto = $producto->show($json->id);
                     
                     $response = array(
@@ -335,9 +351,11 @@
                 case 'deleteProducto':
     
                     $producto = new ProductController();
+                    $precio = new PrecioController();
+
                     $producto->delete($json->id);
-                    var_dump($producto);
-    
+                    $precio->delete($json->id);
+
                     $response = array(
                         'status' => 'ok',
                         'id' => $json->id

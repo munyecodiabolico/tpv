@@ -21,7 +21,8 @@
 								INNER JOIN productos_categorias ON productos_categorias.id = productos.categoria_id
 								INNER JOIN precios ON precios.producto_id = productos.id
 								INNER JOIN iva ON iva.id = precios.iva_id
-								where productos.activo = 1";
+								WHERE productos.activo = 1
+								AND precios.vigente = 1";
 					
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
@@ -43,20 +44,23 @@
 
 		}
 
-		public function store($id, $nombre, $categoria, $visible) {
-			if (empty($id)) {
-				
-				$query = "INSERT INTO productos (nombre, categoria_id, visible, activo, creado, actualizado)
-						VALUES ('$nombre', $categoria, $visible, 1, NOW(), NOW())";
-				
+		public function store($id, $nombre, $categoria, $visible, $imagen_url) {
 
+			if (empty($id)) {
+
+				$query = "INSERT INTO productos (nombre, imagen_url, categoria_id, visible, activo, creado, actualizado)
+						VALUES ('$nombre', '$imagen_url', $categoria, $visible, 1, NOW(), NOW())";
+
+				file_put_contents('fichero2.txt', $query);
+
+				
 				$stmt = $this->pdo->prepare($query);
 				$result = $stmt->execute();
 				$id = $this->pdo->lastInsertId();
 			
 			} else {
 
-				$query = "UPDATE productos SET nombre = '$nombre', categoria_id = $categoria, visible = $visible, actualizado = NOW() WHERE id = $id";
+				$query = "UPDATE productos SET nombre = '$nombre', imagen_url = '$imagen_url', categoria_id = $categoria, visible = $visible, actualizado = NOW() WHERE id = $id";
 				
 				$stmt = $this->pdo->prepare($query);
 				$result = $stmt->execute();
@@ -69,14 +73,26 @@
 
 		public function show($id) {
 			
-			$query = "SELECT * FROM productos WHERE id = $id";
-			
-			file_put_contents('ficheroshow.txt', $query);
+			$query = "SELECT 	productos.id AS id, 
+								productos.nombre AS nombre,
+								productos.imagen_url AS imagen_url,
+								productos_categorias.nombre AS categoria,
+								productos_categorias.id AS categoria_id,
+								precios.precio_base AS precio,
+								iva.tipo_iva AS iva,
+								iva.id AS iva_id,
+								productos.visible AS visible
+								FROM productos
+								INNER JOIN productos_categorias ON productos_categorias.id = productos.categoria_id
+								INNER JOIN precios ON precios.producto_id = productos.id
+								INNER JOIN iva ON iva.id = precios.iva_id
+								WHERE productos.id = $id
+								AND precios.vigente = 1";
+
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
 
 			return $stmt->fetch(PDO::FETCH_ASSOC); 
-		
 		}
 
 		public function delete($id) {

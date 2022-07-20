@@ -36,12 +36,12 @@
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}
 
-		public function store($id, $nombre) {
+		public function store($id, $nombre, $imagen_url) {
 
 			if (empty($id)) {
 				
-				$query = "INSERT INTO productos_categorias (nombre, activo, creado, actualizado)
-						VALUES ('$nombre', 1, NOW(), NOW())";
+				$query = "INSERT INTO productos_categorias (nombre, imagen_url, activo, creado, actualizado)
+						VALUES ('$nombre', '$imagen_url', 1, NOW(), NOW())";
                        
 
 				$stmt = $this->pdo->prepare($query);
@@ -50,7 +50,7 @@
 			
 			} else {
 
-				$query = "UPDATE productos_categorias SET nombre = '$nombre', actualizado = NOW() WHERE id = $id";
+				$query = "UPDATE productos_categorias SET nombre = '$nombre', imagen_url = '$imagen_url', actualizado = NOW() WHERE id = $id";
 				$stmt = $this->pdo->prepare($query);
 				$result = $stmt->execute();
 				

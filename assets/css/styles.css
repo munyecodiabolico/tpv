@@ -187,3 +187,7 @@ body {
   width: 15%;
   text-align: center;
 }
+
+.table td img{
+  width: 5rem;
+}

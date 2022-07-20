@@ -81,7 +81,7 @@ export let renderAdminTable = () => {
 
                         Object.entries(json.element).forEach(([key, value]) => {
 
-                            if (document.getElementsByName(key).length > 0) {
+                            if(document.getElementsByName(key).length > 0 && document.getElementsByName(key)[0].type != "file") {
                                 document.getElementsByName(key)[0].value = value;
                             }
                         });

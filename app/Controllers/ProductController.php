@@ -31,9 +31,8 @@
 			return $this->producto->delete($id);
 		}
 		
-		public function store($id, $nombre, $categoria, $visible) {
-
-			return $this->producto->store($id, $nombre, $categoria, $visible);
+		public function store($id, $nombre, $categoria, $visible, $imagen_url) {
+			return $this->producto->store($id, $nombre, $categoria, $visible, $imagen_url);
 		}
 
 	}

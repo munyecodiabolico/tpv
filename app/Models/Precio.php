@@ -10,43 +10,27 @@
 
 	class Precio extends Connection {
 
-		public function store($id, $producto_id, $iva_id, $precio) {
+		public function store($producto_id, $iva_id, $precio) {
 
-			if (empty($id)) {
-				
-				$query = "INSERT INTO metodos_pagos (nombre, activo, creado, actualizado)
-						VALUES ('$nombre', 1, NOW(), NOW())";
-						file_put_contents('ficherostore', $query);
-                       
-
-				$stmt = $this->pdo->prepare($query);
-				$result = $stmt->execute();
-				$id = $this->pdo->lastInsertId();
-			
-			} else {
-
-				$query = "UPDATE metodos_pagos SET nombre = '$nombre', actualizado = NOW() WHERE id = $id";
-				file_put_contents('ficheroupdate', $query);
-				$stmt = $this->pdo->prepare($query);
-				$result = $stmt->execute();
-				
-				
-
-			};
-			
-			$query = "SELECT * FROM metodos_pagos WHERE id = $id";
+			$query ="UPDATE precios SET vigente = 0 WHERE producto_id = $producto_id";
 
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
 
-			return $stmt->fetch(PDO::FETCH_ASSOC);
+			$query = "INSERT INTO precios (producto_id, iva_id, activo, precio_base, vigente, creado, actualizado)
+					VALUES ($producto_id, $iva_id, 1, $precio, 1, NOW(), NOW())";
+			
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
+
+			return 'ok';
 		
 		}
 
 		public function show($id) {
 			
 			$query = "SELECT * FROM metodos_pagos WHERE id = $id";
-			file_put_contents('ficherodelete', $query);
+
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
 
@@ -56,8 +40,18 @@
 
 		public function delete($id) {
 			
-			$query = "UPDATE metodos_pagos SET activo = 0, actualizado = NOW() WHERE id = $id";
+			$query = "UPDATE precios SET vigente = 0, activo = 0, actualizado = NOW() WHERE producto_id = $id";
 				
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
+
+			return $stmt->fetch(PDO::FETCH_ASSOC); 
+		
+		}
+
+		public function isValid($producto_id, $precio, $iva_id) {
+			
+			$query = "SELECT * FROM precios WHERE producto_id = $producto_id AND vigente = 1 AND iva_id = $iva_id AND precio_base = $precio";
 				
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();

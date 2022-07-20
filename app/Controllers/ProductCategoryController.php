@@ -31,8 +31,8 @@
 			return $this->categoria->delete($id);
 		}
 		
-		public function store($id, $nombre) {
-			return $this->categoria->store($id, $nombre);
+		public function store($id, $nombre, $imagen_url) {
+			return $this->categoria->store($id, $nombre, $imagen_url);
 		}
 
 	}

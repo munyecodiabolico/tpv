@@ -31,7 +31,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center mt-3 border titular"><small class="small-admin">PANEL DE ADMINISTRACIÓN</small>MÉTODOS DE PAGO</h1>
+                <h1 class="text-center mt-3 border titular"><small class="small-admin">PANEL DE ADMINISTRACIÓN</small>CATEGORÍAS</h1>
             </div>
             <div class="col-12 mt-5">
                 <section>
@@ -45,6 +45,7 @@
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
+                                    <th scope="col">Imagen</th>
                                     <th scope="col">Categoría</th>
                                     <th scope="col">Opciones</th>
                                     </tr>
@@ -52,6 +53,9 @@
                                 <tbody>
                                     <?php foreach($categorias as $categoria): ?>
                                         <tr class="table-element" data-element="<?= $categoria['id'] ?>">
+                                            <td>
+                                                <img class="imagen_url" src="<?= $categoria['imagen_url'] ?>" alt="">
+                                            </td>    
                                             <th scope="row" class="nombre">
                                                 <?= $categoria['nombre'] ?>
                                             </th>
@@ -67,6 +71,7 @@
                                     <?php endforeach; ?>
 
                                     <tr class="create-layout table-element d-none" data-element="">
+                                        <td><img class="imagen_url" src=""></td>
                                         <th scope="row" class="nombre"></th>
                                         <td class="opciones">
                                             <button type="button" class="edit-table-button btn btn-success" data-bs-toggle="modal" data-id="" data-route="showProductCategory" data-bs-target="#addArticle">
@@ -120,6 +125,10 @@
                     <!--El campo data-route="storeProductCategory" es un caso de los que hay en web.php-->
                     <form class="admin-form" data-route="storeProductCategory">
                         <input type="hidden" name="id" value="">
+                        <div class="mb-3">
+                            <label for="imagen_url" class="form-label">Imagen producto</label>
+                            <input type="file" class="form-control" name="imagen_url" value="">
+                        </div>
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Categoría</label>
                             <input type="text" class="form-control" name="nombre" value="">

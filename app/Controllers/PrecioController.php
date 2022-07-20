@@ -22,8 +22,17 @@
 			return $this->precio->delete($id);
 		}
 		
-		public function store($id, $producto_id, $iva_id, $precio) {
-			return $this->precio->store($id, $producto_id, $iva_id, $precio);
+		public function store($producto_id, $iva_id, $precio) {
+
+			$isValid = $this->precio->isValid($producto_id, $iva_id, $precio);
+
+			if(empty($isValid)){
+				return $this->precio->store($producto_id, $iva_id, $precio);
+			}
+			else{
+				return false;
+			};
+
 		}
 
 	}
