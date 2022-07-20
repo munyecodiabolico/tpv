@@ -45,7 +45,7 @@
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                    <th scope="col">Imagen</th>
+                                    < th scope="col">Imagen</th>
                                     <th scope="col">Categoría</th>
                                     <th scope="col">Opciones</th>
                                     </tr>
