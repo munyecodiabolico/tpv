@@ -154,10 +154,10 @@
                     <!--El campo data-route="storeProducto" es un caso de los que hay en web.php-->
                     <form class="admin-form" data-route="storeProducto">
                         <input type="hidden" name="id" value="">
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label for="imagen_url" class="form-label">Imagen producto</label>
                             <input type="file" class="form-control" name="imagen_url" value="">
-                        </div>
+                        </div> -->
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Producto</label>
                             <input type="text" class="form-control" name="nombre" value="">

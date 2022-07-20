@@ -44,7 +44,6 @@
 		}
 
 		public function store($id, $nombre, $categoria, $visible) {
-
 			if (empty($id)) {
 				
 				$query = "INSERT INTO productos (nombre, categoria_id, visible, activo, creado, actualizado)
@@ -57,10 +56,11 @@
 			
 			} else {
 
-				//////////////////////////$query = "UPDATE productos SET nombre = '$nombre', actualizado = NOW() WHERE id = $id";
+				$query = "UPDATE productos SET nombre = '$nombre', categoria_id = $categoria, visible = $visible, actualizado = NOW() WHERE id = $id";
 				
 				$stmt = $this->pdo->prepare($query);
 				$result = $stmt->execute();
+
 			};
 
 			return $id;
@@ -69,8 +69,9 @@
 
 		public function show($id) {
 			
-			$query = "SELECT * FROM metodos_pagos WHERE id = $id";
-			file_put_contents('ficherodelete', $query);
+			$query = "SELECT * FROM productos WHERE id = $id";
+			
+			file_put_contents('ficheroshow.txt', $query);
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
 
@@ -80,8 +81,7 @@
 
 		public function delete($id) {
 			
-			$query = "UPDATE metodos_pagos SET activo = 0, actualizado = NOW() WHERE id = $id";
-				
+			$query = "UPDATE productos SET activo = 0, actualizado = NOW() WHERE id = $id";
 				
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();

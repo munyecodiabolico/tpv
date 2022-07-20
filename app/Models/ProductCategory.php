@@ -42,7 +42,6 @@
 				
 				$query = "INSERT INTO productos_categorias (nombre, activo, creado, actualizado)
 						VALUES ('$nombre', 1, NOW(), NOW())";
-						file_put_contents('ficherostore', $query);
                        
 
 				$stmt = $this->pdo->prepare($query);
@@ -52,7 +51,6 @@
 			} else {
 
 				$query = "UPDATE productos_categorias SET nombre = '$nombre', actualizado = NOW() WHERE id = $id";
-				file_put_contents('ficheroupdate', $query);
 				$stmt = $this->pdo->prepare($query);
 				$result = $stmt->execute();
 				
@@ -72,7 +70,6 @@
 		public function show($id) {
 			
 			$query = "SELECT * FROM productos_categorias WHERE id = $id";
-			file_put_contents('ficherodelete', $query);
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
 

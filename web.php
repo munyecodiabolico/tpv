@@ -304,7 +304,7 @@
                 case 'storeProducto':
 
                     $producto = new ProductController();
-                    $precio = new PrecioController();
+                    //$precio = new PrecioController();
 
                     $new_producto_id = $producto->store($json->id, $json->nombre, $json->categoria, $json->visible);
                  
@@ -336,6 +336,7 @@
     
                     $producto = new ProductController();
                     $producto->delete($json->id);
+                    var_dump($producto);
     
                     $response = array(
                         'status' => 'ok',
