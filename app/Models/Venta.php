@@ -168,6 +168,22 @@
 
 		}
 
+		public function safeFakeVenta($mesa, $base, $iva, $total, $numero_ticket, $metodo_pago, $mesa_ocupada, $date, $time, $plus_random_timestamp) {
+			
+			$query =  "INSERT INTO ventas
+						VALUES (NULL, $numero_ticket, $base,
+								$total - $base, $total, $metodo_pago,
+								$mesa, '$date', '$time',
+								1, '$plus_random_timestamp', '$plus_random_timestamp', (TIMESTAMPDIFF(MINUTE,'$mesa_ocupada', '$plus_random_timestamp')))";
+						
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
+			$venta_id = $this->pdo->lastInsertId();
+
+			return $venta_id;
+
+		}
+
 	}
 
 ?>

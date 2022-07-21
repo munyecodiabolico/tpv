@@ -40,7 +40,7 @@
 			$last_ticket_number = $this->venta->last_ticket();
 			$date = date("ymd");
 			   	
-			if(strpos($last_ticket_number['numero_ticket'], $date) !== false){
+			if(!empty($last_ticket_number['numero_ticket']) && strpos($last_ticket_number['numero_ticket'], $date) !== false){
 				$ticket = $last_ticket_number['numero_ticket'] + 1;
 			} else {
 				$ticket = $date . "0001";
@@ -51,6 +51,10 @@
 		
 		public function safe_venta($mesa, $base, $iva, $total, $numero_ticket, $metodo_pago, $mesa_ocupada) {
 			return $this->venta->safe_venta($mesa, $base, $iva, $total, $numero_ticket, $metodo_pago, $mesa_ocupada);
+		}
+
+		public function safeFakeVenta($mesa, $base, $iva, $total, $numero_ticket, $metodo_pago, $mesa_ocupada, $date, $time, $plus_random_timestamp) {
+			return $this->venta->safeFakeVenta($mesa, $base, $iva, $total, $numero_ticket, $metodo_pago, $mesa_ocupada, $date, $time, $plus_random_timestamp);
 		}
 	}
 

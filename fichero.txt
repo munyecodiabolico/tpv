@@ -1,2 +1,1 @@
-INSERT INTO precios (producto_id, iva_id, activo, precio_base, vigente, creado, actualizado)
-					VALUES (34, 2, 1, 3.50, 1, NOW(), NOW())
+14

@@ -26,6 +26,10 @@
 			return $this->ticket->addProduct($price_id, $table_id);
 		}
 
+		public function addFakeProduct($price_id, $table_id, $timestamp){
+			return $this->ticket->addFakeProduct($price_id, $table_id, $timestamp);
+		}
+
 		public function deleteProduct($ticket_id, $table_id){
 			return $this->ticket->deleteProduct($ticket_id, $table_id);
 		}
@@ -40,6 +44,10 @@
 
 		public function closeTicketVenta($table_id, $venta_id){
 			return $this->ticket->closeTicketVenta($table_id, $venta_id);
+		}
+
+		public function closeFakeTicketVenta($table_id, $venta_id, $timestamp){
+			return $this->ticket->closeFakeTicketVenta($table_id, $venta_id, $timestamp);
 		}
 
 		public function mesa_ocupada($mesa) {
