@@ -1,2 +1,0 @@
-INSERT INTO metodos_pagos (nombre, activo, creado, actualizado)
-						VALUES ('Bizum', 1, NOW(), NOW())

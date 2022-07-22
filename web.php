@@ -162,208 +162,241 @@
 
                 
                 
-                // casos para la administracion del IVA
+            // casos para la administracion del IVA
 
-                case 'storeIva':
+            case 'storeIva':
 
-                    $iva = new IvaController();
-                    $new_iva = $iva->store($json->id, $json->tipo_iva, $json->vigente);
-    
-                    $response = array(
-                        'status' => 'ok',
-                        'id' => $json->id,
-                        'newElement' => $new_iva
-                    );
-    
-                    echo json_encode($response);
-    
-                    break;
+                $iva = new IvaController();
+                $new_iva = $iva->store($json->id, $json->tipo_iva, $json->vigente);
+
+                $response = array(
+                    'status' => 'ok',
+                    'id' => $json->id,
+                    'newElement' => $new_iva
+                );
+
+                echo json_encode($response);
+
+                break;
+            
+            case 'showIva':
+
+                $iva = new IvaController();
+                $iva = $iva->show($json->id);
                 
-                case 'showIva':
-    
-                    $iva = new IvaController();
-                    $iva = $iva->show($json->id);
-                    
-                    $response = array(
-                        'status' => 'ok',
-                        'element' => $iva,
-                    );
-    
-                    echo json_encode($response);
-    
-                    break;
+                $response = array(
+                    'status' => 'ok',
+                    'element' => $iva,
+                );
+
+                echo json_encode($response);
+
+                break;
+            
+            case 'deleteIva':
+
+                $iva = new IvaController();
+                $iva->delete($json->id);
+
+                $response = array(
+                    'status' => 'ok',
+                    'id' => $json->id
+                );
+
+                echo json_encode($response);
+
+                break;
+
+
+            // casos para la administracion de los metodos de pago
+
+            case 'storeMetodoPago':
+
+                $metodo_pago = new MetodoPagoController();
+                $new_metodo_pago = $metodo_pago->store($json->id, $json->nombre);
+
+                $response = array(
+                    'status' => 'ok',
+                    'id' => $json->id,
+                    'newElement' => $new_metodo_pago
+                );
+
+                echo json_encode($response);
+
+                break;
+            
+            case 'showMetodoPago':
+
+                $metodo_pago = new MetodoPagoController();
+                $metodo_pago = $metodo_pago->show($json->id);
                 
-                case 'deleteIva':
-    
-                    $iva = new IvaController();
-                    $iva->delete($json->id);
-    
-                    $response = array(
-                        'status' => 'ok',
-                        'id' => $json->id
-                    );
-    
-                    echo json_encode($response);
-    
-                    break;
+                $response = array(
+                    'status' => 'ok',
+                    'element' => $metodo_pago,
+                );
+
+                echo json_encode($response);
+
+                break;
+            
+            case 'deleteMetodoPago':
+
+                $metodo_pago = new MetodoPagoController();
+                $metodo_pago->delete($json->id);
+
+                $response = array(
+                    'status' => 'ok',
+                    'id' => $json->id
+                );
+
+                echo json_encode($response);
+
+                break;
 
 
-                // casos para la administracion de los metodos de pago
+            // casos para la administracion de las categorias de productos
 
-                case 'storeMetodoPago':
+            case 'storeProductCategory':
 
-                    $metodo_pago = new MetodoPagoController();
-                    $new_metodo_pago = $metodo_pago->store($json->id, $json->nombre);
-    
-                    $response = array(
-                        'status' => 'ok',
-                        'id' => $json->id,
-                        'newElement' => $new_metodo_pago
-                    );
-    
-                    echo json_encode($response);
-    
-                    break;
+                $categoria = new ProductCategoryController();
+
+                if(isset($json->imagen_url->name)){
+                    $imagen_url = "/upload/category/".$json->imagen_url->name;               
+                }else{
+                    $imagen_url = null;
+                }
+
+                $new_categoria = $categoria->store($json->id, $json->nombre, $imagen_url);
                 
-                case 'showMetodoPago':
-    
-                    $metodo_pago = new MetodoPagoController();
-                    $metodo_pago = $metodo_pago->show($json->id);
-                    
-                    $response = array(
-                        'status' => 'ok',
-                        'element' => $metodo_pago,
-                    );
-    
-                    echo json_encode($response);
-    
-                    break;
+                $response = array(
+                    'status' => 'ok',
+                    'id' => $json->id,
+                    'newElement' => $new_categoria
+                );
+
+                echo json_encode($response);
+
+                break;
+            
+            case 'showProductCategory':
+
+                $categoria = new ProductCategoryController();
+                $categoria = $categoria->show($json->id);
                 
-                case 'deleteMetodoPago':
-    
-                    $metodo_pago = new MetodoPagoController();
-                    $metodo_pago->delete($json->id);
-    
-                    $response = array(
-                        'status' => 'ok',
-                        'id' => $json->id
-                    );
-    
-                    echo json_encode($response);
-    
-                    break;
+                $response = array(
+                    'status' => 'ok',
+                    'element' => $categoria,
+                );
+
+                echo json_encode($response);
+
+                break;
+            
+            case 'deleteProductCategory':
+
+                $categoria = new ProductCategoryController();
+                $categoria->delete($json->id);
+
+                $response = array(
+                    'status' => 'ok',
+                    'id' => $json->id
+                );
+
+                echo json_encode($response);
+
+                break;
 
 
-                // casos para la administracion de las categorias de productos
+            // casos para la administracion de productos
 
-                case 'storeProductCategory':
+            case 'storeProducto':
 
-                    $categoria = new ProductCategoryController();
-
-                    if(isset($json->imagen_url->name)){
-                        $imagen_url = "/upload/category/".$json->imagen_url->name;               
-                    }else{
-                        $imagen_url = null;
-                    }
-    
-                    $new_categoria = $categoria->store($json->id, $json->nombre, $imagen_url);
-                   
-                    $response = array(
-                        'status' => 'ok',
-                        'id' => $json->id,
-                        'newElement' => $new_categoria
-                    );
-    
-                    echo json_encode($response);
-    
-                    break;
+                $producto = new ProductController();
+                $precio = new PrecioController();
                 
-                case 'showProductCategory':
-    
-                    $categoria = new ProductCategoryController();
-                    $categoria = $categoria->show($json->id);
-                    
-                    $response = array(
-                        'status' => 'ok',
-                        'element' => $categoria,
-                    );
-    
-                    echo json_encode($response);
-    
-                    break;
+                if(isset($json->imagen_url->name)){
+                    $imagen_url = "/upload/product/".$json->imagen_url->name;               
+                }else{
+                    $imagen_url = null;
+                }
+
+                $new_producto_id = $producto->store($json->id, $json->nombre, $json->categoria_id, $json->visible, $imagen_url);
+                $new_precio = $precio->store($new_producto_id, $json->iva_id, $json->precio);
+                $new_producto = $producto->show($new_producto_id);
                 
-                case 'deleteProductCategory':
-    
-                    $categoria = new ProductCategoryController();
-                    $categoria->delete($json->id);
-    
-                    $response = array(
-                        'status' => 'ok',
-                        'id' => $json->id
-                    );
-    
-                    echo json_encode($response);
-    
-                    break;
+                $response = array(
+                    'status' => 'ok',
+                    'id' => $json->id,
+                    'newElement' => $new_producto
+                );
 
+                echo json_encode($response);
 
-                // casos para la administracion de productos
+                break;
+            
+            case 'showProducto':
 
-                case 'storeProducto':
-
-                    $producto = new ProductController();
-                    $precio = new PrecioController();
-                    
-                    if(isset($json->imagen_url->name)){
-                        $imagen_url = "/upload/product/".$json->imagen_url->name;               
-                    }else{
-                        $imagen_url = null;
-                    }
-
-                    $new_producto_id = $producto->store($json->id, $json->nombre, $json->categoria_id, $json->visible, $imagen_url);
-                    $new_precio = $precio->store($new_producto_id, $json->iva_id, $json->precio);
-                    $new_producto = $producto->show($new_producto_id);
-                 
-                    $response = array(
-                        'status' => 'ok',
-                        'id' => $json->id,
-                        'newElement' => $new_producto
-                    );
-    
-                    echo json_encode($response);
-    
-                    break;
+                $producto = new ProductController();
+                $producto = $producto->show($json->id);
                 
-                case 'showProducto':
-    
-                    $producto = new ProductController();
-                    $producto = $producto->show($json->id);
-                    
-                    $response = array(
-                        'status' => 'ok',
-                        'element' => $producto,
-                    );
-    
-                    echo json_encode($response);
-    
-                    break;
+                $response = array(
+                    'status' => 'ok',
+                    'element' => $producto,
+                );
+
+                echo json_encode($response);
+
+                break;
+            
+            case 'deleteProducto':
+
+                $producto = new ProductController();
+                $precio = new PrecioController();
+
+                $producto->delete($json->id);
+                $precio->delete($json->id);
+
+                $response = array(
+                    'status' => 'ok',
+                    'id' => $json->id
+                );
+
+                echo json_encode($response);
+
+                break;
+
+            case 'getSaleChartData':
+        
+                $sale = new VentaController();
+                $data = $sale->getChartData($json->chart_data);
                 
-                case 'deleteProducto':
-    
-                    $producto = new ProductController();
-                    $precio = new PrecioController();
+                foreach($data as $value){
+                    $response['labels'][] = isset($value['labels']) ? $value['labels'] : null;
+                    $response['data'][] = isset($value['data']) ? $value['data'] : null;
+                    $response['quantity'][] = isset($value['quantity']) ? $value['quantity'] : null;
+                }
 
-                    $producto->delete($json->id);
-                    $precio->delete($json->id);
+                echo json_encode($response);
+                
+                break;
+            
+                
+            case 'getTicketChartData':
 
-                    $response = array(
-                        'status' => 'ok',
-                        'id' => $json->id
-                    );
-    
-                    echo json_encode($response);
-    
-                    break;
+                $ticket = new TicketController();
+                $data = $ticket->getChartData($json->chart_data);
+                
+                foreach($data as $value){
+                    $response['labels'][] = isset($value['labels']) ? $value['labels'] : null;
+                    $response['data'][] = isset($value['data']) ? $value['data'] : null;
+                    $response['quantity'][] = isset($value['quantity']) ? $value['quantity'] : null;
+                }
+
+                echo json_encode($response);
+                
+                break;
+
+            
 
         }
 

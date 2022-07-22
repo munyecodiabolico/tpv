@@ -1,2 +1,0 @@
-INSERT INTO productos (nombre, imagen_url, categoria_id, visible, activo, creado, actualizado)
-						VALUES ('Variado', '/upload/product/variado.jpeg', 4, 1, 1, NOW(), NOW())

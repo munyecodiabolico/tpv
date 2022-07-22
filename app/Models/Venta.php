@@ -184,6 +184,116 @@
 
 		}
 
+
+		public function getChartData($chart_data){
+
+			switch($chart_data) {
+				
+				case 'sales_by_hour':
+					$query =  "SELECT	HOUR(creado) AS labels,
+										COUNT(id) AS quantity,
+										SUM(precio_total) AS data
+										FROM ventas
+										GROUP BY HOUR(creado)
+										ORDER BY labels";
+					break;
+	
+				case 'sales_by_day':
+	
+					$query =  "SELECT	COUNT(id) AS quantity,
+										DAYNAME(creado) AS labels,
+										SUM(precio_total_base) AS data
+										FROM ventas
+										GROUP BY labels
+										ORDER BY FIELD(labels, 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo')";
+	
+					break;
+	
+				case 'sales_by_month':
+					
+					$query ="SELECT	COUNT(id) AS quantity,
+									MONTHNAME(creado) AS labels,
+									SUM(precio_total) AS data
+									FROM ventas
+									GROUP BY labels
+									ORDER BY FIELD(labels, 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre')";
+		   
+	
+					break;
+	
+				case 'sales_by_year':
+	
+					$query ="SELECT	year(creado) AS labels,
+									COUNT(id) AS quantity,
+									SUM(precio_total) AS data
+									FROM ventas
+									GROUP BY labels
+									ORDER BY labels";
+
+					break;
+	
+				case 'popular_payment_methods':
+	
+					$query ="SELECT metodos_pagos.nombre AS labels,
+									COUNT(metodos_pagos.nombre) AS data FROM ventas
+									INNER JOIN metodos_pagos ON metodos_pagos.id = ventas.metodo_pago_id
+									GROUP BY ventas.metodo_pago_id
+									ORDER BY ventas.metodo_pago_id";
+
+					break;
+	
+				case 'average_service_duration':
+	
+					$query ="SELECT mesas.numero AS labels,
+									ROUND(AVG(duracion_servicio)) AS data
+									FROM `ventas`
+									INNER JOIN mesas ON mesas.id = ventas.mesa_id
+									GROUP BY mesas.id
+									ORDER BY data DESC";
+	
+					break;
+				
+				case 'average_sale_year':
+
+					$query ="SELECT	
+									YEAR(creado) AS labels,
+									ROUND(avg(precio_total),2) AS data
+									FROM ventas
+									GROUP BY labels
+									ORDER BY labels";
+	
+					break;
+
+				case 'average_sale_month':
+
+					$query ="SELECT	
+							MONTHNAME(creado) AS labels,
+							ROUND(avg(precio_total),2) AS data
+							FROM ventas
+							GROUP BY labels
+							ORDER BY FIELD(labels, 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre')";
+	
+					break;
+				
+				case 'average_sale_day':
+
+						$query ="SELECT
+								DAYNAME(creado) AS labels,
+								ROUND(avg(precio_total),2) AS data
+								FROM ventas
+								GROUP BY labels
+								ORDER BY FIELD(labels, 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo')";
+		
+						break;
+			}
+		
+			
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
+	
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+
 	}
 
 ?>

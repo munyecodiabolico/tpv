@@ -53,6 +53,10 @@
 		public function mesa_ocupada($mesa) {
 			return $this->ticket->mesa_ocupada($mesa);
 		}
+
+		public function getChartData($chart_data){
+			return $this->ticket->getChartData($chart_data);
+		}
 	}
 
 ?>

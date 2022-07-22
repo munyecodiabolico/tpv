@@ -56,6 +56,10 @@
 		public function safeFakeVenta($mesa, $base, $iva, $total, $numero_ticket, $metodo_pago, $mesa_ocupada, $date, $time, $plus_random_timestamp) {
 			return $this->venta->safeFakeVenta($mesa, $base, $iva, $total, $numero_ticket, $metodo_pago, $mesa_ocupada, $date, $time, $plus_random_timestamp);
 		}
+
+		public function getChartData($chart_data){
+			return $this->venta->getChartData($chart_data);
+		}
 	}
 
 ?>

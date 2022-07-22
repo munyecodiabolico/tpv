@@ -1,1 +1,10 @@
-14
+SELECT  productos.nombre AS labels,
+									COUNT(productos.id) AS data
+									FROM `ventas`
+									INNER JOIN tickets ON tickets.venta_id = ventas.id
+									INNER JOIN precios ON precios.id = tickets.precio_id
+									INNER JOIN productos ON productos.id = precios.producto_id
+									INNER JOIN productos_categorias ON productos_categorias.id = productos.categoria_id
+									WHERE productos_categorias.nombre IN ('Tapas')
+									GROUP BY productos.id
+									ORDER BY data DESC
