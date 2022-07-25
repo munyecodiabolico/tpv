@@ -52,6 +52,9 @@
 
         $total = $ticket->total($table_id);
         $last_ticket = $venta->last_ticket();
+        file_put_contents("fichero.txt", $date);
+        file_put_contents("fichero2.txt", $last_ticket);
+        $last_ticket = $venta->fake_last_ticket($date);
         $mesa_ocupada = $ticket->mesa_ocupada($table_id);
         $venta_id = $venta->safeFakeVenta($table_id,
                                     $total['total_base'],

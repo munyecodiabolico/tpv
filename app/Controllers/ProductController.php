@@ -3,9 +3,10 @@
 	namespace app\Controllers;
 
 	require_once 'app/Models/Product.php';
+	require_once 'app/Services/ExcelService.php';
 
 	use app\Models\Product;
-
+	use app\Services\ExcelService;
 
 	class ProductController	{
 
@@ -33,6 +34,12 @@
 		
 		public function store($id, $nombre, $categoria, $visible, $imagen_url) {
 			return $this->producto->store($id, $nombre, $categoria, $visible, $imagen_url);
+		}
+
+		public function exportProductToExcel(){
+			$excel_service = new ExcelService();
+			$productos = $this->producto->index();
+			$excel_service->exportProductToExcel($productos);
 		}
 
 	}

@@ -152,8 +152,8 @@
 											<div class="col-6 d-lg-flex m-2 pago-venta" 
 												data-bs-dismiss="modal"
 												data-table="<?php echo $_GET['mesa'] ?>"
-												data-metodopago = "<?php echo ($metodo['ID']) ?>">
-												<button class="btn btn-primary w-100" type="button"><?php echo ($metodo['METODO']) ?></button>
+												data-metodopago = "<?php echo ($metodo['id']) ?>">
+												<button class="btn btn-primary w-100" type="button"><?php echo ($metodo['nombre']) ?></button>
 											</div>
 										<?php endforeach; ?>
 									</div>

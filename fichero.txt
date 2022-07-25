@@ -1,10 +1,13 @@
-SELECT  productos.nombre AS labels,
-									COUNT(productos.id) AS data
-									FROM `ventas`
-									INNER JOIN tickets ON tickets.venta_id = ventas.id
-									INNER JOIN precios ON precios.id = tickets.precio_id
-									INNER JOIN productos ON productos.id = precios.producto_id
-									INNER JOIN productos_categorias ON productos_categorias.id = productos.categoria_id
-									WHERE productos_categorias.nombre IN ('Tapas')
-									GROUP BY productos.id
-									ORDER BY data DESC
+SELECT 	ventas.id,	
+								numero_ticket AS ticket,
+								fecha_emision,
+								hora_emision,
+								precio_total_base AS total_base,
+								precio_total_iva AS iva,
+								precio_total AS total,
+								metodos_pagos.nombre AS metodo_pago,
+								mesas.numero AS numero_mesa
+								FROM `ventas` 
+								INNER JOIN mesas ON mesas.id = ventas.mesa_id
+								INNER JOIN metodos_pagos ON metodos_pagos.id = ventas.metodo_pago_id
+								WHERE ventas.activo = 1 AND ventas.numero_ticket = 202207250001

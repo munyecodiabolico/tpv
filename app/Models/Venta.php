@@ -28,18 +28,34 @@
 
 		}
 
+		public function show($venta_id) {
+
+			$query =  "SELECT * FROM ventas WHERE id = $venta_id";
+
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
+
+			return $stmt->fetch(PDO::FETCH_ASSOC);
+
+		}
+
 		public function venta_activa($ticket) {
 
-			$query =  "SELECT 	numero_ticket AS ticket,
-									precio_total_base AS total_base,
-									precio_total_iva AS iva,
-									precio_total AS total,
-									metodos_pagos.nombre AS metodo_pago,
-									mesas.numero AS numero_mesa
-									FROM `ventas` 
-									INNER JOIN mesas ON mesas.id = ventas.mesa_id
-									INNER JOIN metodos_pagos ON metodos_pagos.id = ventas.metodo_pago_id
-									WHERE ventas.activo = 1 AND ventas.numero_ticket = $ticket";
+			$query =  "SELECT 	ventas.id,	
+								numero_ticket AS ticket,
+								fecha_emision,
+								hora_emision,
+								precio_total_base AS total_base,
+								precio_total_iva AS iva,
+								precio_total AS total,
+								metodos_pagos.nombre AS metodo_pago,
+								mesas.numero AS numero_mesa
+								FROM `ventas` 
+								INNER JOIN mesas ON mesas.id = ventas.mesa_id
+								INNER JOIN metodos_pagos ON metodos_pagos.id = ventas.metodo_pago_id
+								WHERE ventas.activo = 1 AND ventas.numero_ticket = $ticket";
+
+
 
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();

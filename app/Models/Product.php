@@ -17,7 +17,7 @@
 								productos.nombre as nombre,
 								productos.imagen_url as imagen_url,
 								productos_categorias.nombre as categoria,
-								precios.precio_base as precio, iva.tipo_iva as iva, productos.visible as visible, 
+								precios.precio_base as precio, iva.tipo_iva as iva, productos.visible as visible,
 								precios.id AS precio_id
 								FROM productos 
 								INNER JOIN productos_categorias ON productos_categorias.id = productos.categoria_id

@@ -156,6 +156,23 @@ body {
   background-color: #999;
 }
 
+.excel-button {
+  width: max-content;
+  margin-left: auto;
+}
+
+.excel-button:hover{
+  cursor: pointer;
+}
+
+.excel-button svg {
+  width: 2rem;
+}
+
+.excel-button:hover svg path{
+  fill: hsl(121, 96%, 26%);
+}
+
 .small-admin {
   font-size: 1rem;
   color: #555;

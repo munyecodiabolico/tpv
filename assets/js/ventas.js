@@ -4,6 +4,7 @@ export let renderVentas = () => {
     let pagoVentas = document.querySelectorAll(".pago-venta");
     let ticketContainer = document.querySelector(".list-group");
     let totals = document.querySelector(".totals");
+    let exportSaleToExcel = document.querySelector(".export-sale-to-excel");
 
     ////// Borrar un producto del ticket
 
@@ -67,5 +68,39 @@ export let renderVentas = () => {
         });
     });
 
+    if(exportSaleToExcel) {
 
+        exportSaleToExcel.addEventListener("click", (event) => {
+                
+            let sendPostRequest = async () => {
+                
+                let data = {};
+                data["route"] = 'exportSaleToExcel';
+                data["venta_id"] = exportSaleToExcel.dataset.sale;
+
+                let response = await fetch('web.php', {
+                    headers: {
+                        'Accept': 'application/json',
+                    },
+                    method: 'POST',
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                
+                    if (!response.ok) throw response;
+
+                    return response.json();
+                })
+                .then(json => {
+
+                   
+                })
+                .catch ( error =>  {
+                    console.log(error);
+                });
+            };
+
+            sendPostRequest();
+        }); 
+    }
 };

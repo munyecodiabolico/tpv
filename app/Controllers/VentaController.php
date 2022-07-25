@@ -3,9 +3,10 @@
 	namespace app\Controllers;
 
 	require_once 'app/Models/Venta.php';
+	require_once 'app/Services/ExcelService.php';
 
 	use app\Models\Venta;
-
+	use app\Services\ExcelService;
 
 	class VentaController {
 
@@ -38,7 +39,7 @@
 		public function last_ticket() {
 
 			$last_ticket_number = $this->venta->last_ticket();
-			$date = date("ymd");
+			$date = date("Ymd");
 			   	
 			if(!empty($last_ticket_number['numero_ticket']) && strpos($last_ticket_number['numero_ticket'], $date) !== false){
 				$ticket = $last_ticket_number['numero_ticket'] + 1;
@@ -48,7 +49,34 @@
 		 
 			return $ticket;
 		}
+
+		public function fake_last_ticket($date) {
+
+			$date = str_replace("-", "", $date);
+
+			$last_ticket_number = $this->venta->last_ticket();
+			   	
+			if(!empty($last_ticket_number['numero_ticket']) && strpos($last_ticket_number['numero_ticket'], $date) !== false){
+				$ticket = $last_ticket_number['numero_ticket'] + 1;
+			} else {
+				$ticket = $date . "0001";
+			};
+		 
+			return $ticket;
+		}
+
+		public function exportSaleToExcel($venta_id){
+
+			$excel_service = new ExcelService();
+	
+			$venta_seleccionada = $this->venta->show($venta_id);
+			$venta = $this->venta->venta_activa($venta_seleccionada['numero_ticket']);
+			$productos = $this->venta->articulos_venta($venta_seleccionada['numero_ticket']);
+			
+			$excel_service->exportSaleToExcel($venta, $productos);
+		}
 		
+
 		public function safe_venta($mesa, $base, $iva, $total, $numero_ticket, $metodo_pago, $mesa_ocupada) {
 			return $this->venta->safe_venta($mesa, $base, $iva, $total, $numero_ticket, $metodo_pago, $mesa_ocupada);
 		}

@@ -396,6 +396,32 @@
                 
                 break;
 
+
+            case 'exportSaleToExcel':
+
+                $venta = new VentaController();
+                $excel = $venta->exportSaleToExcel($json->venta_id);
+                
+                $response = array(
+                    'status' => 'ok',   
+                );
+
+                echo json_encode($response);
+                
+                break;
+
+            case 'exportProductToExcel':
+
+                $producto = new ProductController();
+                $excel = $producto->exportProductToExcel();
+                
+                $response = array(
+                    'status' => 'ok',   
+                );
+
+                echo json_encode($response);
+                
+                break;
             
 
         }
