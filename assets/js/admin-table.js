@@ -3,8 +3,7 @@ export let renderAdminTable = () => {
     let deleteTableButtons = document.querySelectorAll('.delete-table-button');
     let deleteTableModal = document.querySelector('.delete-table-modal');
     let editButtons = document.querySelectorAll('.edit-table-button');
-    let exportProductToExcel = document.querySelector(".export-product-to-excel");
-
+    let exportTableToExcel = document.querySelector(".export-table-to-excel");
 
     document.addEventListener("renderAdminTable", (event => {
         renderAdminTable();
@@ -82,9 +81,13 @@ export let renderAdminTable = () => {
                     .then(json => {
 
                         Object.entries(json.element).forEach(([key, value]) => {
-
+                        
                             if(document.getElementsByName(key).length > 0 && document.getElementsByName(key)[0].type != "file") {
                                 document.getElementsByName(key)[0].value = value;
+                            }
+    
+                            else if (document.getElementById(key)){
+                                document.getElementById(key).innerHTML = value;
                             }
                         });
                     })
@@ -98,14 +101,15 @@ export let renderAdminTable = () => {
         });
     });
 
-    if(exportProductToExcel) {
+    if(exportTableToExcel) {
 
-        exportProductToExcel.addEventListener("click", (event) => {
+        exportTableToExcel.addEventListener("click", (event) => {
                 
             let sendPostRequest = async () => {
                 
                 let data = {};
-                data["route"] = exportProductToExcel.dataset.route;
+                data["route"] = exportTableToExcel.dataset.route;
+                alert(data["route"]);
 
                 let response = await fetch('web.php', {
                     headers: {

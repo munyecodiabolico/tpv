@@ -365,6 +365,37 @@
 
                 break;
 
+             
+            case 'showVenta':
+
+                $venta = new VentaController();
+    
+                $sale = $venta->venta_activa($json->id);
+                $products = $venta->articulos_venta($json->id);
+            
+                $html = "";
+    
+                foreach($products as $product){
+    
+                    $html .= '<tr>
+                        <td class="text-center"><img class="img-ticket" src="'.$product['IMAGEN'] .'"></td>
+                        <td class="text-center">'.$product['PRODUCTO'] .'</td>
+                        <td class="text-center">'.$product['numero_productos'] .'</td>
+                        <td class="text-center">'.$product['BASE_IMPONIBLE'] .'</td>
+                    </tr>';
+                }
+    
+                $sale['products'] = $html;
+    
+                $response = array(
+                    'status' => 'ok',
+                    'element' => $sale,
+                );
+    
+                echo json_encode($response);            
+    
+            break;
+
             case 'getSaleChartData':
         
                 $sale = new VentaController();
@@ -422,8 +453,33 @@
                 echo json_encode($response);
                 
                 break;
-            
 
+            case 'exportVentaToExcel':
+
+                $venta = new VentaController();
+                $excel = $venta->exportVentaToExcel();
+                
+                $response = array(
+                    'status' => 'ok',   
+                );
+
+                echo json_encode($response);
+                
+                break;
+
+            case 'exportSaleToPdf':
+
+                $sale = new VentaController();
+                $sale->exportSaleToPdf($json->sale_id);
+                
+                $response = array(
+                    'status' => 'ok',   
+                );
+
+                echo json_encode($response);
+                
+                break;
+       
         }
 
     } else {

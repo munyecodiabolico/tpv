@@ -39,7 +39,7 @@
 
 		}
 
-		public function venta_activa($ticket) {
+		public function venta_activa($venta_id) {
 
 			$query =  "SELECT 	ventas.id,	
 								numero_ticket AS ticket,
@@ -53,9 +53,7 @@
 								FROM `ventas` 
 								INNER JOIN mesas ON mesas.id = ventas.mesa_id
 								INNER JOIN metodos_pagos ON metodos_pagos.id = ventas.metodo_pago_id
-								WHERE ventas.activo = 1 AND ventas.numero_ticket = $ticket";
-
-
+								WHERE ventas.activo = 1 AND ventas.id = $venta_id";
 
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
@@ -64,7 +62,7 @@
 
 		}
 
-		public function articulos_venta($ticket) {
+		public function articulos_venta($venta_id) {
 
 			$query =  "SELECT 	productos_categorias.nombre AS CATEGORIA,
 								productos.nombre AS PRODUCTO, productos.id,
@@ -76,7 +74,7 @@
 								INNER JOIN precios ON precios.id = tickets.precio_id
 								INNER JOIN productos ON productos.id = precios.producto_id
 								INNER JOIN productos_categorias ON productos_categorias.id = productos.categoria_id
-								WHERE ventas.numero_ticket = $ticket AND tickets.activo = 1
+								WHERE ventas.id = $venta_id AND tickets.activo = 1
 								GROUP BY tickets.precio_id";
 
 			$stmt = $this->pdo->prepare($query);
@@ -91,7 +89,7 @@
 
 			if($mesa == null) {
 				
-				$query =  "SELECT 	numero_ticket AS ticket,
+				$query =  "SELECT 	ventas.id, numero_ticket AS ticket,
 				precio_total AS total,
 				SUBSTRING(hora_emision,1,5) AS hora,
 				mesas.numero AS numero_mesa
@@ -308,6 +306,29 @@
 			$result = $stmt->execute();
 	
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		public function listadoVentas() {
+
+			$query =  "SELECT	ventas.id AS id,
+								ventas.numero_ticket AS numero_ticket,
+								ventas.precio_total_base AS precio_base,
+								ventas.precio_total_iva AS precio_total_iva,
+								ventas.precio_total AS precio_total,
+								metodos_pagos.nombre AS metodo_pago,
+								mesas.numero AS mesa,
+								ventas.fecha_emision AS fecha_emision,
+								ventas.hora_emision AS hora_emision,
+								ventas.duracion_servicio AS duracion_servicio
+								FROM `ventas`
+								INNER JOIN metodos_pagos ON metodos_pagos.id = ventas.metodo_pago_id
+								INNER JOIN mesas ON mesas.id = ventas.mesa_id";
+
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
+
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 		}
 
 	}

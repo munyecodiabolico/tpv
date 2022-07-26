@@ -38,8 +38,9 @@
 
 		public function exportProductToExcel(){
 			$excel_service = new ExcelService();
+
 			$productos = $this->producto->index();
-			$excel_service->exportProductToExcel($productos);
+			$excel_service->exportTableToExcel('productos', $productos);
 		}
 
 	}

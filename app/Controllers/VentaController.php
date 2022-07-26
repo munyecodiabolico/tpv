@@ -4,9 +4,11 @@
 
 	require_once 'app/Models/Venta.php';
 	require_once 'app/Services/ExcelService.php';
+	require_once 'app/Services/PdfService.php';
 
 	use app\Models\Venta;
 	use app\Services\ExcelService;
+	use app\Services\PdfService;
 
 	class VentaController {
 
@@ -20,16 +22,20 @@
 			return $this->venta->index();
 		}
 
-		public function venta_activa($ticket) {
-			return $this->venta->venta_activa($ticket);
+		public function listadoVentas() {
+			return $this->venta->listadoVentas();
+		}
+
+		public function venta_activa($venta_id) {
+			return $this->venta->venta_activa($venta_id);
 		}
 
 		public function filtrar($fecha, $mesa) {
 			return $this->venta->filtrar($fecha, $mesa);
 		}
 
-		public function articulos_venta($ticket) {
-			return $this->venta->articulos_venta($ticket);
+		public function articulos_venta($venta_id) {
+			return $this->venta->articulos_venta($venta_id);
 		}
 
 		public function total_media($fecha, $mesa) {
@@ -74,6 +80,58 @@
 			$productos = $this->venta->articulos_venta($venta_seleccionada['numero_ticket']);
 			
 			$excel_service->exportSaleToExcel($venta, $productos);
+		}
+
+		public function exportVentaToExcel(){
+			$excel_service = new ExcelService();
+
+			$ventas = $this->venta->listadoVentas();
+
+			$excel_service->exportTableToExcel('venta', $ventas);
+		}
+
+		public function exportSaleToPdf($sale_id){
+
+			$sale = $this->venta->venta_activa($sale_id);
+			$products = $this->venta->articulos_venta($sale_id);
+			$html =
+				'<html>
+					<body>'.
+					'<h1>Ticket de venta</h1>'.
+					'<p>Numero de ticket: '.$sale['ticket'].'</p>'.
+					'<p>Fecha: '.$sale['fecha_emision'].'</p>'.
+					'<p>Mesa: '.$sale['numero_mesa'].'</p>'.
+	
+			$html .= 
+				'<table>
+					<tr>
+						<th>Cant</th>
+						<th>Descripción</th>
+						<th>Total</th>
+					</tr>';
+			
+			foreach($products as $product){
+				$html .=
+				'<tr>
+				  <td>'.$product['numero_productos'].'</td>
+				  <td>'.$product['PRODUCTO'].'</td>
+				  <td>'.$product['BASE_IMPONIBLE'].'</td>
+				</tr>';
+			}
+	
+			$html .=
+				'</table>'.
+				'<p>Base: '.$sale['total_base'].'</p>'.
+				'<p>IVA: '.$sale['iva'].'</p>'.
+				'<p>Total: '.$sale['total'].'</p>'.
+				'<p>Forma de pago: '.$sale['metodo_pago'].'</p>';
+				'</body></html>';
+			
+			$pdf_service = new PdfService();
+			$pdf = $pdf_service->exportToPdf($html);
+	
+			file_put_contents($_SERVER["DOCUMENT_ROOT"] . '/pdf/tickets/ticket-'.$sale['numero_ticket'].'.pdf', $pdf);
+		
 		}
 		
 

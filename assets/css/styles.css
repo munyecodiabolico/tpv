@@ -156,9 +156,13 @@ body {
   background-color: #999;
 }
 
+.sale-icons{
+  display: flex;
+  justify-content: flex-end;
+}
+
 .excel-button {
   width: max-content;
-  margin-left: auto;
 }
 
 .excel-button:hover{
@@ -171,6 +175,23 @@ body {
 
 .excel-button:hover svg path{
   fill: hsl(121, 96%, 26%);
+}
+
+.pdf-icon{
+  margin: 0 .5rem;
+  width: max-content;
+}
+
+.pdf-icon:hover{
+  cursor: pointer;
+}
+
+.pdf-icon svg {
+  width: 2rem;
+}
+
+.pdf-icon:hover svg path{
+  fill: rgb(210, 13, 13);
 }
 
 .small-admin {

@@ -10,4 +10,4 @@ SELECT 	ventas.id,
 								FROM `ventas` 
 								INNER JOIN mesas ON mesas.id = ventas.mesa_id
 								INNER JOIN metodos_pagos ON metodos_pagos.id = ventas.metodo_pago_id
-								WHERE ventas.activo = 1 AND ventas.numero_ticket = 202207250001
+								WHERE ventas.activo = 1 AND ventas.numero_ticket = 1
