@@ -13,6 +13,7 @@ class PdfService {
         
         $dompdf = new DOMPDF();
         $dompdf->load_html($html);
+        $dompdf->setPaper('A7');
         $dompdf->render();
         $output = $dompdf->output();
 

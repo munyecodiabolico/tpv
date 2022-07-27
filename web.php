@@ -7,7 +7,7 @@
     require_once 'app/Controllers/MetodoPagoController.php';
     require_once 'app/Controllers/ProductCategoryController.php';
     require_once 'app/Controllers/ProductController.php';
-    require_once 'app/Controllers/PrecioController.php';
+    require_once 'app/Controllers/EmpresaController.php';
     use app\Controllers\TicketController;
     use app\Controllers\TableController;
     use app\Controllers\VentaController;
@@ -16,6 +16,7 @@
     use app\Controllers\ProductCategoryController;
     use app\Controllers\ProductController;
     use app\Controllers\PrecioController;
+    use app\Controllers\EmpresaController;
     
     // Le digo que voy a aceptar datos json y va juntamente con *******
     header("Content-Type: application/json");

@@ -75,9 +75,8 @@
 
 			$excel_service = new ExcelService();
 	
-			$venta_seleccionada = $this->venta->show($venta_id);
-			$venta = $this->venta->venta_activa($venta_seleccionada['numero_ticket']);
-			$productos = $this->venta->articulos_venta($venta_seleccionada['numero_ticket']);
+			$venta = $this->venta->venta_activa($venta_id);
+			$productos = $this->venta->articulos_venta($venta_id);
 			
 			$excel_service->exportSaleToExcel($venta, $productos);
 		}
@@ -96,41 +95,94 @@
 			$products = $this->venta->articulos_venta($sale_id);
 			$html =
 				'<html>
+					<head>
+						<style>
+							html {
+								margin: 0 1rem 1rem;
+							}	
+							body {
+								font-family: Monospace, Helvetica, sans-serif;
+								font-size: 12px;
+							}
+							h1 {
+								font-family: Arial, Helvetica, sans-serif;
+								font-size: 24px;
+								text-align: center;
+								border-bottom: .5px solid #000;
+								margin-bottom: 1.5rem;
+								margin-top:1.5rem;
+							}
+							p {
+								line-height: 0.3;
+							}
+							p span {
+								font-weight: bold;
+								font-size: .8rem;
+							}
+							.articulos {
+								margin-top: 1.5rem;
+							}
+							th.cantidad {
+								text-align: center;
+							}
+							th.descrip, td.descrip {
+								text-align: left;
+								padding-left: .5rem;
+								padding-right: .5rem;
+								margin-bottom: .3rem;
+							}
+							th.total, td.total {
+								text-align: right;
+								margin-bottom: .3rem;
+							}
+							td.cantidad {
+								text-align: center;
+								margin-bottom: .3rem;
+							}
+							.precios, .pago {
+								margin-top: 2rem;
+							}
+							.precio-total {
+								font-weight: bold;
+								font-size: 1.1rem;
+							}
+						</style>
+						</head>
 					<body>'.
-					'<h1>Ticket de venta</h1>'.
-					'<p>Numero de ticket: '.$sale['ticket'].'</p>'.
-					'<p>Fecha: '.$sale['fecha_emision'].'</p>'.
-					'<p>Mesa: '.$sale['numero_mesa'].'</p>'.
+					'<h1 style="">Ticket de venta</h1>'.
+					'<p><span>Nº Ticket: </span>'.$sale['ticket'].'</p>'.
+					'<p><span>Fecha: </span>'.$sale['fecha_emision'].'</p>'.
+					'<p><span>Mesa: </span>'.$sale['numero_mesa'].'</p>'.
 	
 			$html .= 
-				'<table>
+				'<table class="articulos">
 					<tr>
-						<th>Cant</th>
-						<th>Descripción</th>
-						<th>Total</th>
+						<th class="cantidad">Cant</th>
+						<th class="descrip">Descripción</th>
+						<th class="total">Total</th>
 					</tr>';
 			
 			foreach($products as $product){
 				$html .=
 				'<tr>
-				  <td>'.$product['numero_productos'].'</td>
-				  <td>'.$product['PRODUCTO'].'</td>
-				  <td>'.$product['BASE_IMPONIBLE'].'</td>
+				  <td class="cantidad">'.$product['numero_productos'].'</td>
+				  <td class="descrip">'.$product['PRODUCTO'].'</td>
+				  <td class="total">'.$product['BASE_IMPONIBLE'].'</td>
 				</tr>';
 			}
 	
 			$html .=
 				'</table>'.
-				'<p>Base: '.$sale['total_base'].'</p>'.
-				'<p>IVA: '.$sale['iva'].'</p>'.
-				'<p>Total: '.$sale['total'].'</p>'.
-				'<p>Forma de pago: '.$sale['metodo_pago'].'</p>';
+				'<p class="precios"><span>Base: </span>'.$sale['total_base'].'</p>'.
+				'<p><span>IVA: </span>'.$sale['iva'].'</p>'.
+				'<p class="precio-total"><span>Total: </span>'.$sale['total'].'</p>'.
+				'<p class="pago"><span>Forma de pago: </span>'.$sale['metodo_pago'].'</p>';
 				'</body></html>';
 			
 			$pdf_service = new PdfService();
 			$pdf = $pdf_service->exportToPdf($html);
 	
-			file_put_contents($_SERVER["DOCUMENT_ROOT"] . '/pdf/tickets/ticket-'.$sale['numero_ticket'].'.pdf', $pdf);
+			file_put_contents($_SERVER["DOCUMENT_ROOT"] . '/pdf/tickets/ticket-'.$sale['ticket'].'.pdf', $pdf);
 		
 		}
 		
