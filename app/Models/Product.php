@@ -109,7 +109,7 @@
 		}
 
 		// Metodo para obtener el listado de productos segun la categoria que nos llega como parametro
-		public function filtrarCategoria($categoria) {
+		public function filtrar($categoria, $visible) {
 
 			// Llamada a la base de datos
 			$query = "SELECT 	productos.id AS id, 
@@ -125,8 +125,22 @@
 								INNER JOIN productos_categorias ON productos_categorias.id = productos.categoria_id
 								INNER JOIN precios ON precios.producto_id = productos.id
 								INNER JOIN iva ON iva.id = precios.iva_id
-								WHERE productos_categorias.id = $categoria";
+								WHERE precios.activo=1 AND precios.vigente=1";
+			
+			if (!empty($categoria)) {
+				$query .= " AND productos.categoria_id = $categoria";
+			}
 
+			if ($visible == "true") {
+				$query .= " AND productos.visible = 1";
+			}	
+
+			if ($visible == "false") {
+				$query .= " AND productos.visible = 0";
+			}
+
+
+			file_put_contents("fichero.txt", "j");
 			// Ejecutamos la consulta
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();

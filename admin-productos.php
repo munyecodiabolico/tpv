@@ -18,8 +18,11 @@
     // filtramos los productos segun la categoria seleccionada.
     // En caso contrario, mostramos todos los productos.
 
-	if (!empty($_GET['categoria_id'])) {
-		$productos = $producto->filtrarCategoria($_GET['categoria_id']);
+    $categoria = !empty($_GET['categoria_id']) ? $_GET['categoria_id'] : null;
+    $visible = !empty($_GET['visible']) ? $_GET['visible'] : null;
+
+	if (!empty($categoria) || !empty($visible))  {
+        $productos = $producto->filtrar($categoria, $visible);
     } else {
         $productos = $producto->index();
     }
@@ -240,7 +243,7 @@
         </div>
     </div>
 
-     //                                
+    <!-- Modal de filtrar productos-->  
     <div>
         <div id="filterArticle" class="modal fade" tabindex="-1" aria-labelledby="filterArticleLabel" aria-hidden="true">
             <div class="modal-dialog">
