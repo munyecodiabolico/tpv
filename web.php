@@ -7,7 +7,9 @@
     require_once 'app/Controllers/MetodoPagoController.php';
     require_once 'app/Controllers/ProductCategoryController.php';
     require_once 'app/Controllers/ProductController.php';
+    require_once 'app/Controllers/PrecioController.php';
     require_once 'app/Controllers/EmpresaController.php';
+    
     use app\Controllers\TicketController;
     use app\Controllers\TableController;
     use app\Controllers\VentaController;

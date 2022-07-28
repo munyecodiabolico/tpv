@@ -107,6 +107,37 @@
 			return $stmt->fetch(PDO::FETCH_ASSOC); 
 		
 		}
+
+		// Metodo para obtener el listado de productos segun la categoria que nos llega como parametro
+		public function filtrarCategoria($categoria) {
+
+			// Llamada a la base de datos
+			$query = "SELECT 	productos.id AS id, 
+								productos.nombre AS nombre,
+								productos.imagen_url AS imagen_url,
+								productos_categorias.nombre AS categoria,
+								productos_categorias.id AS categoria_id,
+								precios.precio_base AS precio,
+								iva.tipo_iva AS iva,
+								iva.id AS iva_id,
+								productos.visible AS visible
+								FROM productos
+								INNER JOIN productos_categorias ON productos_categorias.id = productos.categoria_id
+								INNER JOIN precios ON precios.producto_id = productos.id
+								INNER JOIN iva ON iva.id = precios.iva_id
+								WHERE productos_categorias.id = $categoria";
+
+			// Ejecutamos la consulta
+			$stmt = $this->pdo->prepare($query);
+			$result = $stmt->execute();
+
+			// Devolvemos el resultado de la consulta en forma de array. En este caso es un array de arrays
+			// Por eso se usa el metodo fetchAll()
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		}
+		
+
 		
 	}
 

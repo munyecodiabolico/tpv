@@ -31,6 +31,12 @@
 		public function delete($id) {
 			return $this->producto->delete($id);
 		}
+
+		// Accedemos al metodo filtrarCategoria de la clase Producto y le pasamos el parametro $categoria
+		// Nos devuelve un array con los productos filtrados por categoria
+		public function filtrarCategoria($categoria) {
+			return $this->producto->filtrarCategoria($categoria);
+		}
 		
 		public function store($id, $nombre, $categoria, $visible, $imagen_url) {
 			return $this->producto->store($id, $nombre, $categoria, $visible, $imagen_url);
