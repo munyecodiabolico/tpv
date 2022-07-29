@@ -6,8 +6,8 @@ export let renderAdminForm = () => {
     let createLayout = document.querySelector('.create-layout');
     let tableContainer = document.querySelector('tbody');
 
-    if(createFormButton) {
-        
+    if (createFormButton) {
+
         createFormButton.addEventListener("click", (event) => {
             // Cuando hay un evento click en el botón de crear formulario lo primero que hace es resetear el formulario
             document.getElementsByName('id')[0].value = "";
@@ -15,14 +15,14 @@ export let renderAdminForm = () => {
         });
     }
 
-    if(sendFormButton) {
+    if (sendFormButton) {
 
         sendFormButton.addEventListener("click", (event) => {
             // Evita el comportamiento default del botón que enviaria los datos via GET. Asi evitamos que se envien los datos por GET
             event.preventDefault();
-                
+
             let sendPostRequest = async () => {
-                
+
                 let data = {};
                 // formData es un objeto nativo de JS que nos permite obtener los datos del formulario
                 let formData = new FormData(adminForm);
@@ -30,19 +30,19 @@ export let renderAdminForm = () => {
 
                 formData.forEach((value, key) => {
 
-                    if(value instanceof File && value.size > 0) {
+                    if (value instanceof File && value.size > 0) {
 
                         let file = {
-                            'lastMod'    : value.lastModified,
+                            'lastMod': value.lastModified,
                             'lastModDate': value.lastModifiedDate,
-                            'name'       : value.name,
-                            'size'       : value.size,
-                            'type'       : value.type,
-                        } 
+                            'name': value.name,
+                            'size': value.size,
+                            'type': value.type,
+                        }
 
                         data[key] = file;
 
-                        fetch ('upload.php', {
+                        fetch('upload.php', {
                             method: 'POST',
                             body: formData
                         });
@@ -59,67 +59,67 @@ export let renderAdminForm = () => {
                     method: 'POST',
                     body: JSON.stringify(data)
                 })
-                .then(response => {
-                
-                    if (!response.ok) throw response;
+                    .then(response => {
 
-                    return response.json();
-                })
-                .then(json => {
+                        if (!response.ok) throw response;
 
-                    if(json.id == "") {
+                        return response.json();
+                    })
+                    .then(json => {
 
-                        let newElement = createLayout.cloneNode(true);
-                        newElement.classList.remove('d-none', 'create-layout');
-                        newElement.dataset.element = json.newElement.id;
+                        if (json.id == "") {
 
-                        newElement.querySelector('.delete-table-button').dataset.id = json.newElement.id;
-                        newElement.querySelector('.edit-table-button').dataset.id = json.newElement.id;
+                            let newElement = createLayout.cloneNode(true);
+                            newElement.classList.remove('d-none', 'create-layout');
+                            newElement.dataset.element = json.newElement.id;
 
-                        Object.entries(json.newElement).forEach(([key, value]) => {
-                            
-                            if(newElement.querySelector("." + key)){
+                            newElement.querySelector('.delete-table-button').dataset.id = json.newElement.id;
+                            newElement.querySelector('.edit-table-button').dataset.id = json.newElement.id;
 
-                                if(newElement.querySelector("." + key).tagName == "IMG") {
+                            Object.entries(json.newElement).forEach(([key, value]) => {
 
-                                    newElement.querySelector("." + key).src = value;
-                                }else{
-                                    newElement.querySelector("." + key).innerHTML = value;
+                                if (newElement.querySelector("." + key)) {
+
+                                    if (newElement.querySelector("." + key).tagName == "IMG") {
+
+                                        newElement.querySelector("." + key).src = value;
+                                    } else {
+                                        newElement.querySelector("." + key).innerHTML = value;
+                                    }
                                 }
-                            }
-                        });
+                            });
 
-                        tableContainer.appendChild(newElement);
+                            tableContainer.appendChild(newElement);
 
-                        document.dispatchEvent(new CustomEvent('renderAdminTable'));
+                            document.dispatchEvent(new CustomEvent('renderAdminTable'));
 
-                    }else{
+                        } else {
 
-                        let element = document.querySelector("[data-element='" + json.id + "']");
+                            let element = document.querySelector("[data-element='" + json.id + "']");
 
-                        Object.entries(json.newElement).forEach(([key, value]) => {
-                            
-                            if(element.querySelector("." + key)){
+                            Object.entries(json.newElement).forEach(([key, value]) => {
 
-                                if(element.querySelector("." + key).tagName == "IMG") {
+                                if (element.querySelector("." + key)) {
 
-                                    element.querySelector("." + key).src = value;
-                                }else{
-                                    element.querySelector("." + key).innerHTML = value;
+                                    if (element.querySelector("." + key).tagName == "IMG") {
+
+                                        element.querySelector("." + key).src = value;
+                                    } else {
+                                        element.querySelector("." + key).innerHTML = value;
+                                    }
                                 }
-                            }
-                        });
+                            });
 
-                        document.dispatchEvent(new CustomEvent('renderAdminTable'));
-                    }
-                })
-                .catch ( error =>  {
-                    console.log(error);
-                });
+                            document.dispatchEvent(new CustomEvent('renderAdminTable'));
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
             };
 
             sendPostRequest();
-        }); 
+        });
     }
-    
+
 };

@@ -21,7 +21,7 @@ class ImageService {
 
         return $target_path;
 
-	}
+	} 
 }
 
 ?>

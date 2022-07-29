@@ -1,1 +1,15 @@
-j
+SELECT 	productos.id AS id, 
+								productos.nombre AS nombre,
+								productos.imagen_url AS imagen_url,
+								productos_categorias.nombre AS categoria,
+								productos_categorias.id AS categoria_id,
+								precios.precio_base AS precio,
+								iva.tipo_iva AS iva,
+								iva.id AS iva_id,
+								productos.visible AS visible
+								FROM productos
+								INNER JOIN productos_categorias ON productos_categorias.id = productos.categoria_id
+								INNER JOIN precios ON precios.producto_id = productos.id
+								INNER JOIN iva ON iva.id = precios.iva_id
+								WHERE productos.id = 9
+								AND precios.vigente = 1

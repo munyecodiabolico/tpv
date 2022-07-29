@@ -341,6 +341,8 @@
 
                 $producto = new ProductController();
                 $producto = $producto->show($json->id);
+                file_put_contents('fichero.txt', $producto);
+                
                 
                 $response = array(
                     'status' => 'ok',
