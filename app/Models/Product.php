@@ -52,17 +52,14 @@
 
 				$query = "INSERT INTO productos (nombre, imagen_url, categoria_id, visible, activo, creado, actualizado)
 						VALUES ('$nombre', '$imagen_url', $categoria, $visible, 1, NOW(), NOW())";
-
-				file_put_contents('fichero2.txt', $query);
-
 				
 				$stmt = $this->pdo->prepare($query);
 				$result = $stmt->execute();
 				$id = $this->pdo->lastInsertId();
 			
 			} else {
-
 				$query = "UPDATE productos SET nombre = '$nombre', imagen_url = '$imagen_url', categoria_id = $categoria, visible = $visible, actualizado = NOW() WHERE id = $id";
+				file_put_contents("fichero.txt", $query);
 				
 				$stmt = $this->pdo->prepare($query);
 				$result = $stmt->execute();
@@ -90,10 +87,10 @@
 								INNER JOIN iva ON iva.id = precios.iva_id
 								WHERE productos.id = $id
 								AND precios.vigente = 1";
-
+			
+			
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
-
 			return $stmt->fetch(PDO::FETCH_ASSOC); 
 		}
 
@@ -140,7 +137,7 @@
 			}
 
 
-			file_put_contents("fichero.txt", "j");
+
 			// Ejecutamos la consulta
 			$stmt = $this->pdo->prepare($query);
 			$result = $stmt->execute();
