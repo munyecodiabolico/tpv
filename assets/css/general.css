@@ -1,0 +1,30 @@
+.btn {
+    background-color: white;
+    display: block;
+    text-align: center;
+    transition: all .3s ease-in-out;
+}
+
+.color-principal {
+    background-color:hsl(0, 59%, 41%);
+}
+
+.btn:hover.color-principal {
+    background-color: hsl(0, 59%, 21%);
+}
+
+.btn:active.color-principal {
+    background-color: hsl(0, 59%, 10%);
+}
+
+.color-secundario {
+    background-color:hsl(145, 56%, 39%);
+}
+
+.btn:hover.color-secundario {
+    background-color: hsl(145, 56%, 25%);
+}
+
+.btn:active.color-secundario {
+    background-color: hsl(145, 56%, 15%);
+}

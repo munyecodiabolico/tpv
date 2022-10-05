@@ -6,7 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>diseño tpv</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="assets/css/general.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
     <link rel="stylesheet" href="assets/css/Abel.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/fonts/line-awesome.min.css">
@@ -25,13 +29,13 @@
             <section>
                <div class="row mb-5 justify-content-center">
                     <div class="col-6 col-md-4 gy-4">
-                    <a class="btn btn-primary g-4 w-100 py-4 py-sm-5 px-2 shadow-sm option-system option-system-menu rounded-0" role="button" href="mesas.php?panel=1">
+                    <a class="btn color-principal g-4 w-100 py-4 py-sm-5 px-2 shadow-sm option-system option-system-menu rounded-0" role="button" href="mesas.php?panel=1">
                             <i class="fa fa-th" aria-hidden="true"></i>
                             <h2>Mesas</h2>
                         </a>
                     </div>
                     <div class="col-6 col-md-4 gy-4">
-                        <a class="btn btn-secondary g-4 w-100 py-4 py-sm-5 px-2 shadow-sm option-system option-system-menu rounded-0" role="button" href="">
+                        <a class="btn color-secundario g-4 w-100 py-4 py-sm-5 px-2 shadow-sm option-system option-system-menu rounded-0" role="button" href="">
                             <i class="fa fa-truck" aria-hidden="true"></i>
                             <h2>Proveedores</h2>
                         </a>
