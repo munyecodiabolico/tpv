@@ -1,0 +1,22 @@
+/* ---- VARIABLES ---- */
+.uep-title {
+  font-size: 1rem;
+}
+
+.uep-background {
+  color: red;
+}
+
+/* ---- ESTILOS GENERALES ---- */
+html {
+  font-size: 16px;
+}
+
+body {
+  background-color: red;
+}
+
+/* ---- ESTILOS COMUNES ---- */
+.brand-comun {
+  font-size: 1rem;
+}/*# sourceMappingURL=estilos.css.map */

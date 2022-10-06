@@ -1,0 +1,19 @@
+/* ---- VARIABLES ---- */
+
+$brand: 'uep';
+$fz:1rem;
+
+
+
+.#{$brand}-title {
+    font-size: $fz;
+}
+
+.#{$brand}-background {
+    color: red;
+}
+
+
+
+
+
