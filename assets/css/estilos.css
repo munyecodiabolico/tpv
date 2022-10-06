@@ -1,22 +1,116 @@
-/* ---- VARIABLES ---- */
-.uep-title {
-  font-size: 1rem;
+h1, h2, h3, h4, h5, h6 {
+  padding: 0;
+  margin: 0;
 }
 
-.uep-background {
-  color: red;
+p {
+  padding: 0;
+  margin: 0;
 }
 
-/* ---- ESTILOS GENERALES ---- */
-html {
-  font-size: 16px;
+.panel {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: hsl(0deg, 0%, 100%);
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  border-radius: 5px;
 }
-
-body {
-  background-color: red;
+.panel-color1 {
+  background-color: hsl(205deg, 94%, 26%);
 }
-
-/* ---- ESTILOS COMUNES ---- */
-.brand-comun {
-  font-size: 1rem;
+.panel-color1:hover {
+  background-color: #022f4f;
+}
+.panel-color1:active {
+  background-color: #01121e;
+}
+.panel-color2 {
+  background-color: hsl(179deg, 77%, 28%);
+}
+.panel-color2:hover {
+  background-color: #0b5150;
+}
+.panel-color2:active {
+  background-color: #052424;
+}
+.panel-color3 {
+  background-color: hsl(318deg, 94%, 20%);
+}
+.panel-color3:hover {
+  background-color: #310223;
+}
+.panel-color3:active {
+  background-color: black;
+}
+.panel-color4 {
+  background-color: hsl(6deg, 85%, 32%);
+}
+.panel-color4:hover {
+  background-color: #681208;
+}
+.panel-color4:active {
+  background-color: #390a05;
+}
+.panel-color5 {
+  background-color: hsl(48deg, 96%, 45%);
+}
+.panel-color5:hover {
+  background-color: #af8d04;
+}
+.panel-color5:active {
+  background-color: #7d6403;
+}
+.panel-color6 {
+  background-color: hsl(348deg, 98%, 22%);
+}
+.panel-color6:hover {
+  background-color: #3d010d;
+}
+.panel-color6:active {
+  background-color: #0a0002;
+}
+.panel-color7 {
+  background-color: hsl(218deg, 19%, 41%);
+}
+.panel-color7:hover {
+  background-color: #404b5e;
+}
+.panel-color7:active {
+  background-color: #2b3340;
+}
+.panel-color8 {
+  background-color: hsl(326deg, 65%, 52%);
+}
+.panel-color8:hover {
+  background-color: #b12574;
+}
+.panel-color8:active {
+  background-color: #871d59;
+}
+.panel-color9 {
+  background-color: hsl(20deg, 92%, 53%);
+}
+.panel-color9:hover {
+  background-color: #d34c09;
+}
+.panel-color9:active {
+  background-color: #a23a07;
+}
+.panel-color10 {
+  background-color: hsl(225deg, 8%, 90%);
+}
+.panel-color10:hover {
+  background-color: #c8cad0;
+}
+.panel-color10:active {
+  background-color: #acafb9;
+}
+.panel i {
+  font-size: 2rem;
 }/*# sourceMappingURL=estilos.css.map */

@@ -1,19 +1,22 @@
-/* ---- VARIABLES ---- */
 
-$brand: 'uep';
-$fz:1rem;
+$color1:   hsl(205, 94%, 26%);
+$color2:   hsl(179, 77%, 28%);
+$color3:   hsl(318, 94%, 20%);
+$color4:   hsl(6, 85%, 32%);
+$color5:   hsl(48, 96%, 45%);
+$color6:   hsl(348, 98%, 22%);
+$color7:   hsl(218, 19%, 41%);
+$color8:   hsl(326, 65%, 52%);
+$color9:   hsl(20, 92%, 53%);
+$color10:  hsl(225, 8%, 90%);
 
-
-
-.#{$brand}-title {
-    font-size: $fz;
-}
-
-.#{$brand}-background {
-    color: red;
-}
-
-
-
-
-
+$primary:  hsl(216, 98%, 52%);
+$secondary:hsl(208, 7%, 46%);
+$success:  hsl(152, 69%, 31%);
+$info:     hsl(190, 90%, 50%);
+$warning:  hsl(45, 100%, 51%);
+$danger:   hsl(354, 70%, 54%);
+$light:    hsl(210, 17%, 98%);
+$dark:     hsl(210, 11%, 15%);
+$white:   hsl(0, 0%, 100%);
+$black:    hsl(0, 0%, 0%);

@@ -1,0 +1,46 @@
+$panel-colors: (
+    color1: $color1,
+    color2: $color2,
+    color3: $color3,
+    color4: $color4,
+    color5: $color5,
+    color6: $color6,
+    color7: $color7,
+    color8: $color8,
+    color9: $color9,
+    color10: $color10
+);
+
+
+.panel {
+    padding: {
+        top:2rem;
+        bottom:2rem;
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+    border-radius: 5px;
+    
+    
+    @each $name, $color in $panel-colors {
+        &-#{$name} {
+            background-color: $color;
+            &:hover {
+                background-color: darken($color,10%);
+            }
+            &:active {
+                background-color: darken($color,20%);
+            }
+        }
+    }
+
+    i {
+        font-size: 2rem;
+    }
+}
