@@ -6,9 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>diseño tpv</title>
-    <!-- <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.css">
-    <link rel="stylesheet" href="assets/css/general.css">
+    <!-- <link rel="stylesheet" href="assets/css/general.css"> -->
     <link rel="stylesheet" href="assets/css/style.css">
 
     <link rel="stylesheet" href="assets/css/Abel.css">
@@ -20,10 +19,10 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container panel-administracion">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center mt-3 border titular">SISTEMA DE GESTIÓN</h1>
+                <h1 class="cabecera">SISTEMA DE GESTIÓN</h1>
             </div>
         </div>
         <div class="row">
