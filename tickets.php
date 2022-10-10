@@ -20,8 +20,8 @@
 	$metodo_pago = $metodo->index();
 ?>
 
-<div class="col-12 col-lg-5 col-xl-4 mt-5">
-	<aside>
+<div class="col-12 col-lg-5 mt-5">
+	<aside class="tickets">
 		<?php if (isset($_GET['mesa'])): ?>
 			<h2 class="text-center">TICKET MESA <?php echo $nro_mesa['numero'] ?></h2>
 
