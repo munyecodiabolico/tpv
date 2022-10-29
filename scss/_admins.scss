@@ -1,0 +1,44 @@
+.admins {
+	th {
+		background-color: lightblue;
+	}
+	th, td {
+		vertical-align: middle;
+		text-align: center;
+	}
+	.small-admin {
+		font-size: 1rem;
+		color: #555;
+		display: block;
+		margin-top: .6rem;
+	}
+	.sale-icons {
+		display: flex;
+		justify-content: flex-end;
+	}  
+	.excel-button {
+		width: max-content;
+	}	
+	.excel-button:hover {
+		cursor: pointer;
+	}	
+	.excel-button svg {
+		width: 2rem;
+	}	
+	.excel-button:hover svg path {
+		fill: hsl(121, 96%, 26%);
+	}	
+	.pdf-icon {
+		margin: 0 .5rem;
+		width: max-content;
+	}	
+	.pdf-icon:hover {
+		cursor: pointer;
+	}	
+	.pdf-icon svg {
+		width: 2rem;
+	}	
+	.pdf-icon:hover svg path {
+		fill: rgb(210, 13, 13);
+	}
+}

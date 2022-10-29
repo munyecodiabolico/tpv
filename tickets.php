@@ -20,7 +20,7 @@
 	$metodo_pago = $metodo->index();
 ?>
 
-<div class="col-12 col-lg-5 mt-5">
+<div class="col-12 col-lg-5 col-xl-4 mt-5">
 	<aside class="tickets">
 		<?php if (isset($_GET['mesa'])): ?>
 			<h2 class="text-center">TICKET MESA <?php echo $nro_mesa['numero'] ?></h2>
@@ -46,8 +46,8 @@
 						</li>
 					<?php endforeach; ?>
 
-					<li>
-						<h4 class="no-products m-4 d-none">NO HAY ARTICULOS SELECCIONADOS EN ESTA MESA</h4>
+					<li class="no-products d-none">
+						<h4 class="m-4">NO HAY ARTICULOS SELECCIONADOS EN ESTA MESA</h4>
 					</li>
 				<?php endif; ?>
 
@@ -66,7 +66,7 @@
 				<div class="totals bg-secondary">
 					<div class="row justify-content-between g-0">
 						<div class="col">
-							<h5 class="text-center text-white mb-0 pt-1">B. Imponible</h5>
+							<h5 class="text-center text-white mb-0 border-start pt-1">B. Imponible</h5>
 						</div>
 						<div class="col">
 							<?php if (isset($total['valor_iva'])): ?>

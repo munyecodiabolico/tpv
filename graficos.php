@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="assets/css/Abel.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/fonts/line-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
 
 <body>
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center mt-3 border titular">TPV</h1>
+                <h1 class="text-center mt-3 border cabecera">TPV</h1>
             </div>
             <div class="col-12 col-lg-7 col-xl-8 order-lg-1 mt-5">
                 <section>

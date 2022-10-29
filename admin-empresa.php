@@ -21,17 +21,17 @@
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/fonts/line-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
 
 <body>
 
     <?php include('menu.php') ?>
     
-    <div class="container">
+    <div class="container admins">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center mt-3 border titular"><small class="small-admin">PANEL DE ADMINISTRACIÓN</small>EMPRESAS</h1>
+                <h1 class="text-center mt-3 border cabecera"><small class="small-admin">PANEL DE ADMINISTRACIÓN</small>EMPRESAS</h1>
             </div>
             <div class="col-12 mt-5">
                 <section>
@@ -59,9 +59,9 @@
                                 <tbody>
                                     <?php foreach($empresas as $empresa): ?>
                                         <tr class="table-element" data-element="<?= $empresa['id'] ?>">
-                                            <th scope="row" class="razon_social">
+                                            <td scope="row" class="razon_social">
                                                 <?= $empresa['razon_social'] ?>
-                                            </th>
+                                            </td>
                                             <td class="nombre_comercial"><?= $empresa['nombre_comercial'] ?></td>
                                             <td class="cif"><?= $empresa['cif'] ?></td>
                                             <td class="domicilio"><?= $empresa['domicilio'] ?></td>

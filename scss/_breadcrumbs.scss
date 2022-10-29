@@ -1,0 +1,27 @@
+.breadcrumb-item {
+	font-size: 1.2rem;
+	padding: .5rem 1rem;
+	background: #bbb;
+	margin-right: 0.3rem;
+	transition: all .3s ease-in-out;
+	margin-top: 5px;
+	span {
+		color: white;
+	}
+	a {
+		text-decoration: none;
+	}
+	&+.breadcrumb-item::before {
+		float: none;
+		content: '';
+	}
+	&.active {
+		background-color: #999;
+		&:hover {
+			background-color: #999;
+		}
+	}
+	&:hover {
+	background-color: #000;
+	}
+}

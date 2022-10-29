@@ -12,8 +12,6 @@
     text-decoration: none;
     transition: all .3s ease-in-out;
     border-radius: 5px;
-        
-    
     @each $name, $color in $colors {
         &-#{$name} {
             background-color: $color;
@@ -25,11 +23,9 @@
             }
         }
     }
-
     i {
         font-size: 2rem;
     }
-
     h2 {
         font-weight: normal;
     }

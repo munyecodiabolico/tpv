@@ -1,44 +1,39 @@
 /* ---- ESTILOS GENERALES ---- */
 body {
-    font-family: 'Abel', arial, sans-serif;
-  }
-
-* {
-    margin:0;
-    padding: 0;
-    box-sizing:border-box;
+	font-family: 'Abel', arial, sans-serif;
 }
-
+* {
+	margin:0;
+	padding: 0;
+	box-sizing:border-box;
+}
 /* 
-    Hacer que un contenedor siempre sea cuadrado sea cual sea el viewport 
-        <div class="card-item-img square">
-            <div class="content">
-                <img src="img/pexels-pixabay-461198.jpg" alt="">
-            </div>
-        </div> 
+	Hacer que un contenedor siempre sea cuadrado sea cual sea el viewport 
+		<div class="card-item-img square">
+			<div class="content">
+				<img src="img/pexels-pixabay-461198.jpg" alt="">
+			</div>
+		</div> 
 */
-/* La clase .square se usa en el contenedor que hace de mascara de la imagen */
+/*	La clase .square se usa en el contenedor que hace de mascara de la imagen */
 .square {
-    position: relative;
-    width: 100%;
-  }
-  
-  .square:after {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
-  }
-  /* La clase .content se usa en un contenedor extra que envuelve la imagen */
-  .content {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
-
+	position: relative;
+	width: 100%;
+	&:after {
+		content: "";
+		display: block;
+		padding-bottom: 100%;
+	}
+	/* La clase .content se usa en un contenedor extra que envuelve la imagen */
+	.content {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+}
 /* 
 *    FIN Hacer que un contenedor siempre sea cuadrado sea cual sea el viewport   
 */
-
 /* 
   Cuando hacemos una seccion donde hay varias columnas, si alguna es mas alta que las otras,
   normalmente vemos diferentes alturas en dichos elementos, al contenedor que generamos dentro
@@ -48,45 +43,44 @@ body {
   ira alineado abajo. Con esta clase hara este efecto.
 */
 .mantener-alto{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: space-between;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: space-between;
 }
 
 /* 
-    Esta clase hace que al elemento que se la aplicas si es muy largo, el texto solo ocupa 3 lineas y le añade tres puntos '...?
+	Esta clase hace que al elemento que se la aplicas si es muy largo, el texto solo ocupa 3 lineas y le añade tres puntos '...?
 */
 .ellipsis {
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  
-  
-
-
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}  
+.img-cover {
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+}
 .container {
-    padding: {
-        top: 1rem;
-        bottom: 1rem;
-    }
+	padding: {
+		top: 1rem;
+		bottom: 1rem;
+	}
 }
-
 .cabecera, .subcabecera {
-    background-color: hsl(225deg, 8%, 90%);
-    text-align: center;
-    padding: 0.5rem;
-    border-radius: 5px;
-    font-weight: normal;
-    font-size: 2.5rem;
+	background-color: hsl(225deg, 8%, 90%);
+	text-align: center;
+	padding: 0.5rem;
+	border-radius: 5px;
+	font-weight: normal;
+	font-size: 2.5rem;
 }
-
 .subcabecera {
-    font-size: 2rem;
+	font-size: 2rem;
 }
-
-
-
+a:hover {
+  color:white;
+}
 

@@ -1,0 +1,25 @@
+.table {
+	&>thead {
+		background-color: #c9e7ff;
+	}
+	tr {
+		vertical-align: middle;
+		text-align: center;
+		.numero-mesa {
+			width: 30%;
+			text-align: center;
+		}
+		.ubicacion {
+			width: 30%;
+			text-align: center;
+		}
+		.comensales {
+			width: 30%;
+			text-align: center;
+		}
+		.opciones {
+			width: 15%;
+			text-align: center;
+		}
+	}
+}

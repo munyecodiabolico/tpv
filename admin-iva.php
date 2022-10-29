@@ -21,17 +21,17 @@
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/fonts/line-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
 
 <body>
 
     <?php include('menu.php') ?>
     
-    <div class="container">
+    <div class="container admins">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center mt-3 border titular"><small class="small-admin">PANEL DE ADMINISTRACIÓN</small>TIPOS DE IVA</h1>
+                <h1 class="text-center mt-3 border cabecera"><small class="small-admin">PANEL DE ADMINISTRACIÓN</small>TIPOS DE IVA</h1>
             </div>
             <div class="col-12 mt-5">
                 <section>
@@ -53,9 +53,9 @@
                                 <tbody>
                                     <?php foreach($ivas as $iva): ?>
                                         <tr class="table-element" data-element="<?= $iva['id'] ?>">
-                                            <th scope="row" class="tipo_iva">
+                                            <td scope="row" class="tipo_iva">
                                                 <?= $iva['tipo_iva'] ?>
-                                            </th>
+                                            </td>
                                             <td class="vigente"><?= $iva['vigente'] ?></td>
                                             <td class="opciones">
                                                 <button type="button" class="edit-table-button btn btn-success" data-bs-toggle="modal" data-id="<?= $iva['id'] ?>" data-route="showIva" data-bs-target="#addArticle">

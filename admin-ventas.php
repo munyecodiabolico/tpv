@@ -29,17 +29,17 @@
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/fonts/line-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
 
 <body>
 
     <?php include('menu.php') ?>
     
-    <div class="container">
+    <div class="container admins">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center mt-3 border titular"><small class="small-admin">LISTADO DE</small>VENTAS</h1>
+                <h1 class="text-center mt-3 border cabecera"><small class="small-admin">LISTADO DE</small>VENTAS</h1>
             </div>
             <div class="col-12 mt-5">
                 <section>
@@ -152,8 +152,8 @@
                                 <tr>
                                     <th class="text-center"scope="col"></th>
                                     <th class="text-center" scope="col">Nombre</th>
-                                    <th class="text-center" scope="col">Precio Base</th>
                                     <th class="text-center" scope="col">Cantidad</th>
+                                    <th class="text-center" scope="col">Precio Base</th>
                                 </tr>
                             </thead>
                             <tbody id="products">

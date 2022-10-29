@@ -21,7 +21,7 @@ $productos = $producto->filter($category);
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/fonts/line-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/estilos.css">
 
 </head>
 
@@ -56,11 +56,13 @@ $productos = $producto->filter($category);
                     </div>
                     <div class="row mb-5">
                         <?php foreach ($productos as $producto) : ?>
-                            <div class="add-product col-6 col-md-4 gy-4"  data-table="<?php echo $_GET['mesa'] ?>"
+                            <div class="add-product col-6 col-md-4 col-xl-3 gy-4"  data-table="<?php echo $_GET['mesa'] ?>"
                                     data-price="<?= $producto['precio_id']; ?>">
-                                <a class="btn g-4 w-100 shadow cat-prod rounded-0 p-0"
+                                <a class="cat-prod option-section square"
                                     role="button">
-                                    <img src=<?= $producto['imagen_url'] ?>>
+                                    <div class="content shadow">
+                                        <img src=<?= $producto['imagen_url'] ?>>
+                                    </div>
                                 </a>
                                 <h5 class="text-center mb-0"><?= $producto['nombre'] ?></h5>
                             </div>

@@ -44,17 +44,17 @@
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/fonts/line-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
 
 <body>
 
     <?php include('menu.php') ?>
     
-    <div class="container">
+    <div class="container admins">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center mt-3 border titular"><small class="small-admin">PANEL DE ADMINISTRACIÓN</small>PRODUCTOS</h1>
+                <h1 class="text-center mt-3 border cabecera"><small class="small-admin">PANEL DE ADMINISTRACIÓN</small>PRODUCTOS</h1>
             </div>
             <div class="col-12 mt-5">
                 <section>
@@ -89,7 +89,11 @@
                                     <?php foreach($productos as $producto): ?>
                                         <tr class="table-element" data-element="<?= $producto['id'] ?>">
                                             <td>
-                                                <img class="imagen_url" src="<?= $producto['imagen_url'] ?>" alt="">
+                                                <div class="square w-50 m-auto">
+                                                    <div class="content">
+                                                        <img class="img-cover imagen_url" src="<?= $producto['imagen_url'] ?>" alt="">
+                                                    </div>    
+                                                </div> 
                                             </td>
                                             <td class="nombre">
                                                 <?= $producto['nombre'] ?>
@@ -118,7 +122,13 @@
                                     <?php endforeach; ?>
 
                                     <tr class="create-layout table-element d-none" data-element="">
-                                        <td><img class="imagen_url" src=""></td>
+                                        <td>
+                                            <div class="square w-50 m-auto">
+                                                <div class="content">
+                                                    <img class="img-cover imagen_url" src="" alt="">
+                                                </div>    
+                                            </div>     
+                                        </td>
                                         <td class="nombre"></td>
                                         <td class="categoria"></td>
                                         <td class="precio"></td>

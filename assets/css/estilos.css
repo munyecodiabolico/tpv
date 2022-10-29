@@ -11,27 +11,25 @@ body {
 }
 
 /* 
-    Hacer que un contenedor siempre sea cuadrado sea cual sea el viewport 
-        <div class="card-item-img square">
-            <div class="content">
-                <img src="img/pexels-pixabay-461198.jpg" alt="">
-            </div>
-        </div> 
+	Hacer que un contenedor siempre sea cuadrado sea cual sea el viewport 
+		<div class="card-item-img square">
+			<div class="content">
+				<img src="img/pexels-pixabay-461198.jpg" alt="">
+			</div>
+		</div> 
 */
-/* La clase .square se usa en el contenedor que hace de mascara de la imagen */
+/*	La clase .square se usa en el contenedor que hace de mascara de la imagen */
 .square {
   position: relative;
   width: 100%;
+  /* La clase .content se usa en un contenedor extra que envuelve la imagen */
 }
-
 .square:after {
   content: "";
   display: block;
   padding-bottom: 100%;
 }
-
-/* La clase .content se usa en un contenedor extra que envuelve la imagen */
-.content {
+.square .content {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -56,13 +54,20 @@ body {
 }
 
 /* 
-    Esta clase hace que al elemento que se la aplicas si es muy largo, el texto solo ocupa 3 lineas y le añade tres puntos '...?
+	Esta clase hace que al elemento que se la aplicas si es muy largo, el texto solo ocupa 3 lineas y le añade tres puntos '...?
 */
 .ellipsis {
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.img-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 .container {
@@ -81,6 +86,10 @@ body {
 
 .subcabecera {
   font-size: 2rem;
+}
+
+a:hover {
+  color: white;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -207,4 +216,150 @@ p {
   font-size: 3rem;
   font-weight: 800;
   padding: 0;
+}
+
+.tickets .img-ticket {
+  width: 60px;
+  height: 60px;
+  margin-right: 1rem;
+  border: 1px solid #eee;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.tickets .precio-prod {
+  margin-bottom: 0;
+  font-size: 1.2rem;
+  line-height: 1;
+  width: 70px;
+  text-align: right;
+}
+.tickets .nombre-prod {
+  line-height: 1;
+}
+.tickets .categoria-prod {
+  color: #ccc;
+  font-style: italic;
+}
+.tickets .medida-prod {
+  font-size: 0.8rem;
+  line-height: 0;
+}
+.tickets .list-group {
+  max-height: 550px;
+  border: 1px solid #eee;
+  overflow-y: auto;
+}
+
+.breadcrumb-item {
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  background: #bbb;
+  margin-right: 0.3rem;
+  transition: all 0.3s ease-in-out;
+  margin-top: 5px;
+}
+.breadcrumb-item span {
+  color: white;
+}
+.breadcrumb-item a {
+  text-decoration: none;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+  float: none;
+  content: "";
+}
+.breadcrumb-item.active {
+  background-color: #999;
+}
+.breadcrumb-item.active:hover {
+  background-color: #999;
+}
+.breadcrumb-item:hover {
+  background-color: #000;
+}
+
+.option-section .content {
+  border: 1px solid #eee;
+  overflow: hidden;
+}
+.option-section img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: all 0.3s ease-in-out;
+}
+.option-section:hover img {
+  transform: scale(1.2);
+}
+
+.table > thead {
+  background-color: #c9e7ff;
+}
+.table tr {
+  vertical-align: middle;
+  text-align: center;
+}
+.table tr .numero-mesa {
+  width: 30%;
+  text-align: center;
+}
+.table tr .ubicacion {
+  width: 30%;
+  text-align: center;
+}
+.table tr .comensales {
+  width: 30%;
+  text-align: center;
+}
+.table tr .opciones {
+  width: 15%;
+  text-align: center;
+}
+
+.admins th {
+  background-color: lightblue;
+}
+.admins th, .admins td {
+  vertical-align: middle;
+  text-align: center;
+}
+.admins .small-admin {
+  font-size: 1rem;
+  color: #555;
+  display: block;
+  margin-top: 0.6rem;
+}
+.admins .sale-icons {
+  display: flex;
+  justify-content: flex-end;
+}
+.admins .excel-button {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+.admins .excel-button:hover {
+  cursor: pointer;
+}
+.admins .excel-button svg {
+  width: 2rem;
+}
+.admins .excel-button:hover svg path {
+  fill: hsl(121deg, 96%, 26%);
+}
+.admins .pdf-icon {
+  margin: 0 0.5rem;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+.admins .pdf-icon:hover {
+  cursor: pointer;
+}
+.admins .pdf-icon svg {
+  width: 2rem;
+}
+.admins .pdf-icon:hover svg path {
+  fill: rgb(210, 13, 13);
 }/*# sourceMappingURL=estilos.css.map */

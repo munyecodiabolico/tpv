@@ -21,17 +21,17 @@
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/fonts/line-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
 
 <body>
 
     <?php include('menu.php') ?>
     
-    <div class="container">
+    <div class="container admins">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center mt-3 border titular"><small class="small-admin">PANEL DE ADMINISTRACIÓN</small>CATEGORÍAS</h1>
+                <h1 class="text-center mt-3 border cabecera"><small class="small-admin">PANEL DE ADMINISTRACIÓN</small>CATEGORÍAS</h1>
             </div>
             <div class="col-12 mt-5">
                 <section>
@@ -45,7 +45,7 @@
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                    < th scope="col">Imagen</th>
+                                    <th scope="col">Imagen</th>
                                     <th scope="col">Categoría</th>
                                     <th scope="col">Opciones</th>
                                     </tr>
@@ -54,11 +54,15 @@
                                     <?php foreach($categorias as $categoria): ?>
                                         <tr class="table-element" data-element="<?= $categoria['id'] ?>">
                                             <td>
-                                                <img class="imagen_url" src="<?= $categoria['imagen_url'] ?>" alt="">
+                                                <div class="square w-25 m-auto">
+                                                    <div class="content">
+                                                        <img class="img-cover imagen_url" src="<?= $categoria['imagen_url'] ?>" alt="">
+                                                    </div>    
+                                                </div>    
                                             </td>    
-                                            <th scope="row" class="nombre">
+                                            <td scope="row" class="nombre">
                                                 <?= $categoria['nombre'] ?>
-                                            </th>
+                                            </td>
                                             <td class="opciones">
                                                 <button type="button" class="edit-table-button btn btn-success" data-bs-toggle="modal" data-id="<?= $categoria['id'] ?>" data-route="showProductCategory" data-bs-target="#addArticle">
                                                     <i class="fa fa-edit"></i>

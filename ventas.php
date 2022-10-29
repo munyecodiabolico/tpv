@@ -35,7 +35,7 @@
 	<link rel="stylesheet" href="assets/fonts/ionicons.min.css">
 	<link rel="stylesheet" href="assets/fonts/line-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-	<link rel="stylesheet" href="assets/css/styles.css">
+	<link rel="stylesheet" href="assets/css/estilos.css">
 </head>
 
 <body>
@@ -43,7 +43,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<h1 class="text-center mt-3 border titular">TPV</h1>
+				<h1 class="text-center mt-3 border cabecera">TPV</h1>
 			</div>
 			<div class="col-12 col-lg-7 col-xl-8 order-1 mt-5">
 				<section>
@@ -201,7 +201,7 @@
                                         <h5 class="text-center text-white mb-0 pt-1">Total Ingresos</h5>
                                     </div>
                                     <div class="col">
-                                        <h5 class="text-center text-white mb-0 pt-1">Media del día</h5>
+                                        <h5 class="text-center text-white border-start mb-0 pt-1">Media del día</h5>
                                     </div>
                                     <div class="row justify-content-between g-0">
                                         <div class="col">

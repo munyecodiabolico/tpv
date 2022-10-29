@@ -20,16 +20,16 @@ $categorias = $categoria->filter();
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/fonts/line-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/estilos.css">
 
 </head>
 
 <body>
-    <?php include('menu.php') ?>
+    <!-- <?php include('menu.php') ?> -->
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center mt-3 border titular">TPV</h1>
+                <h1 class="text-center mt-3 border cabecera">TPV</h1>
             </div>
             <div class="col-12 col-lg-7 col-xl-8 order-lg-1 mt-5">
                 <section>
@@ -50,9 +50,11 @@ $categorias = $categoria->filter();
                     </div>
                     <div class="row mb-5">
                         <?php foreach ($categorias as $categoria) : ?>
-                            <div class="col-6 col-md-4 gy-4">
-                                <a class="btn g-4 w-100 shadow cat-prod rounded-0 p-0" role="button" href="productos.php?categoria=<?php echo $categoria['id'] ?>&mesa=<?php echo $_GET['mesa'] ?>">
-                                    <img src=<?= $categoria['imagen_url'] ?>>
+                            <div class="col-6 col-md-4 col-xl-3 gy-4">
+                                <a class="cat-prod option-section square" role="button" href="productos.php?categoria=<?php echo $categoria['id'] ?>&mesa=<?php echo $_GET['mesa'] ?>">
+                                    <div class="content shadow">
+                                        <img src=<?= $categoria['imagen_url'] ?>>
+                                    </div>
                                 </a>
                                 <h5 class="text-center mb-0"><?= $categoria['nombre'] ?></h5>
                             </div>
