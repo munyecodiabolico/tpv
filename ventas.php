@@ -130,7 +130,7 @@
 
 			<div class="col-12 col-lg-5 col-xl-4 mt-5">
 				<aside>
-					<h2 class="text-center">VENTAS</h2>
+					<h2 class="text-center subcabecera">VENTAS</h2>
 					<form action="ventas.php" method="GET">
 						<div class="row mt-3 mb-3">
 							<div class="col-6">

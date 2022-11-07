@@ -28,9 +28,9 @@
 
             <div class="col-12 col-lg-5 col-xl-4 mt-5">
                 <aside>
-                    <h2 class="text-center">ESTADÍSTICAS</h2>
+                    <h2 class="text-center subcabecera">ESTADÍSTICAS</h2>
 
-                    <div class="list-group">
+                    <div class="list-group mt-3">
 
                         <div class="chart-item list-group-item list-group-item-action" data-route="getSaleChartData" data-chart="sales_by_hour" data-type="line" aria-current="true">
                             <div class="d-flex w-100 justify-content-between">

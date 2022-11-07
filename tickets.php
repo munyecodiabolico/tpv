@@ -23,7 +23,7 @@
 <div class="col-12 col-lg-5 col-xl-4 mt-5">
 	<aside class="tickets">
 		<?php if (isset($_GET['mesa'])): ?>
-			<h2 class="text-center">TICKET MESA <?php echo $nro_mesa['numero'] ?></h2>
+			<h2 class="text-center subcabecera">TICKET MESA <?php echo $nro_mesa['numero'] ?></h2>
 
 			<ul class="list-group shadow mt-4">
 				<?php if (empty($tickets)): ?>

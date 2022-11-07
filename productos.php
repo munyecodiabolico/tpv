@@ -30,11 +30,11 @@ $productos = $producto->filter($category);
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center mt-3 border titular">TPV</h1>
+                <h1 class="text-center mt-3 border cabecera">TPV</h1>
             </div>
             <div class="col-12 col-lg-7 col-xl-8 order-lg-1 mt-5">
                 <section>
-                    <h2 class="text-center">TAPAS</h2>
+                    <h2 class="text-center subcabecera">TAPAS</h2>
                     <div class="row">
                         <div class="col">
                             <ol class="breadcrumb mb-0 mt-3">

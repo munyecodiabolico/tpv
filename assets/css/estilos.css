@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* ---- ESTILOS GENERALES ---- */
 body {
   font-family: "Abel", arial, sans-serif;
@@ -10,19 +9,9 @@ body {
   box-sizing: border-box;
 }
 
-/* 
-	Hacer que un contenedor siempre sea cuadrado sea cual sea el viewport 
-		<div class="card-item-img square">
-			<div class="content">
-				<img src="img/pexels-pixabay-461198.jpg" alt="">
-			</div>
-		</div> 
-*/
-/*	La clase .square se usa en el contenedor que hace de mascara de la imagen */
 .square {
   position: relative;
   width: 100%;
-  /* La clase .content se usa en un contenedor extra que envuelve la imagen */
 }
 .square:after {
   content: "";
@@ -35,17 +24,6 @@ body {
   height: 100%;
 }
 
-/* 
-*    FIN Hacer que un contenedor siempre sea cuadrado sea cual sea el viewport   
-*/
-/* 
-  Cuando hacemos una seccion donde hay varias columnas, si alguna es mas alta que las otras,
-  normalmente vemos diferentes alturas en dichos elementos, al contenedor que generamos dentro
-  de la columna hay que ponerle la clase mantener-alto. Ademas si queremos que un elemento en
-  concreto se alinee abajo en todos los contenedores, independientemente del contenido que tiene.
-  O sea, hay que crear dos contenedores, uno con la info que va alineada arriba y otro con lo que
-  ira alineado abajo. Con esta clase hara este efecto.
-*/
 .mantener-alto {
   display: flex;
   flex-direction: column;
@@ -53,9 +31,6 @@ body {
   justify-content: space-between;
 }
 
-/* 
-	Esta clase hace que al elemento que se la aplicas si es muy largo, el texto solo ocupa 3 lineas y le añade tres puntos '...?
-*/
 .ellipsis {
   display: -webkit-box;
   -webkit-line-clamp: 5;

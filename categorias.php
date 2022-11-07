@@ -33,7 +33,7 @@ $categorias = $categoria->filter();
             </div>
             <div class="col-12 col-lg-7 col-xl-8 order-lg-1 mt-5">
                 <section>
-                    <h2 class="text-center">CATEGORÍAS</h2>
+                    <h2 class="text-center subcabecera">CATEGORÍAS</h2>
                     <div class="row">
                         <div class="col">
                             <ol class="breadcrumb mb-0 mt-3">
